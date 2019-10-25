@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿//based on https://github.com/Pomax/bezierjs/blob/master/lib/bezier.js
+
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.DoubleNumerics;
@@ -1011,7 +1013,7 @@ namespace System.Geometry
             return Utils.Roots(this.points, line).Where((t) =>
             {
                 Vector2 p = self.Position(t);
-                return Utils.between(p.X, mx, MX) && Utils.between(p.Y, my, MY);
+                return Utils.approxBetween(p.X, mx, MX) && Utils.approxBetween(p.Y, my, MY);
             }).ToArray();
         }
 

@@ -129,7 +129,7 @@ namespace System.Geometry
         }
 
 
-        public static bool between(double v, double m, double M)
+        public static bool approxBetween(double v, double m, double M)
         {
             return (
               (m <= v && v <= M) ||
@@ -140,11 +140,6 @@ namespace System.Geometry
 
         public static bool Approximately(double a, double b, double precision = epsilon)
         {
-            //double d = Math.Abs(a - b);
-            //if(d<0.0001)
-            //{
-               
-            //}
             return Math.Abs(a - b) <= precision;
         }
 
@@ -294,7 +289,7 @@ namespace System.Geometry
             double dx = (x2 - x1) / 3;
             double dy = (y2 - y1) / 3;
 
-            return new Bezier(p1, new Vector2((double)(x1 + dx),(double)( y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2);
+            return new Bezier(p1, new Vector2((double)(x1 + dx), (double)(y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2);
         }
 
         //findbbox: function(sections) {
@@ -452,7 +447,7 @@ namespace System.Geometry
             //{
             //    return new Vector2(x: (v.X - tx) * cos(a) - (v.Y - ty) * sin(a), y: (v.X - tx) * sin(a) + (v.Y - ty) * cos(a));
             //}
-            var alignedPoints= points.Select(v=> new Vector2(x: (double)((v.X - tx) * cos(a) - (v.Y - ty) * sin(a)), y: (double)((v.X - tx) * sin(a) + (v.Y - ty) * cos(a)))).ToArray();
+            var alignedPoints = points.Select(v => new Vector2(x: (double)((v.X - tx) * cos(a) - (v.Y - ty) * sin(a)), y: (double)((v.X - tx) * sin(a) + (v.Y - ty) * cos(a)))).ToArray();
 
             return alignedPoints;
         }
