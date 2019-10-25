@@ -13,17 +13,17 @@ namespace System.Geometry
         /// <summary>
         /// The radius of the circle.
         /// </summary>
-        public float Radius;
+        public double Radius;
 
         /// <summary>
         /// The angle (in degrees) to begin drawing the arc, in polar (counter-clockwise) direction.
         /// </summary>
-        public float StartAngle;
+        public double StartAngle;
 
         /// <summary>
         /// The angle (in degrees) to end drawing the arc, in polar (counter-clockwise) direction. May be less than start angle if it past 360.
         /// </summary>
-        public float EndAngle;
+        public double EndAngle;
 
         internal Interval Interval;
 
@@ -38,7 +38,7 @@ namespace System.Geometry
 
         }
 
-        public Arc(Vector2 center, float radius, float startAngle, float endAngle)
+        public Arc(Vector2 center, double radius, double startAngle, double endAngle)
         {
             this.Center = center;
             this.Radius = radius;
@@ -54,7 +54,7 @@ namespace System.Geometry
          */
         public Arc(Vector2 pointA, Vector2 pointB, bool clockwise = false)
         {
-            Center = (pointA + pointB) / 2.0f;
+            Center = (pointA + pointB) / 2.0F;
             Radius = Vector2.Distance(Center, pointA);
 
             StartAngle = Angle.OfPointInDegrees(Center, clockwise ? pointB : pointA);
@@ -99,7 +99,7 @@ namespace System.Geometry
             var Radius = Vector2.Distance(Center, pointA);
 
 
-            float[] angles = new float[]
+            double[] angles = new double[]
             {
                 Angle.OfPointInDegrees(Center, pointA),
                 Angle.OfPointInDegrees(Center, pointB),
@@ -124,11 +124,11 @@ namespace System.Geometry
         /// <summary>
         /// Returns the length of this Arc.
         /// </summary>
-        public float Length
+        public double Length
         {
             get
             {
-                var value = 2 * (float)Math.PI * Radius;
+                var value = 2 * (double)Math.PI * Radius;
 
                 var pct = Angle.OfArcSpan(this) / 360;
                 value *= pct;
@@ -144,35 +144,35 @@ namespace System.Geometry
                 var r = Radius;
                 var arcPoints = Point.FromArc(this);
 
-                Vector2 extremeAngleMin(float xAngle, float yAngle, float value)
+                Vector2 extremeAngleMin(double xAngle, double yAngle, double value)
                 {
                     var extremePoint = Vector2.Min(arcPoints[0], arcPoints[1]);
 
                     if (Helper.IsBetweenArcAngles(this, xAngle, false))
                     {
-                        extremePoint.X = value + this.Center.X;
+                        extremePoint.X = (float)value + this.Center.X;
                     }
 
                     if (Helper.IsBetweenArcAngles(this, yAngle, false))
                     {
-                        extremePoint.Y = value + this.Center.Y;
+                        extremePoint.Y = (float)value + this.Center.Y;
                     }
 
                     return extremePoint;
                 }
 
-                Vector2 extremeAngleMax(float xAngle, float yAngle, float value)
+                Vector2 extremeAngleMax(double xAngle, double yAngle, double value)
                 {
                     var extremePoint = Vector2.Max(arcPoints[0], arcPoints[1]);
 
                     if (Helper.IsBetweenArcAngles(this, xAngle, false))
                     {
-                        extremePoint.X = value + this.Center.X;
+                        extremePoint.X = (float)value + this.Center.X;
                     }
 
                     if (Helper.IsBetweenArcAngles(this, yAngle, false))
                     {
-                        extremePoint.Y = value + this.Center.Y;
+                        extremePoint.Y = (float)value + this.Center.Y;
                     }
 
                     return extremePoint;
@@ -188,37 +188,37 @@ namespace System.Geometry
 
 
 
-        internal static Vector2 MidCircle(Arc arc, float midAngle)
+        internal static Vector2 MidCircle(Arc arc, double midAngle)
         {
             return arc.Center + Point.FromPolar(Angle.ToRadians(midAngle), arc.Radius);
         }
 
 
 
-        public Vector2 Position(float t)
+        public Vector2 Position(double t)
         {
             var midAngle = Angle.OfArcMiddle(this, t);
             return MidCircle(this, midAngle);
         }
 
-        public Vector2 Normal(float t)
+        public Vector2 Normal(double t)
         {
             var p = Position(t);
             return Vector2.Normalize(p - Center);
         }
 
-        public Vector2 Tangent(float t)
+        public Vector2 Tangent(double t)
         {
             var n = Normal(t);
             return new Vector2(-n.Y, n.X);
         }
 
-        public float AngleOf(float t)
+        public double AngleOf(double t)
         {
             return this.StartAngle + Span * t;
         }
 
-        public float Span
+        public double Span
         {
             get
             {
@@ -237,7 +237,7 @@ namespace System.Geometry
         /// <summary>
         /// Get an arc's end angle, ensured to be greater than its start angle.
         /// </summary>
-        private float End
+        private double End
         {
             get
             {
@@ -253,7 +253,7 @@ namespace System.Geometry
             }
         }
 
-        public Pair<Arc> Break(float t)
+        public Pair<Arc> Break(double t)
         {
             var midAngle = Angle.OfArcMiddle(this, t);
 
@@ -284,12 +284,12 @@ namespace System.Geometry
                 return null;
             }
 
-            float? getAngleStrictlyBetweenArcAngles()
+            double? getAngleStrictlyBetweenArcAngles()
             {
                 var startAngle = Angle.NoRevolutions(arc.StartAngle);
                 var endAngle = startAngle + Angle.OfArcEnd(arc) - arc.StartAngle;
 
-                var tries = new float[] { 0, 1, -1 };
+                var tries = new double[] { 0, 1, -1 };
                 for (var i = 0; i < tries.Length; i++)
                 {
                     var add = +360 * tries[i];
@@ -335,7 +335,7 @@ namespace System.Geometry
             Center += offset;
         }
 
-        public void Rotate(float angleInDegrees, Vector2 rotationOrigin)
+        public void Rotate(double angleInDegrees, Vector2 rotationOrigin)
         {
             Center = Point.Rotate(Center, angleInDegrees, rotationOrigin);
             this.StartAngle = Angle.NoRevolutions(StartAngle + angleInDegrees);
@@ -350,7 +350,7 @@ namespace System.Geometry
             arc.EndAngle = arc.StartAngle + arcSpan;
         }
 
-        static string WriteArcData(float radius, Vector2 start, Vector2 endPoint, bool largeArc = false, bool increasing = false)
+        static string WriteArcData(double radius, Vector2 start, Vector2 endPoint, bool largeArc = false, bool increasing = false)
         {
             var end = endPoint;
 
@@ -430,24 +430,24 @@ namespace System.Geometry
             return WriteArcData(arc.Radius, arcPoints[0], arcPoints[1], Angle.OfArcSpan(arc) > 180, arc.StartAngle > arc.EndAngle);
         }
 
-        Pair<IPathShape> IPathShape.Break(float t)
+        Pair<IPathShape> IPathShape.Break(double t)
         {
             var b = Break(t);
             if (b == null) return null;
             return new Pair<IPathShape>(b.Left, b.Right);
         }
 
-        public Pair<float>[] Intersects(Line line)
+        public Pair<double>[] Intersects(Line line)
         {
             return IntersectHelper.Intersect(line, this).Flip()?.ToArray();
         }
 
-        public Pair<float>[] Intersects(Arc arc)
+        public Pair<double>[] Intersects(Arc arc)
         {
             return IntersectHelper.Intersect(this, arc)?.ToArray();
         }
 
-        public Pair<float>[] Intersects(Circle circle)
+        public Pair<double>[] Intersects(Circle circle)
         {
             return IntersectHelper.Intersect(this, circle)?.ToArray();
         }
@@ -460,10 +460,10 @@ namespace System.Geometry
         /// <param name="angleInQuestion">The angle to test.</param>
         /// <param name="exclusive">Flag to exclude equaling the start or end angles.</param>
         /// <returns>Boolean true if angle is between (or equal to) the arc's start and end angles.</returns>
-        public bool IsAngleOnArc(float angleInQuestion, bool exclusive)
+        public bool IsAngleOnArc(double angleInQuestion, bool exclusive)
         {
-            float startAngle = Angle.NoRevolutions(this.StartAngle);
-            float endAngle = startAngle + Span;
+            double startAngle = Angle.NoRevolutions(this.StartAngle);
+            double endAngle = startAngle + Span;
 
             angleInQuestion = Angle.NoRevolutions(angleInQuestion);
 
@@ -472,7 +472,7 @@ namespace System.Geometry
         }
 
 
-        //internal override int NumberOfKeyPoints(float maxPointDistance = 0)
+        //internal override int NumberOfKeyPoints(double maxPointDistance = 0)
         //{
         //    var len = this.Length;
         //    if (len == 0) return 0;

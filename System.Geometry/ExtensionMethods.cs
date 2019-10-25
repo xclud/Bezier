@@ -15,7 +15,7 @@ namespace System.Geometry
             return list?.Select(i => new Pair<T>(i.Right, i.Left));
         }
 
-        public static Pair<float>[] Intersects(this IPathShape shape, IPathShape other)
+        public static Pair<double>[] Intersects(this IPathShape shape, IPathShape other)
         {
             if (other is Line line)
             {
@@ -33,50 +33,50 @@ namespace System.Geometry
             throw new ArgumentException();
         }
 
-        public static IEnumerable<IPathShape> Break(this IPathShape shape, params float[] vs)
+        public static IEnumerable<IPathShape> Break(this IPathShape shape, params double[] vs)
         {
             return BreakInternal(shape, vs);
         }
 
-        public static IEnumerable<IPathShape> Break(this IPathShape shape, IEnumerable<float> vs)
+        public static IEnumerable<IPathShape> Break(this IPathShape shape, IEnumerable<double> vs)
         {
             return BreakInternal(shape, vs);
         }
 
-        public static IEnumerable<Line> Break(this Line line, params float[] vs)
+        public static IEnumerable<Line> Break(this Line line, params double[] vs)
         {
             return BreakInternal(line, vs);
         }
 
-        public static IEnumerable<Line> Break(this Line line, IEnumerable<float> vs)
+        public static IEnumerable<Line> Break(this Line line, IEnumerable<double> vs)
         {
             return BreakInternal(line, vs);
         }
 
-        public static IEnumerable<Arc> Break(this Arc arc, params float[] vs)
+        public static IEnumerable<Arc> Break(this Arc arc, params double[] vs)
         {
             return BreakInternal(arc, vs);
         }
 
-        public static IEnumerable<Arc> Break(this Arc arc, IEnumerable<float> vs)
+        public static IEnumerable<Arc> Break(this Arc arc, IEnumerable<double> vs)
         {
             return BreakInternal(arc, vs);
         }
 
-        public static IEnumerable<Arc> Break(this Circle arc, params float[] vs)
+        public static IEnumerable<Arc> Break(this Circle arc, params double[] vs)
         {
             return BreakInternal(arc, vs);
         }
 
-        public static IEnumerable<Arc> Break(this Circle arc, IEnumerable<float> vs)
+        public static IEnumerable<Arc> Break(this Circle arc, IEnumerable<double> vs)
         {
             return BreakInternal(arc, vs);
         }
 
 
-        private static IEnumerable<IPathShape> BreakInternal(IPathShape shape, IEnumerable<float> vs)
+        private static IEnumerable<IPathShape> BreakInternal(IPathShape shape, IEnumerable<double> vs)
         {
-            var u = 0f;
+            var u = 0D;
             var any = false;
 
             foreach (var t in vs)
@@ -104,9 +104,9 @@ namespace System.Geometry
         }
 
 
-        private static IEnumerable<Line> BreakInternal(Line shape, IEnumerable<float> vs)
+        private static IEnumerable<Line> BreakInternal(Line shape, IEnumerable<double> vs)
         {
-            var u = 0f;
+            var u = 0D;
             var any = false;
 
             foreach (var t in vs)
@@ -133,9 +133,9 @@ namespace System.Geometry
             }
         }
 
-        private static IEnumerable<Arc> BreakInternal(Arc shape, IEnumerable<float> vs)
+        private static IEnumerable<Arc> BreakInternal(Arc shape, IEnumerable<double> vs)
         {
-            var u = 0f;
+            var u = 0D;
             var any = false;
 
             foreach (var t in vs)
@@ -162,10 +162,10 @@ namespace System.Geometry
             }
         }
 
-        private static IEnumerable<Arc> BreakInternal(Circle shape, IEnumerable<float> vs)
+        private static IEnumerable<Arc> BreakInternal(Circle shape, IEnumerable<double> vs)
         {
             Arc last = null;
-            var u = 0f;
+            var u = 0D;
             var any = false;
 
             foreach (var t in vs)

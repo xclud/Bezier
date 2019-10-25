@@ -8,7 +8,7 @@ namespace System.Geometry
     internal interface ITransformable
     {
         void Move(Vector2 offset);
-        void Rotate(float angleInDegrees, Vector2 rotationOrigin);
+        void Rotate(double angleInDegrees, Vector2 rotationOrigin);
 
     }
 }

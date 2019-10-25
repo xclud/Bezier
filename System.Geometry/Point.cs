@@ -13,9 +13,9 @@ namespace System.Geometry
          * @param radius The radius of the polar coordinate.
          * @returns A new point object.
          */
-        public static Vector2 FromPolar(float angleInRadians, float radius)
+        public static Vector2 FromPolar(double angleInRadians, double radius)
         {
-            return new Vector2(radius * (float)Math.Cos(angleInRadians), radius * (float)Math.Sin(angleInRadians));
+            return new Vector2(radius * (double)Math.Cos(angleInRadians), radius * (double)Math.Sin(angleInRadians));
         }
 
         /**
@@ -45,7 +45,7 @@ namespace System.Geometry
             }
             else
             {
-                float distance = Vector2.Distance(a, b);
+                double distance = Vector2.Distance(a, b);
                 return distance <= withinDistance;
             }
         }
@@ -90,8 +90,8 @@ namespace System.Geometry
             else
             {
                 // find intersection by line equation
-                float x = (slopeB.YIntercept - slopeA.YIntercept) / (slopeA.Value - slopeB.Value);
-                float y = slopeA.Value * x + slopeA.YIntercept;
+                double x = (slopeB.YIntercept - slopeA.YIntercept) / (slopeA.Value - slopeB.Value);
+                double y = slopeA.Value * x + slopeA.YIntercept;
                 pointOfIntersection = new Vector2(x, y);
             }
 
@@ -100,8 +100,8 @@ namespace System.Geometry
 
         private static Vector2 verticalIntersectionPoint(Line verticalLine, Slope nonVerticalSlope)
         {
-            float x = verticalLine.P1.X;
-            float y = nonVerticalSlope.Value * x + nonVerticalSlope.YIntercept;
+            double x = verticalLine.P1.X;
+            double y = nonVerticalSlope.Value * x + nonVerticalSlope.YIntercept;
             return new Vector2(x, y);
         }
 
@@ -112,17 +112,17 @@ namespace System.Geometry
     * @param circle A circle or arc.
     * @returns A new point object.
 */
-        internal static Vector2 FromAngleOnArc(float angleInDegrees, Arc arc)
+        internal static Vector2 FromAngleOnArc(double angleInDegrees, Arc arc)
         {
             return arc.Center + FromPolar(Angle.ToRadians(angleInDegrees), arc.Radius);
         }
 
-        internal static Vector2 FromAngleOnCircle(float angleInDegrees, Circle circle)
+        internal static Vector2 FromAngleOnCircle(double angleInDegrees, Circle circle)
         {
             return circle.Center + FromPolar(Angle.ToRadians(angleInDegrees), circle.Radius);
         }
 
-        internal static Vector2 FromAngleOnCircle(float angleInDegrees, Arc arc)
+        internal static Vector2 FromAngleOnCircle(double angleInDegrees, Arc arc)
         {
             return arc.Center + FromPolar(Angle.ToRadians(angleInDegrees), arc.Radius);
         }
@@ -166,10 +166,10 @@ namespace System.Geometry
  * @param rotationOrigin The center point of rotation.
  * @returns A new point.
  */
-        internal static Vector2 Rotate(Vector2 pointToRotate, float angleInDegrees, Vector2 rotationOrigin = default)
+        internal static Vector2 Rotate(Vector2 pointToRotate, double angleInDegrees, Vector2 rotationOrigin = default)
         {
-            float pointAngleInRadians = Angle.OfPointInRadians(rotationOrigin, pointToRotate);
-            float d = Vector2.Distance(rotationOrigin, pointToRotate);
+            double pointAngleInRadians = Angle.OfPointInRadians(rotationOrigin, pointToRotate);
+            double d = Vector2.Distance(rotationOrigin, pointToRotate);
             Vector2 rotatedPoint = FromPolar(pointAngleInRadians + Angle.ToRadians(angleInDegrees), d);
 
             return rotationOrigin + rotatedPoint;

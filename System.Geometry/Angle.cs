@@ -5,7 +5,7 @@ namespace System.Geometry
 {
     internal static class Angle
     {
-        public static float OfPointInDegrees(Vector2 origin, Vector2 pointToFindAngle)
+        public static double OfPointInDegrees(Vector2 origin, Vector2 pointToFindAngle)
         {
             return ToDegrees(OfPointInRadians(origin, pointToFindAngle));
         }
@@ -16,7 +16,7 @@ namespace System.Geometry
  * @param line The line path to find the angle of.
  * @returns Angle of the line path, in degrees.
  */
-        public static float OfLineInDegrees(Line line)
+        public static double OfLineInDegrees(Line line)
         {
             return NoRevolutions(ToDegrees(OfPointInRadians(line.P1, line.P2)));
         }
@@ -33,7 +33,7 @@ namespace System.Geometry
          * @param n The number to split.
          * @returns Array of 2 strings when n contains a decimal point, or an array of one string when n is an integer.
          */
-        public static float[] splitDecimal(float n)
+        public static double[] splitDecimal(double n)
         {
             var intt = (int)Math.Floor(n);
             var frac = n - intt;
@@ -41,18 +41,18 @@ namespace System.Geometry
             return new[] { intt, frac };
         }
 
-        private static float getFractionalPart(float n)
+        private static double getFractionalPart(double n)
         {
             return splitDecimal(n)[1];
         }
 
 
-        private static float setFractionalPart(float n, float fractionalPart)
+        private static double setFractionalPart(double n, double fractionalPart)
         {
             return splitDecimal(n)[0] + fractionalPart;
         }
 
-        public static float copyFractionalPart(float src, float dest)
+        public static double copyFractionalPart(double src, double dest)
         {
             if ((src < 0 && dest < 0) || (src > 0 && dest > 0))
             {
@@ -67,7 +67,7 @@ namespace System.Geometry
  * @param angleInDegrees Angle in degrees.
  * @returns Same polar angle but not greater than 360 degrees.
  */
-        public static float NoRevolutions(float angleInDegrees)
+        public static double NoRevolutions(double angleInDegrees)
         {
             var revolutions = (int)Math.Floor(angleInDegrees / 360);
             if (revolutions == 0) return angleInDegrees;
@@ -82,23 +82,23 @@ namespace System.Geometry
 * @param origin Point of origin of the angle.
 * @returns Angle of the line throught the point, in radians.
 */
-        internal static float OfPointInRadians(Vector2 origin, Vector2 pointToFindAngle)
+        internal static double OfPointInRadians(Vector2 origin, Vector2 pointToFindAngle)
         {
-            var d = pointToFindAngle - origin;
-            var x = d.X;
-            var y = d.Y;
+            Vector2 d = pointToFindAngle - origin;
+            double x = d.X;
+            double y = d.Y;
 
-            return (float)Math.Atan2(-y, -x) + (float)Math.PI;
+            return (double)Math.Atan2(-y, -x) + (double)Math.PI;
         }
 
-        public static float ToRadians(float angleInDegrees)
+        public static double ToRadians(double angleInDegrees)
         {
-            return NoRevolutions(angleInDegrees) * (float)Math.PI / 180.0f;
+            return NoRevolutions(angleInDegrees) * (double)Math.PI / 180.0D;
         }
 
-        public static float ToDegrees(float angleInRadians)
+        public static double ToDegrees(double angleInRadians)
         {
-            return angleInRadians * 180.0f / (float)Math.PI;
+            return angleInRadians * 180.0f / (double)Math.PI;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace System.Geometry
         /// <param name="mirrorX">Boolean to mirror on the x axis.</param>
         /// <param name="mirrorY">Boolean to mirror on the y axis.</param>
         /// <returns>Mirrored angle.</returns>
-        public static float Mirror(float angleInDegrees, bool mirrorX, bool mirrorY)
+        public static double Mirror(double angleInDegrees, bool mirrorX, bool mirrorY)
         {
             if (mirrorY)
             {
@@ -129,7 +129,7 @@ namespace System.Geometry
         /// </summary>
         /// <param name="arc">An arc path object.</param>
         /// <returns>End angle of arc</returns>
-        public static float OfArcEnd(Arc arc)
+        public static double OfArcEnd(Arc arc)
         {
             //compensate for values past zero. This allows easy compute of total angle size.
             //for example 0 = 360
@@ -149,7 +149,7 @@ namespace System.Geometry
  * @param ratio Optional number between 0 and 1 specifying percentage between start and end angles.
  * @returns Middle angle of arc.
  */
-        public static float OfArcMiddle(Arc arc, float t)
+        public static double OfArcMiddle(Arc arc, double t)
         {
             return arc.StartAngle + OfArcSpan(arc) * t;
         }
@@ -160,7 +160,7 @@ namespace System.Geometry
          * @param arc The arc to measure.
          * @returns Angle of arc.
          */
-        public static float OfArcSpan(Arc arc)
+        public static double OfArcSpan(Arc arc)
         {
             var endAngle = OfArcEnd(arc);
             var a = endAngle - arc.StartAngle;

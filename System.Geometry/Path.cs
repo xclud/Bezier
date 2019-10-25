@@ -14,7 +14,7 @@ namespace System.Geometry
 
         private CompoundPath current;
 
-        public Path MoveTo(float x, float y)
+        public Path MoveTo(double x, double y)
         {
             current = new CompoundPath { Start = new Vector2(x, y), End = new Vector2(x, y) };
             segments.Add(current);
@@ -31,7 +31,7 @@ namespace System.Geometry
         }
 
 
-        public Path LineTo(float x, float y)
+        public Path LineTo(double x, double y)
         {
             current.LineTo(new Vector2(x, y));
             return this;
@@ -50,7 +50,7 @@ namespace System.Geometry
             return this;
         }
 
-        public Path ArcTo(float radius, float startAngle, float endAngle)
+        public Path ArcTo(double radius, double startAngle, double endAngle)
         {
             current.ArcTo(radius, startAngle, endAngle);
             return this;

@@ -15,7 +15,7 @@ namespace System.Geometry
 
         public IReadOnlyList<IPathShape> Shapes => shapes;
 
-        public CompoundPath ArcTo(float radius, float startAngle, float endAngle)
+        public CompoundPath ArcTo(double radius, double startAngle, double endAngle)
         {
             shapes.Add(new Arc { Radius = radius, StartAngle = startAngle, EndAngle = endAngle });
             return this;
@@ -47,7 +47,7 @@ namespace System.Geometry
             return this;
         }
 
-        public float Length
+        public double Length
         {
             get
             {

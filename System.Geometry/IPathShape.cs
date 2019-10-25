@@ -10,13 +10,13 @@ namespace System.Geometry
         /// <summary>
         /// Gets the length of the shape.
         /// </summary>
-        float Length { get; }
+        double Length { get; }
 
-        Vector2 Position(float t);
-        Vector2 Normal(float t);
-        Vector2 Tangent(float t);
+        Vector2 Position(double t);
+        Vector2 Normal(double t);
+        Vector2 Tangent(double t);
 
-        Pair<IPathShape> Break(float t);
+        Pair<IPathShape> Break(double t);
 
         Pair<IPathShape> BreakAtPoint(Vector2 pointOfBreak);
 
@@ -34,8 +34,8 @@ namespace System.Geometry
         /// <param name="offset"></param>
         void Move(Vector2 offset);
 
-        Pair<float>[] Intersects(Circle circle);
-        Pair<float>[] Intersects(Arc arc);
-        Pair<float>[] Intersects(Line line);
+        Pair<double>[] Intersects(Circle circle);
+        Pair<double>[] Intersects(Arc arc);
+        Pair<double>[] Intersects(Line line);
     }
 }

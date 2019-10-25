@@ -16,7 +16,7 @@ namespace System.Geometry
         /// <summary>
         /// The radius of the circle.
         /// </summary>
-        public float Radius;
+        public double Radius;
 
 
 
@@ -38,7 +38,7 @@ namespace System.Geometry
          *
          * @param radius The radius of the circle.
          */
-        public Circle(float radius)
+        public Circle(double radius)
         {
             Center = new Vector2(0, 0);
             Radius = radius;
@@ -55,7 +55,7 @@ namespace System.Geometry
          * @param origin The center point of the circle.
          * @param radius The radius of the circle.
          */
-        public Circle(Vector2 center, float radius)
+        public Circle(Vector2 center, double radius)
         {
             Center = center;
             Radius = radius;
@@ -74,7 +74,7 @@ namespace System.Geometry
          */
         public Circle(Vector2 pointA, Vector2 pointB)
         {
-            Center = (pointA + pointB) / 2.0f;
+            Center = (pointA + pointB) / 2.0F;
             Radius = Vector2.Distance(Center, pointA);
         }
 
@@ -122,11 +122,11 @@ namespace System.Geometry
         //    }
         //}
 
-        public float Length
+        public double Length
         {
             get
             {
-                return 2 * (float)Math.PI * Radius;
+                return 2 * (double)Math.PI * Radius;
             }
         }
 
@@ -137,13 +137,13 @@ namespace System.Geometry
                 var r = Radius;
                 return new BoundingBox
                 {
-                    Min = Center + new Vector2(-r, -r),
-                    Max = Center + new Vector2(r, r)
+                    Min = Center + new Vector2((float)-r, (float)-r),
+                    Max = Center + new Vector2((float)r, (float)r)
                 };
             }
         }
 
-        public Pair<Arc> Break(float t)
+        public Pair<Arc> Break(double t)
         {
             var midAngle = t * 360;
 
@@ -153,7 +153,7 @@ namespace System.Geometry
             return new Pair<Arc>(arc1, arc2);
         }
 
-        Pair<IPathShape> IPathShape.Break(float t)
+        Pair<IPathShape> IPathShape.Break(double t)
         {
             var b = Break(t);
             if (b == null) return null;
@@ -187,7 +187,7 @@ namespace System.Geometry
             return Clone();
         }
 
-        internal int NumberOfKeyPoints(float maxPointDistance = 0)
+        internal int NumberOfKeyPoints(double maxPointDistance = 0)
         {
             var len = this.Length;
 
@@ -201,12 +201,12 @@ namespace System.Geometry
             return Math.Max(8, (int)Math.Ceiling(len / (maxPointDistance)));
         }
 
-        internal static Vector2 MidCircle(Circle circle, float midAngle)
+        internal static Vector2 MidCircle(Circle circle, double midAngle)
         {
             return circle.Center + Point.FromPolar(Angle.ToRadians(midAngle), circle.Radius);
         }
 
-        //public void Rotate(float angleInDegrees, Vector2 rotationOrigin)
+        //public void Rotate(double angleInDegrees, Vector2 rotationOrigin)
         //{
         //    //Nothing todo for a circle.
         //}
@@ -223,24 +223,24 @@ namespace System.Geometry
         //    return copy;
         //}
 
-        public Vector2 Position(float t)
+        public Vector2 Position(double t)
         {
             return MidCircle(this, 360 * t);
         }
 
-        public Vector2 Normal(float t)
+        public Vector2 Normal(double t)
         {
             var p = Position(t);
             return Vector2.Normalize(p - Center);
         }
 
-        public Vector2 Tangent(float t)
+        public Vector2 Tangent(double t)
         {
             var n = Normal(t);
             return new Vector2(-n.Y, n.X);
         }
 
-        //public bool IsPointOnPath(Vector2 pointToCheck, float withinDistance = 0, Vector2 pathOffset = default, IsPointOnPathOptions options = null)
+        //public bool IsPointOnPath(Vector2 pointToCheck, double withinDistance = 0, Vector2 pathOffset = default, IsPointOnPathOptions options = null)
         //{
         //    return Helper.IsPointOnCircle(pointToCheck, this, withinDistance);
         //}
@@ -256,27 +256,27 @@ namespace System.Geometry
         }
 
 
-        public void Rotate(float angleInDegrees, Vector2 rotationOrigin)
+        public void Rotate(double angleInDegrees, Vector2 rotationOrigin)
         {
             Center = Point.Rotate(Center, angleInDegrees, rotationOrigin);
         }
 
-        public Pair<float>[] Intersects(Circle circle)
+        public Pair<double>[] Intersects(Circle circle)
         {
             return IntersectHelper.Intersect(this, circle)?.ToArray();
         }
 
-        public Pair<float>[] Intersects(Arc arc)
+        public Pair<double>[] Intersects(Arc arc)
         {
             return IntersectHelper.Intersect(arc, this).Flip()?.ToArray();
         }
 
-        public Pair<float>[] Intersects(Line line)
+        public Pair<double>[] Intersects(Line line)
         {
             return IntersectHelper.Intersect(line, this).Flip()?.ToArray();
         }
 
-        //internal override int NumberOfKeyPoints(float maxPointDistance = 0)
+        //internal override int NumberOfKeyPoints(double maxPointDistance = 0)
         //{
         //    var len = this.Length;
 

@@ -56,8 +56,8 @@ namespace System.Geometry
                     oneDimension = true;
                     goto partY;
                 }
-                var origin_value = line.P1.X;
-                var end_value = line.P2.X;
+                double origin_value = line.P1.X;
+                double end_value = line.P2.X;
                 if (!IsBetween(pointInQuestion.X, origin_value, end_value, exclusive))
                 {
                     return false;
@@ -96,7 +96,7 @@ namespace System.Geometry
         /// <param name="angleInQuestion">The angle to test.</param>
         /// <param name="exclusive">Flag to exclude equaling the start or end angles.</param>
         /// <returns>Boolean true if angle is between (or equal to) the arc's start and end angles.</returns>
-        internal static bool IsBetweenArcAngles(this Arc arc, float angleInQuestion, bool exclusive)
+        internal static bool IsBetweenArcAngles(this Arc arc, double angleInQuestion, bool exclusive)
         {
             return arc.IsAngleOnArc(angleInQuestion, exclusive);
         }
@@ -109,7 +109,7 @@ namespace System.Geometry
         /// <param name="limitB">Second limit.</param>
         /// <param name="exclusive">Flag to exclude equaling the limits.</param>
         /// <returns>Boolean true if value is between (or equal to) the limits.</returns>
-        internal static bool IsBetween(float valueInQuestion, float limitA, float limitB, bool exclusive)
+        internal static bool IsBetween(double valueInQuestion, double limitA, double limitB, bool exclusive)
         {
             if (exclusive)
             {
@@ -127,7 +127,7 @@ namespace System.Geometry
  * @param angleB Second angle.
  * @returns true if angles are the same, false if they are not
  */
-        public static bool IsAngleEqual(float angleA, float angleB, int accuracy = 6)
+        public static bool IsAngleEqual(double angleA, double angleB, int accuracy = 6)
         {
             var a = Angle.NoRevolutions(angleA);
             var b = Angle.NoRevolutions(angleB);
@@ -135,9 +135,9 @@ namespace System.Geometry
             return d == 0;
         }
 
-        public static float Round(float n, int accuracy)
+        public static double Round(double n, int accuracy)
         {
-            return (float)Math.Round(n, accuracy);
+            return (double)Math.Round(n, accuracy);
         }
     }
 }

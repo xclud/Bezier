@@ -18,7 +18,7 @@ namespace System.Geometry.Text
             Type = PointType.Line;
         }
 
-        public static PointF operator *(Point lhs, float rhs) => new PointF(new Vector2(lhs.X * rhs, lhs.Y * rhs), lhs.Type);
+        public static PointF operator *(Point lhs, double rhs) => new PointF(new Vector2(lhs.X * rhs, lhs.Y * rhs), lhs.Type);
 
         public static explicit operator Vector2(Point p) => new Vector2(p.X, p.Y);
     }

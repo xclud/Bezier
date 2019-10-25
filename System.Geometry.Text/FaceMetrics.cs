@@ -12,47 +12,47 @@ namespace System.Geometry.Text
         /// <summary>
         /// The distance from the baseline up to the top of the em box.
         /// </summary>
-        public readonly float CellAscent;
+        public readonly double CellAscent;
 
         /// <summary>
         /// The distance from the baseline down to the bottom of the em box.
         /// </summary>
-        public readonly float CellDescent;
+        public readonly double CellDescent;
 
         /// <summary>
         /// The baseline-to-baseline distance.
         /// </summary>
-        public readonly float LineHeight;
+        public readonly double LineHeight;
 
         /// <summary>
         /// The average height of "lowercase" characters.
         /// </summary>
-        public readonly float XHeight;
+        public readonly double XHeight;
 
         /// <summary>
         /// The average height of "uppercase" characters.
         /// </summary>
-        public readonly float CapHeight;
+        public readonly double CapHeight;
 
         /// <summary>
         /// The thickness of an underline marker.
         /// </summary>
-        public readonly float UnderlineSize;
+        public readonly double UnderlineSize;
 
         /// <summary>
         /// The distance from the baseline at which to place the underline marker.
         /// </summary>
-        public readonly float UnderlinePosition;
+        public readonly double UnderlinePosition;
 
         /// <summary>
         /// The thickness of a strikeout marker.
         /// </summary>
-        public readonly float StrikeoutSize;
+        public readonly double StrikeoutSize;
 
         /// <summary>
         /// The distance from the baseline at which to place the strikeout marker.
         /// </summary>
-        public readonly float StrikeoutPosition;
+        public readonly double StrikeoutPosition;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FaceMetrics"/> class.
@@ -67,9 +67,9 @@ namespace System.Geometry.Text
         /// <param name="strikeoutSize">The strikeout size.</param>
         /// <param name="strikeoutPosition">The strikeout position.</param>
         internal FaceMetrics(
-            float cellAscent, float cellDescent, float lineHeight, float xHeight,
-            float capHeight, float underlineSize, float underlinePosition,
-            float strikeoutSize, float strikeoutPosition
+            double cellAscent, double cellDescent, double lineHeight, double xHeight,
+            double capHeight, double underlineSize, double underlinePosition,
+            double strikeoutSize, double strikeoutPosition
         )
         {
             CellAscent = cellAscent;
