@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <RootNamespace>System.Geometry.Text</RootNamespace>
+    <AssemblyName>System.Geometry.Text</AssemblyName>
+    <PackageId>Font</PackageId>
+    <Version>0.3.0.3</Version>
+    <Authors>Xclud</Authors>
+    <Company>Xclud</Company>
+    <Product>Font</Product>
+    <Description>A font library for .NET Core written in pure C#.</Description>
+    <PackageTags>Font TTF OTF</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bezier" Version="0.9.3.5" />
+  </ItemGroup>
+
+</Project>

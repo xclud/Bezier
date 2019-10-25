@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.9.3.28</Version>
+    <Authors>Mahdi K. Fard</Authors>
+    <Company />
+    <Description>A library for performing Bezier curve computation for .NET Core.
+
+Commonly Used Types:
+ - Bezier
+ - Arc
+ - Line
+ - Circle
+ - Slope
+ - Extrema
+ - BoundingBox
+
+Target platforms:
+ - Desktop (Windows Forms, WPF, Avalonia)
+ - Unity Game Engine
+ - Xamarin
+ - ASP.NET Core
+ - Blazor (web front-end)</Description>
+    <PackageId>Bezier</PackageId>
+    <PackageReleaseNotes>This release tries to fix Bezier to Arc[] conversion.</PackageReleaseNotes>
+    <PackageTags>Bezier Curve Geometry Intersection Arc Line Circle Unity</PackageTags>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\Mahdi\source\repos\Bezier\System.Geometry\System.Geometry.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Numerics.Vectors" Version="4.1.1" />
+  </ItemGroup>
+
+</Project>
