@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Numerics;
+using System.DoubleNumerics;
 
 namespace System.Geometry
 {
@@ -98,7 +98,7 @@ namespace System.Geometry
 
         public static double ToDegrees(double angleInRadians)
         {
-            return angleInRadians * 180.0f / (double)Math.PI;
+            return angleInRadians * 180.0d / (double)Math.PI;
         }
 
         /// <summary>

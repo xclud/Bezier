@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Geometry;
 using System.IO;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Threading;
 
 namespace System.Geometry.Text
@@ -295,7 +295,7 @@ namespace System.Geometry.Text
             // build and transform the glyph
             var points = new List<PointF>(32);
             var contours = new List<int>(32);
-            var transform = Matrix3x2.CreateScale((float)scale, (float)-scale);
+            var transform = Matrix3x2.CreateScale((double)scale, (double)-scale);
             //transform.Translation = offset;
 
             Geometry.ComposeGlyphs(glyphIndex, 0, ref transform, points, contours, glyphs);
@@ -358,34 +358,34 @@ namespace System.Geometry.Text
             return pixelSize / unitsPerEm;
         }
 
-        public Path[] CreateText(string text, double pixelSize, out BoundingBox bbox)
-        {
-            var offset = new Vector2();
-            bbox = BoundingBox.Infinity;
-            var paths = new Path[text.Length];
+        //public Path[] CreateText(string text, double pixelSize, out BoundingBox bbox)
+        //{
+        //    var offset = new Vector2();
+        //    bbox = BoundingBox.Infinity;
+        //    var paths = new Path[text.Length];
 
-            var i = 0;
-            foreach (var ch in text)
-            {
-                var glyph = this.GetGlyph(ch, pixelSize);
-                var p = glyph.BuildPath(offset);
+        //    var i = 0;
+        //    foreach (var ch in text)
+        //    {
+        //        var glyph = this.GetGlyph(ch, pixelSize);
+        //        var p = glyph.BuildPath(offset);
 
-                paths[i++] = p;
+        //        paths[i++] = p;
 
-                bbox += glyph.BoundingBox + offset;
+        //        bbox += glyph.BoundingBox + offset;
 
-                offset.X += (float)(glyph.HorizontalMetrics.Advance);
-            }
+        //        offset.X += (double)(glyph.HorizontalMetrics.Advance);
+        //    }
 
-            var ox = -bbox.Min;
-            bbox += ox;
+        //    var ox = -bbox.Min;
+        //    bbox += ox;
 
-            foreach (var p in paths)
-            {
-                p.Offset(ox);
-            }
+        //    foreach (var p in paths)
+        //    {
+        //        p.Offset(ox);
+        //    }
 
-            return paths;
-        }
+        //    return paths;
+        //}
     }
 }

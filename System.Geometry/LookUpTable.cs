@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -18,7 +18,7 @@ namespace System.Geometry
             this.Bezier = bezier;
             this.Steps = steps;
 
-            var step = 1.0f / steps;
+            var step = 1.0d / steps;
 
 
             this.Steps = steps;
@@ -124,7 +124,7 @@ namespace System.Geometry
             // step 2: fine check
             int t1 = (mpos - 1) / l;
             int t2 = (mpos + 1) / l;
-            double step = 0.1f / l;
+            double step = 0.1d / l;
             mdist += 1;
 
             t = t1;

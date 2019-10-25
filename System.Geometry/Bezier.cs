@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 
 namespace System.Geometry
 {
@@ -98,7 +98,7 @@ namespace System.Geometry
             double dx = (x2 - x1) / 3;
             double dy = (y2 - y1) / 3;
 
-            points = new[] { p1, new Vector2((float)(x1 + dx), (float)(y1 + dy)), new Vector2((float)(x1 + 2 * dx), (float)(y1 + 2 * dy)), p2 };
+            points = new[] { p1, new Vector2((double)(x1 + dx), (double)(y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2 };
             order = points.Length - 1;
 
             CheckLinear(this);
@@ -132,7 +132,7 @@ namespace System.Geometry
                 double dx = (x2 - x1) / 3;
                 double dy = (y2 - y1) / 3;
 
-                this.points = new[] { p1, new Vector2((float)(x1 + dx), (float)(y1 + dy)), new Vector2((float)(x1 + 2 * dx), (float)(y1 + 2 * dy)), p2 };
+                this.points = new[] { p1, new Vector2((double)(x1 + dx), (double)(y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2 };
             }
             else
             {
@@ -174,7 +174,7 @@ namespace System.Geometry
                 double dx = (x2 - x1) / 3;
                 double dy = (y2 - y1) / 3;
 
-                points = new[] { p1, new Vector2((float)(x1 + dx), (float)(y1 + dy)), new Vector2((float)(x1 + 2 * dx), (float)(y1 + 2 * dy)), p2 };
+                points = new[] { p1, new Vector2((double)(x1 + dx), (double)(y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2 };
             }
             else
             {
@@ -266,7 +266,7 @@ namespace System.Geometry
             // linear?
             if (order == 1)
             {
-                Vector2 ret = new Vector2(x: (float)(mt * p[0].X + t * p[1].X), y: (float)(mt * p[0].Y + t * p[1].Y));
+                Vector2 ret = new Vector2(x: (double)(mt * p[0].X + t * p[1].X), y: (double)(mt * p[0].Y + t * p[1].Y));
                 return ret;
             }
 
@@ -294,7 +294,7 @@ namespace System.Geometry
                     d = t * t2;
                 }
 
-                return (float)a * p[0] + (float)b * p[1] + (float)c * p[2] + (float)d * p[3];
+                return (double)a * p[0] + (double)b * p[1] + (double)c * p[2] + (double)d * p[3];
             }
 
             // higher order curves: use de Casteljau's computation
@@ -303,7 +303,7 @@ namespace System.Geometry
             {
                 for (int i = 0; i < dCpts.Count - 1; i++)
                 {
-                    dCpts[i] = dCpts[i] + (dCpts[i + 1] - dCpts[i]) * (float)t;
+                    dCpts[i] = dCpts[i] + (dCpts[i + 1] - dCpts[i]) * (double)t;
                 }
                 dCpts.RemoveAt(dCpts.Count - 1);
             }
@@ -336,7 +336,7 @@ namespace System.Geometry
                 c = t * t;
             }
 
-            return (float)a * p[0] + (float)b * p[1] + (float)c * p[2];
+            return (double)a * p[0] + (double)b * p[1] + (double)c * p[2];
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace System.Geometry
         {
             Vector2 d = Tangent(t);
             double q = sqrt(d.X * d.X + d.Y * d.Y);
-            return new Vector2(x: (float)(-d.Y / q), y: (float)(d.X / q));
+            return new Vector2(x: (double)(-d.Y / q), y: (double)(d.X / q));
         }
 
 
@@ -581,12 +581,14 @@ namespace System.Geometry
         {
             get
             {
+               
+
                 Extrema extrema = Extrema();
 
                 Utils.GetMinMaxX(this, extrema.X, out double minx, out double maxx);
                 Utils.GetMinMaxY(this, extrema.Y, out double miny, out double maxy);
 
-                return new BoundingBox(new Vector2((float)minx, (float)miny), new Vector2((float)maxx, (float)maxy));
+                return new BoundingBox(new Vector2((double)minx, (double)miny), new Vector2((double)maxx, (double)maxy));
             }
         }
 
@@ -615,7 +617,7 @@ namespace System.Geometry
             var c = this.Position(t);
             var n = this.Normal(t);
 
-            return c + n * (float)d;
+            return c + n * (double)d;
         }
 
         public Vector2 Offset(double t, double d, out Vector2 c, out Vector2 n)
@@ -623,7 +625,7 @@ namespace System.Geometry
             c = this.Position(t);
             n = this.Normal(t);
 
-            return c + n * (float)d;
+            return c + n * (double)d;
         }
 
         /// <summary>
@@ -642,8 +644,8 @@ namespace System.Geometry
                 {
                     var ret = new Vector2
                     {
-                        X = (float)(p.X + d * nv.X),
-                        Y = (float)(p.Y + d * nv.Y)
+                        X = (double)(p.X + d * nv.X),
+                        Y = (double)(p.Y + d * nv.Y)
                     };
 
                     return ret;
@@ -900,8 +902,8 @@ namespace System.Geometry
             var np = new Vector2[order + 1];
 
             // move end points by fixed distance along normal.
-            np[0] = points[0] + (float)r1 * n0;
-            np[order] = points[order] + (float)r2 * n1;
+            np[0] = points[0] + (double)r1 * n0;
+            np[order] = points[order] + (double)r2 * n1;
 
             // move control points by "however much necessary to
             // ensure the correct tangent to endpoint".
@@ -912,17 +914,17 @@ namespace System.Geometry
                 Vector2 p = points[t + 1];
                 Vector2 ov = p - o.Value;
 
-                double rc = distanceFn((t + 1.0f) / order);
+                double rc = distanceFn((t + 1.0d) / order);
                 if (!clockwise)
                 {
                     rc = -rc;
                 }
                 double m = sqrt(ov.X * ov.X + ov.Y * ov.Y);
 
-                ov.X /= (float)m;
-                ov.Y /= (float)m;
+                ov.X /= (double)m;
+                ov.Y /= (double)m;
 
-                np[t + 1] = p + (float)rc * ov;
+                np[t + 1] = p + (double)rc * ov;
             }
 
             function(0);
@@ -966,8 +968,8 @@ namespace System.Geometry
             var np = new Vector2[order + 1];
 
             // move end points by fixed distance along normal.
-            np[0] = points[0] + (float)r1 * n0;
-            np[order] = points[order] + (float)r2 * n1;
+            np[0] = points[0] + (double)r1 * n0;
+            np[order] = points[order] + (double)r2 * n1;
 
 
             // move control points to lie on the intersection of the offset
@@ -1167,7 +1169,7 @@ namespace System.Geometry
                             // the arc's end angle is correct with respect to the bezier end point.
                             if (t_e > 1)
                             {
-                                var d = new Vector2((float)(arc.Center.X + arc.Radius * cos(arc.EndAngle)), (float)(arc.Center.Y + arc.Radius * sin(arc.EndAngle)));
+                                var d = new Vector2((double)(arc.Center.X + arc.Radius * cos(arc.EndAngle)), (double)(arc.Center.Y + arc.Radius * sin(arc.EndAngle)));
                                 arc.EndAngle += Utils.angle(arc.Center, d, this.Position(1));
                             }
                             break;
@@ -1315,10 +1317,6 @@ namespace System.Geometry
         private static double abs(double v)
         {
             return (double)Math.Abs(v);
-        }
-        private static float abs(float v)
-        {
-            return (float)Math.Abs(v);
         }
 
         private static double pow(double a, double b)
@@ -1530,7 +1528,7 @@ namespace System.Geometry
                 return Vector2.Distance(ap, bp);
             }
 
-            return m(0.25f) + m(0.75f);
+            return m(0.25d) + m(0.75d);
         }
 
         private class TPoint

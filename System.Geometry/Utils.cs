@@ -3,13 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 
 namespace System.Geometry
 {
     static public class Utils
     {
-        const double epsilon = 0.000001D;
+        const double epsilon = 0.000001d;
 
         // Legendre-Gauss abscissae with n=24 (x_i values, defined at i=n as the roots of the nth order Legendre polynomial Pn(x))
         private static readonly double[] Tvalues = new[] {
@@ -36,7 +36,7 @@ namespace System.Geometry
           -0.9747285559713094981983919930081690617411D,
           0.9747285559713094981983919930081690617411D,
           -0.9951872199970213601799974097007368118745D,
-          0.9951872199970213601799974097007368118745f
+          0.9951872199970213601799974097007368118745d
         };
 
         // Legendre-Gauss weights with n=24 (w_i values, defined by a function linked to in the Bezier primer article)
@@ -64,7 +64,7 @@ namespace System.Geometry
       0.0285313886289336631813078159518782864491D,
       0.0285313886289336631813078159518782864491D,
       0.0123412297999871995468056670700372915759D,
-      0.0123412297999871995468056670700372915759f
+      0.0123412297999871995468056670700372915759d
     };
         private static double sqrt(double v)
         {
@@ -83,7 +83,7 @@ namespace System.Geometry
         // cube root function yielding real roots
         private static double crt(double v)
         {
-            return v < 0 ? -pow(-v, 1F / 3) : pow(v, 1F / 3);
+            return v < 0 ? -pow(-v, 1d / 3) : pow(v, 1d / 3);
         }
 
         // trig constants
@@ -140,6 +140,11 @@ namespace System.Geometry
 
         public static bool Approximately(double a, double b, double precision = epsilon)
         {
+            //double d = Math.Abs(a - b);
+            //if(d<0.0001)
+            //{
+               
+            //}
             return Math.Abs(a - b) <= precision;
         }
 
@@ -169,7 +174,7 @@ namespace System.Geometry
 
         public static Vector2 Lerp(double r, Vector2 v1, Vector2 v2)
         {
-            return Vector2.Lerp(v1, v2, (float)r);
+            return Vector2.Lerp(v1, v2, (double)r);
         }
 
         public static double Angle(Vector2 o, Vector2 v1, Vector2 v2)
@@ -256,19 +261,19 @@ namespace System.Geometry
             {
                 return null;
             }
-            return new Vector2(x: (float)(nx / d), y: (float)(ny / d));
+            return new Vector2(x: (double)(nx / d), y: (double)(ny / d));
         }
 
         public static Vector2? Lli4(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
         {
-            float x1 = p1.X;
-            float y1 = p1.Y;
-            float x2 = p2.X;
-            float y2 = p2.Y;
-            float x3 = p3.X;
-            float y3 = p3.Y;
-            float x4 = p4.X;
-            float y4 = p4.Y;
+            double x1 = p1.X;
+            double y1 = p1.Y;
+            double x2 = p2.X;
+            double y2 = p2.Y;
+            double x3 = p3.X;
+            double y3 = p3.Y;
+            double x4 = p4.X;
+            double y4 = p4.Y;
 
             return Lli8(x1, y1, x2, y2, x3, y3, x4, y4);
         }
@@ -289,7 +294,7 @@ namespace System.Geometry
             double dx = (x2 - x1) / 3;
             double dy = (y2 - y1) / 3;
 
-            return new Bezier(p1, new Vector2((float)(x1 + dx),(float)( y1 + dy)), new Vector2((float)(x1 + 2 * dx), (float)(y1 + 2 * dy)), p2);
+            return new Bezier(p1, new Vector2((double)(x1 + dx),(double)( y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2);
         }
 
         //findbbox: function(sections) {
@@ -447,7 +452,7 @@ namespace System.Geometry
             //{
             //    return new Vector2(x: (v.X - tx) * cos(a) - (v.Y - ty) * sin(a), y: (v.X - tx) * sin(a) + (v.Y - ty) * cos(a));
             //}
-            var alignedPoints= points.Select(v=> new Vector2(x: (float)((v.X - tx) * cos(a) - (v.Y - ty) * sin(a)), y: (float)((v.X - tx) * sin(a) + (v.Y - ty) * cos(a)))).ToArray();
+            var alignedPoints= points.Select(v=> new Vector2(x: (double)((v.X - tx) * cos(a) - (v.Y - ty) * sin(a)), y: (double)((v.X - tx) * sin(a) + (v.Y - ty) * cos(a)))).ToArray();
 
             return alignedPoints;
         }
@@ -661,8 +666,8 @@ namespace System.Geometry
                 return new List<Pair<double>> { new Pair<double>(((r * (c1._t1 + c1._t2) / 2)) / r, ((r * (c2._t1 + c2._t2) / 2)) / r) };
             }
 
-            var cc1 = c1.Split(0.5f);
-            var cc2 = c2.Split(0.5f);
+            var cc1 = c1.Split(0.5d);
+            var cc2 = c2.Split(0.5d);
 
             var pairs = new Pair<Bezier>[] {
                 new Pair<Bezier>(cc1.Left, cc2.Left),

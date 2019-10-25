@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -74,7 +74,7 @@ namespace System.Geometry
          */
         public Circle(Vector2 pointA, Vector2 pointB)
         {
-            Center = (pointA + pointB) / 2.0F;
+            Center = (pointA + pointB) / 2.0d;
             Radius = Vector2.Distance(Center, pointA);
         }
 
@@ -137,8 +137,8 @@ namespace System.Geometry
                 var r = Radius;
                 return new BoundingBox
                 {
-                    Min = Center + new Vector2((float)-r, (float)-r),
-                    Max = Center + new Vector2((float)r, (float)r)
+                    Min = Center + new Vector2((double)-r, (double)-r),
+                    Max = Center + new Vector2((double)r, (double)r)
                 };
             }
         }

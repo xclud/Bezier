@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -10,7 +10,7 @@ namespace System.Geometry
         public Vector2 Min;
         public Vector2 Max;
 
-        public static readonly BoundingBox Infinity = new BoundingBox(new Vector2(float.PositiveInfinity), new Vector2(float.NegativeInfinity));
+        public static readonly BoundingBox Infinity = new BoundingBox(new Vector2(double.PositiveInfinity), new Vector2(double.NegativeInfinity));
 
         public BoundingBox(Vector2 min, Vector2 max)
         {

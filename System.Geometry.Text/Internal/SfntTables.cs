@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry.Text
@@ -556,20 +556,20 @@ namespace System.Geometry.Text
                 if ((flags & CompositeGlyphFlags.HaveScale) != 0)
                 {
                     var scale = reader.ReadInt16BE() / F2Dot14Todouble;
-                    transform.M11 = (float)scale;
-                    transform.M22 = (float)scale;
+                    transform.M11 = (double)scale;
+                    transform.M22 = (double)scale;
                 }
                 else if ((flags & CompositeGlyphFlags.HaveXYScale) != 0)
                 {
-                    transform.M11 = (float)(reader.ReadInt16BE() / F2Dot14Todouble);
-                    transform.M22 = (float)(reader.ReadInt16BE() / F2Dot14Todouble);
+                    transform.M11 = (double)(reader.ReadInt16BE() / F2Dot14Todouble);
+                    transform.M22 = (double)(reader.ReadInt16BE() / F2Dot14Todouble);
                 }
                 else if ((flags & CompositeGlyphFlags.HaveTransform) != 0)
                 {
-                    transform.M11 = (float)(reader.ReadInt16BE() / F2Dot14Todouble);
-                    transform.M12 = (float)(reader.ReadInt16BE() / F2Dot14Todouble);
-                    transform.M21 = (float)(reader.ReadInt16BE() / F2Dot14Todouble);
-                    transform.M22 = (float)(reader.ReadInt16BE() / F2Dot14Todouble);
+                    transform.M11 = (double)(reader.ReadInt16BE() / F2Dot14Todouble);
+                    transform.M12 = (double)(reader.ReadInt16BE() / F2Dot14Todouble);
+                    transform.M21 = (double)(reader.ReadInt16BE() / F2Dot14Todouble);
+                    transform.M22 = (double)(reader.ReadInt16BE() / F2Dot14Todouble);
                 }
 
                 subglyph.Transform = transform;

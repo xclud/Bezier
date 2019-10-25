@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -53,7 +53,7 @@ namespace System.Geometry
                     return null;
                 }
 
-                return new[] { new Pair<double>(unRotate(180) / 360.0f, unRotate(180) / 360.0f) };
+                return new[] { new Pair<double>(unRotate(180) / 360.0d, unRotate(180) / 360.0d) };
             }
 
             //see if circles are tangent interior on right side
@@ -64,7 +64,7 @@ namespace System.Geometry
                     return null;
                 }
 
-                return new[] { new Pair<double>(unRotate(0) / 360.0f, unRotate(0) / 360.0f) };
+                return new[] { new Pair<double>(unRotate(0) / 360.0d, unRotate(0) / 360.0d) };
             }
 
             //see if circles are tangent exterior
@@ -75,7 +75,7 @@ namespace System.Geometry
                     return null;
                 }
 
-                return new[] { new Pair<double>(unRotate(0) / 360.0f, unRotate(180) / 360.0f) };
+                return new[] { new Pair<double>(unRotate(0) / 360.0d, unRotate(180) / 360.0d) };
             }
 
             //see if c2 is outside of c1
@@ -244,7 +244,7 @@ namespace System.Geometry
                 double a = unRotate(lineY > 0 ? 90 : 270);
                 double x = circle.Radius;
                 double t = Math.Abs((x - clonedLine.P2.X) / (clonedLine.P2.X - clonedLine.P1.X));
-                lineIntersection.Add(new Pair<double>(t, a / 360.0f));
+                lineIntersection.Add(new Pair<double>(t, a / 360.0d));
             }
             else
             {
@@ -255,7 +255,7 @@ namespace System.Geometry
                         double a = unRotate(angleOfX);
                         double t = Math.Abs((x - clonedLine.P1.X) / (clonedLine.P2.X - clonedLine.P1.X));
 
-                        lineIntersection.Add(new Pair<double>(t, a / 360.0f));
+                        lineIntersection.Add(new Pair<double>(t, a / 360.0d));
                     }
                 }
 
@@ -305,7 +305,7 @@ namespace System.Geometry
 
             foreach (var ratio in ratios)
             {
-                if (Helper.IsBetweenArcAngles(arc, ratio * 360.0f, excludeTangents))
+                if (Helper.IsBetweenArcAngles(arc, ratio * 360.0d, excludeTangents))
                 {
                     var xr = (ratio * 360 - startAngle) / span;
 

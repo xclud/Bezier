@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -54,7 +54,7 @@ namespace System.Geometry
          */
         public Arc(Vector2 pointA, Vector2 pointB, bool clockwise = false)
         {
-            Center = (pointA + pointB) / 2.0F;
+            Center = (pointA + pointB) / 2.0d;
             Radius = Vector2.Distance(Center, pointA);
 
             StartAngle = Angle.OfPointInDegrees(Center, clockwise ? pointB : pointA);
@@ -80,7 +80,7 @@ namespace System.Geometry
             List<Line> perpendiculars = new List<Line>();
             for (int i = 2; (i--) != 0;)
             {
-                Vector2 midpoint = lines[i].Position(0.5f);
+                Vector2 midpoint = lines[i].Position(0.5d);
                 lines[i].Rotate(90, midpoint);
                 perpendiculars.Add(lines[i]);
             }
@@ -150,12 +150,12 @@ namespace System.Geometry
 
                     if (Helper.IsBetweenArcAngles(this, xAngle, false))
                     {
-                        extremePoint.X = (float)value + this.Center.X;
+                        extremePoint.X = (double)value + this.Center.X;
                     }
 
                     if (Helper.IsBetweenArcAngles(this, yAngle, false))
                     {
-                        extremePoint.Y = (float)value + this.Center.Y;
+                        extremePoint.Y = (double)value + this.Center.Y;
                     }
 
                     return extremePoint;
@@ -167,12 +167,12 @@ namespace System.Geometry
 
                     if (Helper.IsBetweenArcAngles(this, xAngle, false))
                     {
-                        extremePoint.X = (float)value + this.Center.X;
+                        extremePoint.X = (double)value + this.Center.X;
                     }
 
                     if (Helper.IsBetweenArcAngles(this, yAngle, false))
                     {
-                        extremePoint.Y = (float)value + this.Center.Y;
+                        extremePoint.Y = (double)value + this.Center.Y;
                     }
 
                     return extremePoint;
@@ -245,7 +245,7 @@ namespace System.Geometry
                 //for example 0 = 360
                 if (this.EndAngle < this.StartAngle)
                 {
-                    var revolutions = (int)Math.Ceiling((this.StartAngle - this.EndAngle) / 360.0f);
+                    var revolutions = (int)Math.Ceiling((this.StartAngle - this.EndAngle) / 360.0d);
                     var a = revolutions * 360 + this.EndAngle;
                     return Angle.copyFractionalPart(this.EndAngle, a);
                 }

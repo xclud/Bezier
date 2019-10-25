@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -16,7 +16,7 @@ namespace System.Geometry
 
         public Path MoveTo(double x, double y)
         {
-            current = new CompoundPath { Start = new Vector2(x, y), End = new Vector2(x, y) };
+            current = new CompoundPath { Start = new Vector2((double)x, (double)y), End = new Vector2((double)x, (double)y) };
             segments.Add(current);
 
             return this;
@@ -33,7 +33,7 @@ namespace System.Geometry
 
         public Path LineTo(double x, double y)
         {
-            current.LineTo(new Vector2(x, y));
+            current.LineTo(new Vector2((double)x, (double)y));
             return this;
         }
 

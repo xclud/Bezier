@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -67,7 +67,7 @@ namespace System.Geometry
 
         public Vector2 Position(double t)
         {
-            return Vector2.Lerp(P1, P2, (float)t);
+            return Vector2.Lerp(P1, P2, (double)t);
         }
 
         public Vector2 Tangent(double t)
@@ -79,7 +79,7 @@ namespace System.Geometry
         {
             Vector2 sub = P2 - P1;
             double d = Vector2.Distance(P1, P2);
-            Vector2 n = new Vector2(x: -sub.Y / d, y: sub.X / d);
+            Vector2 n = new Vector2(x: (double)(-sub.Y / d), y: (double)(sub.X / d));
 
             return n;
         }

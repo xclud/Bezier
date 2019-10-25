@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 
 namespace System.Geometry
 {
@@ -15,7 +15,7 @@ namespace System.Geometry
          */
         public static Vector2 FromPolar(double angleInRadians, double radius)
         {
-            return new Vector2(radius * (double)Math.Cos(angleInRadians), radius * (double)Math.Sin(angleInRadians));
+            return new Vector2((double)(radius * (double)Math.Cos(angleInRadians)), (double)(radius * (double)Math.Sin(angleInRadians)));
         }
 
         /**
@@ -92,7 +92,7 @@ namespace System.Geometry
                 // find intersection by line equation
                 double x = (slopeB.YIntercept - slopeA.YIntercept) / (slopeA.Value - slopeB.Value);
                 double y = slopeA.Value * x + slopeA.YIntercept;
-                pointOfIntersection = new Vector2(x, y);
+                pointOfIntersection = new Vector2((double)x, (double)y);
             }
 
             return pointOfIntersection;
@@ -102,7 +102,7 @@ namespace System.Geometry
         {
             double x = verticalLine.P1.X;
             double y = nonVerticalSlope.Value * x + nonVerticalSlope.YIntercept;
-            return new Vector2(x, y);
+            return new Vector2((double)x, (double)y);
         }
 
 
