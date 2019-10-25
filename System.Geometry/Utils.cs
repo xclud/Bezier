@@ -1,11 +1,13 @@
-﻿using System;
+﻿//Based on https://github.com/Pomax/bezierjs/blob/master/lib/utils.js
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
 namespace System.Geometry
 {
-    static internal class Utils
+    static public class Utils
     {
         const float epsilon = 0.000001f;
 
@@ -81,7 +83,7 @@ namespace System.Geometry
         // cube root function yielding real roots
         private static float crt(float v)
         {
-            return v < 0 ? -pow(-v, 1 / 3) : pow(v, 1 / 3);
+            return v < 0 ? -pow(-v, 1F / 3) : pow(v, 1F / 3);
         }
 
         // trig constants
@@ -441,12 +443,13 @@ namespace System.Geometry
             var ty = line.P1.Y;
             var a = -atan2(line.P2.Y - ty, line.P2.X - tx);
 
-            Vector2 d(Vector2 v)
-            {
-                return new Vector2(x: (v.X - tx) * cos(a) - (v.Y - ty) * sin(a), y: (v.X - tx) * sin(a) + (v.Y - ty) * cos(a));
-            }
+            //Vector2 d(Vector2 v)
+            //{
+            //    return new Vector2(x: (v.X - tx) * cos(a) - (v.Y - ty) * sin(a), y: (v.X - tx) * sin(a) + (v.Y - ty) * cos(a));
+            //}
+            var alignedPoints= points.Select(v=> new Vector2(x: (v.X - tx) * cos(a) - (v.Y - ty) * sin(a), y: (v.X - tx) * sin(a) + (v.Y - ty) * cos(a))).ToArray();
 
-            return points.Select(d);
+            return alignedPoints;
         }
 
         public static float[] Roots(Vector2[] points)
@@ -482,7 +485,7 @@ namespace System.Geometry
                 }
                 else if (b != c && d == 0)
                 {
-                    return new[] { (2 * b - c) / 2 * (b - c) }.Where(reduce).ToArray();
+                    return new[] { (2 * b - c) / (2 * (b - c)) }.Where(reduce).ToArray();
                 }
                 return new float[0];
             }
