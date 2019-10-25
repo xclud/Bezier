@@ -1,5 +1,5 @@
 ﻿//Based on https://github.com/Pomax/bezierjs/blob/master/lib/utils.js
-
+//Some small bugfixes by lk, 25.10.2019
 using System;
 using System.Collections.Generic;
 using System.Linq;
