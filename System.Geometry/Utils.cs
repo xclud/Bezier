@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace System.Geometry
 {
-    static public class Utils
+    static internal class Utils
     {
         const float epsilon = 0.000001f;
 
