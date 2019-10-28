@@ -7,7 +7,7 @@ using System.DoubleNumerics;
 
 namespace System.Geometry
 {
-    static public class Utils
+    static internal class Utils
     {
         const double epsilon = 0.000001d;
 
