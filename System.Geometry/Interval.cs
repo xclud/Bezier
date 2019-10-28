@@ -6,7 +6,7 @@ namespace System.Geometry
 {
     internal class Interval
     {
-        public float? Start;
-        public float? End;
+        public double? Start;
+        public double? End;
     }
 }

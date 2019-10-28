@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿//based on https://github.com/Pomax/bezierjs/blob/master/lib/bezier.js
+
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 
 namespace System.Geometry
 {
@@ -13,8 +15,8 @@ namespace System.Geometry
         internal readonly Vector2[] points;
         internal readonly int order;
         private bool _linear;
-        internal float _t1 = 0;
-        internal float _t2 = 1;
+        internal double _t1 = 0;
+        internal double _t2 = 1;
         private List<List<Vector2>> dpoints;
         private bool clockwise;
 
@@ -72,7 +74,7 @@ namespace System.Geometry
             Update();
         }
 
-        internal float[] getInterval()
+        internal double[] getInterval()
         {
             throw new NotImplementedException();
         }
@@ -90,15 +92,15 @@ namespace System.Geometry
         /// <param name="p2">End of the line.</param>
         public Bezier(Vector2 p1, Vector2 p2)
         {
-            float x1 = p1.X;
-            float y1 = p1.Y;
-            float x2 = p2.X;
-            float y2 = p2.Y;
+            double x1 = p1.X;
+            double y1 = p1.Y;
+            double x2 = p2.X;
+            double y2 = p2.Y;
 
-            float dx = (x2 - x1) / 3;
-            float dy = (y2 - y1) / 3;
+            double dx = (x2 - x1) / 3;
+            double dy = (y2 - y1) / 3;
 
-            points = new[] { p1, new Vector2(x1 + dx, y1 + dy), new Vector2(x1 + 2 * dx, y1 + 2 * dy), p2 };
+            points = new[] { p1, new Vector2((double)(x1 + dx), (double)(y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2 };
             order = points.Length - 1;
 
             CheckLinear(this);
@@ -124,15 +126,15 @@ namespace System.Geometry
                 Vector2 p1 = points[0];
                 Vector2 p2 = points[1];
 
-                float x1 = p1.X;
-                float y1 = p1.Y;
-                float x2 = p2.X;
-                float y2 = p2.Y;
+                double x1 = p1.X;
+                double y1 = p1.Y;
+                double x2 = p2.X;
+                double y2 = p2.Y;
 
-                float dx = (x2 - x1) / 3;
-                float dy = (y2 - y1) / 3;
+                double dx = (x2 - x1) / 3;
+                double dy = (y2 - y1) / 3;
 
-                this.points = new[] { p1, new Vector2(x1 + dx, y1 + dy), new Vector2(x1 + 2 * dx, y1 + 2 * dy), p2 };
+                this.points = new[] { p1, new Vector2((double)(x1 + dx), (double)(y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2 };
             }
             else
             {
@@ -166,15 +168,15 @@ namespace System.Geometry
                 Vector2 p1 = points[0];
                 Vector2 p2 = points[1];
 
-                float x1 = p1.X;
-                float y1 = p1.Y;
-                float x2 = p2.X;
-                float y2 = p2.Y;
+                double x1 = p1.X;
+                double y1 = p1.Y;
+                double x2 = p2.X;
+                double y2 = p2.Y;
 
-                float dx = (x2 - x1) / 3;
-                float dy = (y2 - y1) / 3;
+                double dx = (x2 - x1) / 3;
+                double dy = (y2 - y1) / 3;
 
-                points = new[] { p1, new Vector2(x1 + dx, y1 + dy), new Vector2(x1 + 2 * dx, y1 + 2 * dy), p2 };
+                points = new[] { p1, new Vector2((double)(x1 + dx), (double)(y1 + dy)), new Vector2((double)(x1 + 2 * dx), (double)(y1 + 2 * dy)), p2 };
             }
             else
             {
@@ -227,7 +229,7 @@ namespace System.Geometry
         private void ComputeDirection()
         {
             Vector2[] points = this.points;
-            float angle = Utils.Angle(points[0], points[order], points[1]);
+            double angle = Utils.Angle(points[0], points[order], points[1]);
 
             clockwise = angle > 0;
         }
@@ -237,7 +239,7 @@ namespace System.Geometry
         /// Length is calculated using numerical approximation,
         /// specifically the Legendre-Gauss quadrature algorithm.
         /// </summary>
-        public float Length
+        public double Length
         {
             get
             {
@@ -248,7 +250,7 @@ namespace System.Geometry
         /// <summary>
         /// Calculates a point on the curve, for a given t value between 0 and 1 (inclusive).
         /// </summary>
-        public Vector2 Position(float t)
+        public Vector2 Position(double t)
         {
             // shortcuts
             if (t == 0)
@@ -261,24 +263,24 @@ namespace System.Geometry
             }
 
             Vector2[] p = points;
-            float mt = 1 - t;
+            double mt = 1 - t;
 
             // linear?
             if (order == 1)
             {
-                Vector2 ret = new Vector2(x: mt * p[0].X + t * p[1].X, y: mt * p[0].Y + t * p[1].Y);
+                Vector2 ret = new Vector2(x: (double)(mt * p[0].X + t * p[1].X), y: (double)(mt * p[0].Y + t * p[1].Y));
                 return ret;
             }
 
             // quadratic/cubic curve?
             if (order < 4)
             {
-                float mt2 = mt * mt;
-                float t2 = t * t;
-                float a = 0f;
-                float b = 0f;
-                float c = 0f;
-                float d = 0f;
+                double mt2 = mt * mt;
+                double t2 = t * t;
+                double a = 0D;
+                double b = 0D;
+                double c = 0D;
+                double d = 0D;
                 if (order == 2)
                 {
                     p = new[] { p[0], p[1], p[2], Vector2.Zero };
@@ -294,7 +296,7 @@ namespace System.Geometry
                     d = t * t2;
                 }
 
-                return a * p[0] + b * p[1] + c * p[2] + d * p[3];
+                return (double)a * p[0] + (double)b * p[1] + (double)c * p[2] + (double)d * p[3];
             }
 
             // higher order curves: use de Casteljau's computation
@@ -303,7 +305,7 @@ namespace System.Geometry
             {
                 for (int i = 0; i < dCpts.Count - 1; i++)
                 {
-                    dCpts[i] = dCpts[i] + (dCpts[i + 1] - dCpts[i]) * t;
+                    dCpts[i] = dCpts[i] + (dCpts[i + 1] - dCpts[i]) * (double)t;
                 }
                 dCpts.RemoveAt(dCpts.Count - 1);
             }
@@ -314,14 +316,14 @@ namespace System.Geometry
         /// <summary>
         /// Calculates the curve tangent at the specified t value. Note that this yields a not-normalized vector {x: dx, y: dy}.
         /// </summary>
-        public Vector2 Tangent(float t)
+        public Vector2 Tangent(double t)
         {
-            float mt = 1 - t;
+            double mt = 1 - t;
             List<Vector2> p = dpoints[0];
 
-            float a = 0;
-            float b = 0;
-            float c = 0;
+            double a = 0;
+            double b = 0;
+            double c = 0;
 
             if (order == 2)
             {
@@ -336,17 +338,17 @@ namespace System.Geometry
                 c = t * t;
             }
 
-            return a * p[0] + b * p[1] + c * p[2];
+            return (double)a * p[0] + (double)b * p[1] + (double)c * p[2];
         }
 
         /// <summary>
         /// Calculates the curve normal at the specified t value. Note that this yields a normalized vector {x: nx, y: ny}.
         /// </summary>
-        public Vector2 Normal(float t)
+        public Vector2 Normal(double t)
         {
             Vector2 d = Tangent(t);
-            float q = sqrt(d.X * d.X + d.Y * d.Y);
-            return new Vector2(x: -d.Y / q, y: d.X / q);
+            double q = sqrt(d.X * d.X + d.Y * d.Y);
+            return new Vector2(x: (double)(-d.Y / q), y: (double)(d.X / q));
         }
 
 
@@ -388,7 +390,7 @@ namespace System.Geometry
         /// and [4,5,6] respectively, the third iteration is [5] (the on-curve point for quadratic curves)
         /// and [7,8] respectively, and the fourth iteration (for cubic curves only) is [9].
         /// </summary>
-        public List<Vector2> Hull(float t)
+        public List<Vector2> Hull(double t)
         {
             List<Vector2> p = new List<Vector2>(points);
             List<Vector2> q = new List<Vector2>();
@@ -421,7 +423,7 @@ namespace System.Geometry
         /// <summary>
         /// Splits a curve at t into two new curves that together are equivalent to the original curve.
         /// </summary>
-        public Split Split(float t)
+        public Split Split(double t)
         {
             // no shortcut: use "de Casteljau" iteration.
             List<Vector2> q = Hull(t);
@@ -447,13 +449,13 @@ namespace System.Geometry
             return result;
         }
 
-        public Pair<Bezier> Break(float t)
+        public Pair<Bezier> Break(double t)
         {
             var s = Split(t);
             return new Pair<Bezier>(s.Left, s.Right);
         }
 
-        Pair<IPathShape> IPathShape.Break(float t)
+        Pair<IPathShape> IPathShape.Break(double t)
         {
             var b = Break(t);
             if (b == null) return null;
@@ -485,7 +487,7 @@ namespace System.Geometry
         /// <summary>
         /// Splits the curve on t1, after which the resulting second subcurve is split on (a scaled) t2, yielding a new curve that is equivalent to the original curve over the interval [t1, t2].
         /// </summary>
-        public Bezier Split(float t1, float t2)
+        public Bezier Split(double t1, double t2)
         {
             // shortcuts
             if (t1 == 0 && t2 != 0)
@@ -532,18 +534,18 @@ namespace System.Geometry
         /// <returns>Returns extrema.</returns>
         public Extrema Extrema()
         {
-            List<float> roots = new List<float>();
+            List<double> roots = new List<double>();
 
-            IEnumerable<float> px = dpoints[0].Select(pxx => pxx.X);
-            IEnumerable<float> py = dpoints[0].Select(pxx => pxx.Y);
+            IEnumerable<double> px = dpoints[0].Select(pxx => (double)pxx.X);
+            IEnumerable<double> py = dpoints[0].Select(pxx => (double)pxx.Y);
 
-            float[] resultx = Utils.droots(px.ToArray());
-            float[] resulty = Utils.droots(py.ToArray());
+            double[] resultx = Utils.droots(px.ToArray());
+            double[] resulty = Utils.droots(py.ToArray());
 
             if (order == 3)
             {
-                px = dpoints[1].Select(pxx => pxx.X);
-                py = dpoints[1].Select(pxx => pxx.Y);
+                px = dpoints[1].Select(pxx => (double)pxx.X);
+                py = dpoints[1].Select(pxx => (double)pxx.Y);
 
                 resultx = resultx.Concat(Utils.droots(px.ToArray())).ToArray();
                 resulty = resulty.Concat(Utils.droots(py.ToArray())).ToArray();
@@ -559,8 +561,8 @@ namespace System.Geometry
                 return t >= 0 && t <= 1;
             }).ToArray();
 
-            List<float> rx = resultx.ToList();
-            List<float> ry = resulty.ToList();
+            List<double> rx = resultx.ToList();
+            List<double> ry = resulty.ToList();
 
             rx.Sort(Utils.NumberSort);
             ry.Sort(Utils.NumberSort);
@@ -581,12 +583,14 @@ namespace System.Geometry
         {
             get
             {
+               
+
                 Extrema extrema = Extrema();
 
-                Utils.GetMinMaxX(this, extrema.X, out float minx, out float maxx);
-                Utils.GetMinMaxY(this, extrema.Y, out float miny, out float maxy);
+                Utils.GetMinMaxX(this, extrema.X, out double minx, out double maxx);
+                Utils.GetMinMaxY(this, extrema.Y, out double miny, out double maxy);
 
-                return new BoundingBox(new Vector2(minx, miny), new Vector2(maxx, maxy));
+                return new BoundingBox(new Vector2((double)minx, (double)miny), new Vector2((double)maxx, (double)maxy));
             }
         }
 
@@ -610,20 +614,20 @@ namespace System.Geometry
         /// <param name="t"></param>
         /// <param name="d"></param>
         /// <returns></returns>
-        public Vector2 Offset(float t, float d)
+        public Vector2 Offset(double t, double d)
         {
             var c = this.Position(t);
             var n = this.Normal(t);
 
-            return c + n * d;
+            return c + n * (double)d;
         }
 
-        public Vector2 Offset(float t, float d, out Vector2 c, out Vector2 n)
+        public Vector2 Offset(double t, double d, out Vector2 c, out Vector2 n)
         {
             c = this.Position(t);
             n = this.Normal(t);
 
-            return c + n * d;
+            return c + n * (double)d;
         }
 
         /// <summary>
@@ -633,17 +637,17 @@ namespace System.Geometry
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
-        public List<Bezier> Offset(float d)
+        public List<Bezier> Offset(double d)
         {
             if (this._linear)
             {
-                var nv = this.Normal(0);
-                var coords = this.points.Select(p =>
+                Vector2 nv = this.Normal(0);
+                IEnumerable<Vector2> coords = this.points.Select(p =>
                 {
                     var ret = new Vector2
                     {
-                        X = p.X + d * nv.X,
-                        Y = p.Y + d * nv.Y
+                        X = (double)(p.X + d * nv.X),
+                        Y = (double)(p.Y + d * nv.Y)
                     };
 
                     return ret;
@@ -666,8 +670,8 @@ namespace System.Geometry
         {
             if (order == 3)
             {
-                float a1 = Utils.Angle(points[0], points[3], points[1]);
-                float a2 = Utils.Angle(points[0], points[3], points[2]);
+                double a1 = Utils.Angle(points[0], points[3], points[1]);
+                double a2 = Utils.Angle(points[0], points[3], points[2]);
                 if ((a1 > 0 && a2 < 0) || (a1 < 0 && a2 > 0))
                 {
                     return false;
@@ -677,9 +681,9 @@ namespace System.Geometry
             Vector2 n1 = Normal(0);
             Vector2 n2 = Normal(1);
 
-            float s = n1.X * n2.X + n1.Y * n2.Y;
+            double s = n1.X * n2.X + n1.Y * n2.Y;
 
-            float angle = abs(acos(s));
+            double angle = abs(acos(s));
             return angle < pi / 3;
         }
 
@@ -688,19 +692,19 @@ namespace System.Geometry
         /// </summary>
         /// <param name="d">Distance.</param>
         /// <returns>A PolyBezier corresponding with the outline of the bezier curve.</returns>
-        public PolyBezier Outline(float d)
+        public PolyBezier Outline(double d)
         {
             return Outline(d, d);
         }
 
-        public PolyBezier Outline(float d1, float d2)
+        public PolyBezier Outline(double d1, double d2)
         {
             var reduced = this.Reduce();
             var len = reduced.Count;
             var fcurves = new List<Bezier>();
             var bcurves = new List<Bezier>();
 
-            var alen = 0.0f;
+            var alen = 0.0D;
             var tlen = this.Length;
 
             // form curve oulines
@@ -737,19 +741,19 @@ namespace System.Geometry
             return new PolyBezier(segments);
         }
 
-        public PolyBezier Outline(float d1, float d2, float d3, float d4)
+        public PolyBezier Outline(double d1, double d2, double d3, double d4)
         {
             var reduced = this.Reduce();
             var len = reduced.Count;
             var fcurves = new List<Bezier>();
             var bcurves = new List<Bezier>();
 
-            var alen = 0.0f;
+            var alen = 0.0D;
             var tlen = this.Length;
 
-            Func<float, float> linearDistanceFunction(float s, float e, float tlen0, float alen0, float slen0)
+            Func<double, double> linearDistanceFunction(double s, double e, double tlen0, double alen0, double slen0)
             {
-                return new Func<float, float>(v =>
+                return new Func<double, double>(v =>
                  {
                      var f1 = alen0 / tlen0;
                      var f2 = (alen0 + slen0) / tlen0;
@@ -803,7 +807,7 @@ namespace System.Geometry
             List<Bezier> pass2 = new List<Bezier>();
 
             // first pass: split on extrema
-            List<float> extrema = Extrema().Values.ToList();
+            List<double> extrema = Extrema().Values.ToList();
             if (extrema.IndexOf(0) == -1)
             {
                 extrema.Insert(0, 0);
@@ -813,10 +817,10 @@ namespace System.Geometry
                 extrema.Add(1);
             }
             {
-                float t1 = extrema[0];
+                double t1 = extrema[0];
                 for (int i = 1; i < extrema.Count; i++)
                 {
-                    float t2 = extrema[i];
+                    double t2 = extrema[i];
                     Bezier segment = Split(t1, t2);
                     segment._t1 = t1;
                     segment._t2 = t2;
@@ -829,13 +833,13 @@ namespace System.Geometry
             // second pass: further reduce these segments to simple segments
             foreach (Bezier p1 in pass1)
             {
-                double t1 = 0f;
-                double t2 = 0f;
+                double t1 = 0D;
+                double t2 = 0D;
                 while (t2 <= 1)
                 {
                     for (t2 = t1 + step; t2 <= 1 + step; t2 += step)
                     {
-                        Bezier segment = p1.Split((float)t1, (float)t2);
+                        Bezier segment = p1.Split((double)t1, (double)t2);
                         if (!segment.IsSimple())
                         {
                             t2 -= step;
@@ -844,9 +848,9 @@ namespace System.Geometry
                                 // we can never form a reduction
                                 return new List<Bezier>();
                             }
-                            segment = p1.Split((float)t1, (float)t2);
-                            segment._t1 = Utils.Map((float)t1, 0, 1, p1._t1, p1._t2);
-                            segment._t2 = Utils.Map((float)t2, 0, 1, p1._t1, p1._t2);
+                            segment = p1.Split((double)t1, (double)t2);
+                            segment._t1 = Utils.Map((double)t1, 0, 1, p1._t1, p1._t2);
+                            segment._t2 = Utils.Map((double)t2, 0, 1, p1._t1, p1._t2);
                             pass2.Add(segment);
                             t1 = t2;
                             break;
@@ -855,8 +859,8 @@ namespace System.Geometry
                 }
                 if (t1 < 1)
                 {
-                    Bezier segment = p1.Split((float)t1, 1);
-                    segment._t1 = Utils.Map((float)t1, 0, 1, p1._t1, p1._t2);
+                    Bezier segment = p1.Split((double)t1, 1);
+                    segment._t1 = Utils.Map((double)t1, 0, 1, p1._t1, p1._t2);
                     segment._t2 = p1._t2;
                     pass2.Add(segment);
                 }
@@ -867,7 +871,7 @@ namespace System.Geometry
             return pass2;
         }
 
-        public Bezier Scale(Func<float, float> distanceFn)
+        public Bezier Scale(Func<double, double> distanceFn)
         {
             var order = this.order;
             if (order == 2)
@@ -900,8 +904,8 @@ namespace System.Geometry
             var np = new Vector2[order + 1];
 
             // move end points by fixed distance along normal.
-            np[0] = points[0] + r1 * n0;
-            np[order] = points[order] + r2 * n1;
+            np[0] = points[0] + (double)r1 * n0;
+            np[order] = points[order] + (double)r2 * n1;
 
             // move control points by "however much necessary to
             // ensure the correct tangent to endpoint".
@@ -909,20 +913,20 @@ namespace System.Geometry
             void function(int t)
             {
                 if (this.order == 2 && (t != 0)) return;
-                var p = points[t + 1];
-                var ov = p - o.Value;
+                Vector2 p = points[t + 1];
+                Vector2 ov = p - o.Value;
 
-                var rc = distanceFn((t + 1.0f) / order);
+                double rc = distanceFn((t + 1.0d) / order);
                 if (!clockwise)
                 {
                     rc = -rc;
                 }
-                var m = sqrt(ov.X * ov.X + ov.Y * ov.Y);
+                double m = sqrt(ov.X * ov.X + ov.Y * ov.Y);
 
-                ov.X /= m;
-                ov.Y /= m;
+                ov.X /= (double)m;
+                ov.Y /= (double)m;
 
-                np[t + 1] = p + rc * ov;
+                np[t + 1] = p + (double)rc * ov;
             }
 
             function(0);
@@ -937,25 +941,25 @@ namespace System.Geometry
         /// </summary>
         /// <param name="d">Distance</param>
         /// <returns>Scaled bezier if it's simple, null otherwise.</returns>
-        public Bezier Scale(float d)
+        public Bezier Scale(double d)
         {
-            var order = this.order;
+            int order = this.order;
 
             // TODO: add special handling for degenerate (=linear) curves.
-            var clockwise = this.clockwise;
-            var r1 = d;
-            var r2 = d;
+            bool clockwise = this.clockwise;
+            double r1 = d;
+            double r2 = d;
 
-            var c0 = this.Position(0);
-            var n0 = this.Normal(0);
+            Vector2 c0 = this.Position(0);
+            Vector2 n0 = this.Normal(0);
 
-            var c1 = this.Position(1);
-            var n1 = this.Normal(1);
+            Vector2 c1 = this.Position(1);
+            Vector2 n1 = this.Normal(1);
 
             var v0 = c0 + n0 * 10;
             var v1 = c1 + n1 * 10;
 
-            var o = Utils.Lli4(v0, c0, v1, c1);
+            Vector2? o = Utils.Lli4(v0, c0, v1, c1);
             if (o == null)
             {
                 return null;
@@ -966,8 +970,8 @@ namespace System.Geometry
             var np = new Vector2[order + 1];
 
             // move end points by fixed distance along normal.
-            np[0] = points[0] + r1 * n0;
-            np[order] = points[order] + r2 * n1;
+            np[0] = points[0] + (double)r1 * n0;
+            np[order] = points[order] + (double)r2 * n1;
 
 
             // move control points to lie on the intersection of the offset
@@ -998,43 +1002,43 @@ namespace System.Geometry
         /// </summary>
         /// <param name="line">The line</param>
         /// <returns>An array of t values on this curve.</returns>
-        public float[] Intersects(Line line)
+        public double[] Intersects(Line line)
         {
-            var mx = Math.Min(line.P1.X, line.P2.X);
-            var my = Math.Min(line.P1.Y, line.P2.Y);
-            var MX = Math.Max(line.P1.X, line.P2.X);
-            var MY = Math.Max(line.P1.Y, line.P2.Y);
-            var self = this;
+            double mx = Math.Min(line.P1.X, line.P2.X);
+            double my = Math.Min(line.P1.Y, line.P2.Y);
+            double MX = Math.Max(line.P1.X, line.P2.X);
+            double MY = Math.Max(line.P1.Y, line.P2.Y);
+            Bezier self = this;
 
             return Utils.Roots(this.points, line).Where((t) =>
             {
-                var p = self.Position(t);
-                return Utils.between(p.X, mx, MX) && Utils.between(p.Y, my, MY);
+                Vector2 p = self.Position(t);
+                return Utils.approxBetween(p.X, mx, MX) && Utils.approxBetween(p.Y, my, MY);
             }).ToArray();
         }
 
         /// <summary>
         /// Finds the intersections between this curve and another.
-        /// Intersections are yielded as a List of <see cref="Pair{T}" />, where the Left float corresponds to the t value on this curve, and the Right float corresponds to the t value on the other curve.
+        /// Intersections are yielded as a List of <see cref="Pair{T}" />, where the Left double corresponds to the t value on this curve, and the Right double corresponds to the t value on the other curve.
         ///
         /// Curve/curve intersection uses an interative process, where curves are subdivided at the midpoint, and bounding box overlap checks are performed between the resulting smaller curves. Any overlap is marked as a pair to resolve, and the "divide and check overlap" step is repeated. Doing this enough times "homes in" on the actual intersections, such that with infinite divisions, we can get an arbitrarily close approximation of the t values involved. Thankfully, repeating the process a low number of steps is generally good enough to get reliable values (typically 10 steps yields more than acceptable precision).
         /// </summary>
         /// <param name="curve">Other curve.</param>
         /// <param name="threshold">Threshold.</param>
         /// <returns>Intersection points.</returns>
-        public List<Pair<float>> Intersects(Bezier curve, float threshold)
+        public List<Pair<double>> Intersects(Bezier curve, double threshold)
         {
             return Intersects(this.Reduce(), curve.Reduce(), threshold);
         }
 
-        public List<Pair<float>> IntersectsWithSelf(float threshold)
+        public List<Pair<double>> IntersectsWithSelf(double threshold)
         {
             var reduced = this.Reduce();
             // "simple" curves cannot intersect with their direct
             // neighbour, so for each segment X we check whether
             // it intersects [0:x-2][x+2:last].
             var len = reduced.Count - 2;
-            var results = new List<Pair<float>>();
+            var results = new List<Pair<double>>();
 
             for (var i = 0; i < len; i++)
             {
@@ -1047,7 +1051,7 @@ namespace System.Geometry
             return results;
         }
 
-        private static List<Pair<float>> Intersects(IEnumerable<Bezier> c1, IEnumerable<Bezier> c2, float curveIntersectionThreshold)
+        private static List<Pair<double>> Intersects(IEnumerable<Bezier> c1, IEnumerable<Bezier> c2, double curveIntersectionThreshold)
         {
             var pairs = new List<Pair<Bezier>>();
             // step 1: pair off any overlapping segments
@@ -1063,7 +1067,7 @@ namespace System.Geometry
             }
 
             // step 2: for each pairing, run through the convergence algorithm.
-            var intersections = new List<Pair<float>>();
+            var intersections = new List<Pair<double>>();
 
             foreach (var pair in pairs)
             {
@@ -1081,7 +1085,7 @@ namespace System.Geometry
             return intersections;
         }
 
-        public List<Arc> ToArcs(float errorThreshold)
+        public List<Arc> ToArcs(double errorThreshold)
         {
             var circles = new List<Arc>();
             this._iterate(errorThreshold, circles);
@@ -1096,7 +1100,7 @@ namespace System.Geometry
             return circles;
         }
 
-        float _error(Vector2 pc, Vector2 np1, float s, float e)
+        double _error(Vector2 pc, Vector2 np1, double s, double e)
         {
             var q = (e - s) / 4;
             var c1 = this.Position(s + q);
@@ -1107,10 +1111,10 @@ namespace System.Geometry
             return abs(d1 - @ref) + abs(d2 - @ref);
         }
 
-        List<Arc> _iterate(float errorThreshold, List<Arc> circles)
+        List<Arc> _iterate(double errorThreshold, List<Arc> circles)
         {
-            var t_s = 0.0f;
-            var t_e = 1.0f;
+            var t_s = 0.0D;
+            var t_e = 1.0D;
             var safety = 0;
             // we do a binary search to find the "good `t` closest to no-longer-good"
             do
@@ -1132,8 +1136,8 @@ namespace System.Geometry
 
                 // numbers:
                 var t_m = t_e;
-                var prev_e = 1.0f;
-                var step = 0.0f;
+                var prev_e = 1.0D;
+                var step = 0.0D;
 
                 // step 2: find the best possible arc
                 do
@@ -1167,7 +1171,7 @@ namespace System.Geometry
                             // the arc's end angle is correct with respect to the bezier end point.
                             if (t_e > 1)
                             {
-                                var d = new Vector2(arc.Center.X + arc.Radius * cos(arc.EndAngle), arc.Center.Y + arc.Radius * sin(arc.EndAngle));
+                                var d = new Vector2((double)(arc.Center.X + arc.Radius * cos(arc.EndAngle)), (double)(arc.Center.Y + arc.Radius * sin(arc.EndAngle)));
                                 arc.EndAngle += Utils.angle(arc.Center, d, this.Position(1));
                             }
                             break;
@@ -1216,44 +1220,44 @@ namespace System.Geometry
         /// NOTE: this is an expensive operation!
         /// </summary>
         /// <returns>All 't' values for which this curve inflects</returns>
-        public float[] Inflections()
+        public double[] Inflections()
         {
             return Utils.Inflections(points);
         }
 
-        //float[] getInflections()
+        //double[] getInflections()
         //{
-        //    float[] ret = { };
-        //    var t_values = new List<float>();
+        //    double[] ret = { };
+        //    var t_values = new List<double>();
         //    t_values.Add(0.0f);
         //    t_values.Add(1.0f);
-        //    float[] roots;
+        //    double[] roots;
         //    // get first derivative roots
         //    roots = comp.findAllRoots(1, x_values);
-        //    foreach (float t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
+        //    foreach (double t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
         //    roots = comp.findAllRoots(1, y_values);
-        //    foreach (float t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
+        //    foreach (double t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
         //    // get second derivative roots
         //    if (order > 2)
         //    {
         //        roots = comp.findAllRoots(2, x_values);
-        //        foreach (float t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
+        //        foreach (double t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
         //        roots = comp.findAllRoots(2, y_values);
-        //        foreach (float t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
+        //        foreach (double t in roots) { if (0 < t && t < 1) { t_values.Add(t); } }
         //    }
         //    // sort roots
-        //    ret = new float[t_values.Count];
+        //    ret = new double[t_values.Count];
         //    for (int i = 0; i < ret.Length; i++) { ret[i] = t_values[i]; }
         //    ret = sort(ret);
         //    // remove duplicates
-        //    t_values = new List<float>();
-        //    foreach (float f in ret) { if (!t_values.Contains(f)) { t_values.Add(f); } }
-        //    ret = new float[t_values.Count];
+        //    t_values = new List<double>();
+        //    foreach (double f in ret) { if (!t_values.Contains(f)) { t_values.Add(f); } }
+        //    ret = new double[t_values.Count];
         //    for (int i = 0; i < ret.Length; i++) { ret[i] = t_values[i]; }
         //    if (ret.Length > (2 * order + 2))
         //    {
         //        //var errMsg = "ERROR: getInflections is returning way too many roots (" + ret.Length + ")";
-        //        return new float[0];
+        //        return new double[0];
         //    }
         //    return ret;
         //}
@@ -1282,8 +1286,8 @@ namespace System.Geometry
         public override string ToString()
         {
             Vector2[] p = points;
-            float x = p[0].X;
-            float y = p[0].Y;
+            double x = p[0].X;
+            double y = p[0].Y;
             List<object> s = new List<object> { "M", x, y, order == 2 ? "Q" : "C" };
 
             for (int i = 1; i < p.Length; i++)
@@ -1308,52 +1312,48 @@ namespace System.Geometry
 
 
 
-        private static float sqrt(float v)
+        private static double sqrt(double v)
         {
-            return (float)Math.Sqrt(v);
+            return (double)Math.Sqrt(v);
         }
-        private static float abs(float v)
+        private static double abs(double v)
         {
-            return (float)Math.Abs(v);
-        }
-        private static float abs(double v)
-        {
-            return (float)Math.Abs(v);
+            return (double)Math.Abs(v);
         }
 
-        private static float pow(float a, float b)
+        private static double pow(double a, double b)
         {
-            return (float)Math.Pow(a, b);
+            return (double)Math.Pow(a, b);
         }
 
         // cube root function yielding real roots
-        private static float crt(float v)
+        private static double crt(double v)
         {
             return v < 0 ? -pow(-v, 1 / 3) : pow(v, 1 / 3);
         }
 
         // trig constants
-        private const float pi = 3.1415926535897931f;
-        private const float tau = 2 * pi;
-        private const float quart = pi / 2;
+        private const double pi = 3.1415926535897931D;
+        private const double tau = 2 * pi;
+        private const double quart = pi / 2;
 
-        private static float acos(float v)
+        private static double acos(double v)
         {
-            return (float)Math.Acos(v);
+            return (double)Math.Acos(v);
         }
-        private static float cos(float v)
+        private static double cos(double v)
         {
-            return (float)Math.Cos(v);
-        }
-
-        private static float sin(float v)
-        {
-            return (float)Math.Sin(v);
+            return (double)Math.Cos(v);
         }
 
-        private static float atan2(float y, float x)
+        private static double sin(double v)
         {
-            return (float)Math.Atan2(y, x);
+            return (double)Math.Sin(v);
+        }
+
+        private static double atan2(double y, double x)
+        {
+            return (double)Math.Atan2(y, x);
         }
 
         public void Move(Vector2 offset)
@@ -1366,26 +1366,26 @@ namespace System.Geometry
             ComputeDerivativeCoordinates();
         }
 
-        Pair<float>[] IPathShape.Intersects(Circle circle)
+        Pair<double>[] IPathShape.Intersects(Circle circle)
         {
             throw new NotImplementedException();
         }
 
-        Pair<float>[] IPathShape.Intersects(Arc arc)
+        Pair<double>[] IPathShape.Intersects(Arc arc)
         {
             throw new NotImplementedException();
         }
 
-        Pair<float>[] IPathShape.Intersects(Line line)
+        Pair<double>[] IPathShape.Intersects(Line line)
         {
             throw new NotImplementedException();
         }
 
-        private float[] ExtremaX()
+        private double[] ExtremaX()
         {
             var extrema = this.Extrema().Values.ToList();
 
-            if (extrema.Count == 0) return new float[] { 0, 1 };
+            if (extrema.Count == 0) return new double[] { 0, 1 };
 
             //ensure leading zero
             if (extrema[0] != 0)
@@ -1405,11 +1405,11 @@ namespace System.Geometry
         public IEnumerable<IPathShape> ToArcs()
         {
             var extrema = this.ExtremaX();
-            var accuracy = Length / 100.0f;
+            var accuracy = Length / 100.0D;
 
             for (int i = 1; i < extrema.Length; i++)
             {
-                float extremaSpan = extrema[i] - extrema[i - 1];
+                double extremaSpan = extrema[i] - extrema[i - 1];
                 var arcs = GetArcs(accuracy * extremaSpan, extrema[i - 1], extrema[i]);
 
                 foreach (var arc in arcs)
@@ -1419,7 +1419,7 @@ namespace System.Geometry
             }
         }
 
-        private IEnumerable<IPathShape> GetArcs(float accuracy, float startT, float endT)
+        private IEnumerable<IPathShape> GetArcs(double accuracy, double startT, double endT)
         {
             while (startT < endT)
             {
@@ -1428,7 +1428,7 @@ namespace System.Geometry
 
                 startT = iarc.Interval.End.Value;
 
-                float len = arc.Length;
+                double len = arc.Length;
 
                 if (len < 0.0001)
                 {
@@ -1439,7 +1439,7 @@ namespace System.Geometry
             }
         }
 
-        private static IPathShape GetLargestArc(Bezier b, float startT, float endT, float accuracy)
+        private static IPathShape GetLargestArc(Bezier b, double startT, double endT, double accuracy)
         {
             Arc lastGoodArc = null;
             TPoint start = new TPoint(b, startT);
@@ -1477,7 +1477,7 @@ namespace System.Geometry
                 }
 
                 //now we have a valid arc, measure the error.
-                float error = GetError(b, startT, test.t, arc, reversed.Value);
+                double error = GetError(b, startT, test.t, arc, reversed.Value);
 
                 //if error is within accuracy, this becomes the lower
                 if (error <= accuracy)
@@ -1518,39 +1518,39 @@ namespace System.Geometry
             return line;
         }
 
-        private static float GetError(Bezier b, float startT, float endT, IPathShape arc, bool arcReversed)
+        private static double GetError(Bezier b, double startT, double endT, IPathShape arc, bool arcReversed)
         {
-            float tSpan = endT - startT;
+            double tSpan = endT - startT;
 
-            float m(float ratio)
+            double m(double ratio)
             {
-                float t = startT + tSpan * ratio;
+                double t = startT + tSpan * ratio;
                 Vector2 bp = b.Position(t);
                 Vector2 ap = arc.Position(arcReversed ? 1 - ratio : ratio);
                 return Vector2.Distance(ap, bp);
             }
 
-            return m(0.25f) + m(0.75f);
+            return m(0.25d) + m(0.75d);
         }
 
         private class TPoint
         {
             public Vector2 point;
-            public float t;
+            public double t;
 
-            public TPoint(Bezier b, float t, Vector2 offset = default)
+            public TPoint(Bezier b, double t, Vector2 offset = default)
             {
                 this.t = t;
                 point = b.Position(t) + offset;
             }
         }
 
-        //internal override int NumberOfKeyPoints(float maxPointDistance = 0)
+        //internal override int NumberOfKeyPoints(double maxPointDistance = 0)
         //{
         //    throw new System.NotImplementedException();
         //}
 
-        //public override List<Vector2> ToKeyPoints(float maxArcFacet = 0)
+        //public override List<Vector2> ToKeyPoints(double maxArcFacet = 0)
         //{
         //    var curve = new BezierCurve(this);
         //    List<Vector2> curveKeyPoints = new List<Vector2>();

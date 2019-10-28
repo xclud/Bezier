@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry.Text
@@ -26,12 +26,12 @@ namespace System.Geometry.Text
         /// <summary>
         /// The width of the glyph.
         /// </summary>
-        public readonly float Width;
+        public readonly double Width;
 
         /// <summary>
         /// The height of the glyph.
         /// </summary>
-        public readonly float Height;
+        public readonly double Height;
 
         /// <summary>
         /// The metrics to use when the glyph is laid out horizontally.
@@ -43,14 +43,14 @@ namespace System.Geometry.Text
         /// </summary>
         public readonly GlyphMetrics VerticalMetrics;
 
-        internal Glyph(PointF[] points, int[] contours, float linearHorizontalAdvance, float linearVerticalAdvance)
+        internal Glyph(PointF[] points, int[] contours, double linearHorizontalAdvance, double linearVerticalAdvance)
         {
             this.points = points;
             this.contours = contours;
 
             // find the bounding box
-            BoundingBox.Min = new Vector2(float.MaxValue, float.MaxValue);
-            BoundingBox.Max = new Vector2(float.MinValue, float.MinValue);
+            BoundingBox.Min = new Vector2(double.MaxValue, double.MaxValue);
+            BoundingBox.Max = new Vector2(double.MinValue, double.MinValue);
 
             var pointCount = points.Length - 4;
             for (int i = 0; i < pointCount; i++)

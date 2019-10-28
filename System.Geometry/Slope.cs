@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -13,7 +13,7 @@ namespace System.Geometry
         /// <summary>
         /// Value of the Slope.
         /// </summary>
-        public readonly float Value;
+        public readonly double Value;
 
         /// <summary>
         /// If false, the slope is vertical.
@@ -23,11 +23,11 @@ namespace System.Geometry
         /// <summary>
         /// Y-Intercept.
         /// </summary>
-        public readonly float YIntercept;
+        public readonly double YIntercept;
 
         private readonly Line line;
 
-        private Slope(bool hasValue, float slope, float yIntercept, Line line)
+        private Slope(bool hasValue, double slope, double yIntercept, Line line)
         {
             this.HasValue = hasValue;
             this.Value = slope;
@@ -50,7 +50,7 @@ namespace System.Geometry
         /// </summary>
         public static Slope Of(Vector2 p1, Vector2 p2)
         {
-            float dx = p2.X - p1.X;
+            double dx = p2.X - p1.X;
             var l = new Line(p1, p2);
 
             if (dx == 0)
@@ -58,10 +58,10 @@ namespace System.Geometry
                 return new Slope(false, 0, 0, l);
             }
 
-            float dy = p2.Y - p1.Y;
+            double dy = p2.Y - p1.Y;
 
-            float slope = dy / dx;
-            float yIntercept = p1.Y - slope * p1.X;
+            double slope = dy / dx;
+            double yIntercept = p1.Y - slope * p1.X;
 
             return new Slope(true, slope, yIntercept, l);
         }

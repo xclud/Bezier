@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Geometry;
 using System.IO;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Threading;
 
 namespace System.Geometry.Text
@@ -240,14 +240,14 @@ namespace System.Geometry.Text
         /// <param name="pointSize">The font point size.</param>
         /// <param name="dpi">The DPI of the screen.</param>
         /// <returns>The pixel size at the given resolution.</returns>
-        public static float ComputePixelSize(float pointSize, int dpi) => pointSize * dpi / 72;
+        public static double ComputePixelSize(double pointSize, int dpi) => pointSize * dpi / 72;
 
         /// <summary>
         /// Gets metrics for the font as a whole at a particular pixel size.
         /// </summary>
         /// <param name="pixelSize">The size of the font, in pixels.</param>
         /// <returns>The font's face metrics.</returns>
-        public FaceMetrics GetFaceMetrics(float pixelSize)
+        public FaceMetrics GetFaceMetrics(double pixelSize)
         {
             var scale = ComputeScale(pixelSize);
             return new FaceMetrics(
@@ -269,7 +269,7 @@ namespace System.Geometry.Text
         /// <param name="codePoint">The Unicode codepoint for which to retrieve glyph data.</param>
         /// <param name="pixelSize">The desired size of the font, in pixels.</param>
         /// <returns>The glyph data if the font supports the given character; otherwise, <c>null</c>.</returns>
-        public Glyph GetGlyph(CodePoint codePoint, float pixelSize)
+        public Glyph GetGlyph(CodePoint codePoint, double pixelSize)
         {
             var glyphIndex = charMap.Lookup(codePoint);
             if (glyphIndex < 0)
@@ -295,7 +295,7 @@ namespace System.Geometry.Text
             // build and transform the glyph
             var points = new List<PointF>(32);
             var contours = new List<int>(32);
-            var transform = Matrix3x2.CreateScale(scale, -scale);
+            var transform = Matrix3x2.CreateScale((double)scale, (double)-scale);
             //transform.Translation = offset;
 
             Geometry.ComposeGlyphs(glyphIndex, 0, ref transform, points, contours, glyphs);
@@ -325,15 +325,15 @@ namespace System.Geometry.Text
         /// <param name="right">The right character.</param>
         /// <param name="pixelSize">The size of the font, in pixels.</param>
         /// <returns>The amount of kerning to apply, if any.</returns>
-        public float GetKerning(CodePoint left, CodePoint right, float pixelSize)
+        public double GetKerning(CodePoint left, CodePoint right, double pixelSize)
         {
             if (kernTable == null)
-                return 0.0f;
+                return 0.0D;
 
             var leftIndex = charMap.Lookup(left);
             var rightIndex = charMap.Lookup(right);
             if (leftIndex < 0 || rightIndex < 0)
-                return 0.0f;
+                return 0.0D;
 
             var kern = kernTable.Lookup(leftIndex, rightIndex);
             return kern * ComputeScale(pixelSize);
@@ -348,44 +348,44 @@ namespace System.Geometry.Text
             return FullName;
         }
 
-        float ComputeScale(float pixelSize)
+        double ComputeScale(double pixelSize)
         {
             if (integerPpems)
             {
-                pixelSize = (float)Math.Round(pixelSize);
+                pixelSize = (double)Math.Round(pixelSize);
             }
 
             return pixelSize / unitsPerEm;
         }
 
-        public Path[] CreateText(string text, float pixelSize, out BoundingBox bbox)
-        {
-            var offset = new Vector2();
-            bbox = BoundingBox.Infinity;
-            var paths = new Path[text.Length];
+        //public Path[] CreateText(string text, double pixelSize, out BoundingBox bbox)
+        //{
+        //    var offset = new Vector2();
+        //    bbox = BoundingBox.Infinity;
+        //    var paths = new Path[text.Length];
 
-            var i = 0;
-            foreach (var ch in text)
-            {
-                var glyph = this.GetGlyph(ch, pixelSize);
-                var p = glyph.BuildPath(offset);
+        //    var i = 0;
+        //    foreach (var ch in text)
+        //    {
+        //        var glyph = this.GetGlyph(ch, pixelSize);
+        //        var p = glyph.BuildPath(offset);
 
-                paths[i++] = p;
+        //        paths[i++] = p;
 
-                bbox += glyph.BoundingBox + offset;
+        //        bbox += glyph.BoundingBox + offset;
 
-                offset.X += glyph.HorizontalMetrics.Advance;
-            }
+        //        offset.X += (double)(glyph.HorizontalMetrics.Advance);
+        //    }
 
-            var ox = -bbox.Min;
-            bbox += ox;
+        //    var ox = -bbox.Min;
+        //    bbox += ox;
 
-            foreach (var p in paths)
-            {
-                p.Offset(ox);
-            }
+        //    foreach (var p in paths)
+        //    {
+        //        p.Offset(ox);
+        //    }
 
-            return paths;
-        }
+        //    return paths;
+        //}
     }
 }

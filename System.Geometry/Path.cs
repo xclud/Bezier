@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -14,9 +14,9 @@ namespace System.Geometry
 
         private CompoundPath current;
 
-        public Path MoveTo(float x, float y)
+        public Path MoveTo(double x, double y)
         {
-            current = new CompoundPath { Start = new Vector2(x, y), End = new Vector2(x, y) };
+            current = new CompoundPath { Start = new Vector2((double)x, (double)y), End = new Vector2((double)x, (double)y) };
             segments.Add(current);
 
             return this;
@@ -31,9 +31,9 @@ namespace System.Geometry
         }
 
 
-        public Path LineTo(float x, float y)
+        public Path LineTo(double x, double y)
         {
-            current.LineTo(new Vector2(x, y));
+            current.LineTo(new Vector2((double)x, (double)y));
             return this;
         }
 
@@ -50,7 +50,7 @@ namespace System.Geometry
             return this;
         }
 
-        public Path ArcTo(float radius, float startAngle, float endAngle)
+        public Path ArcTo(double radius, double startAngle, double endAngle)
         {
             current.ArcTo(radius, startAngle, endAngle);
             return this;

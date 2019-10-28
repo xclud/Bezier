@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
+using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
@@ -10,7 +10,7 @@ namespace System.Geometry
         public Vector2 Min;
         public Vector2 Max;
 
-        public static readonly BoundingBox Infinity = new BoundingBox(new Vector2(float.PositiveInfinity), new Vector2(float.NegativeInfinity));
+        public static readonly BoundingBox Infinity = new BoundingBox(new Vector2(double.PositiveInfinity), new Vector2(double.NegativeInfinity));
 
         public BoundingBox(Vector2 min, Vector2 max)
         {
@@ -71,22 +71,22 @@ namespace System.Geometry
         }
         public static bool Intersects(BoundingBox b1, BoundingBox b2)
         {
-            var lx = (b1.Max.X + b1.Min.X) / 2;
-            var tx = (b2.Max.X + b2.Min.X) / 2;
-            var dx = ((b1.Max.X - b1.Min.X) + (b2.Max.X - b2.Min.X)) / 2.0f;
+            double lx = (b1.Max.X + b1.Min.X) / 2;
+            double tx = (b2.Max.X + b2.Min.X) / 2;
+            double dx = ((b1.Max.X - b1.Min.X) + (b2.Max.X - b2.Min.X)) / 2.0D;
 
             if (Math.Abs(lx - tx) >= dx) return false;
 
-            var ly = (b1.Max.Y + b1.Min.Y) / 2;
-            var ty = (b2.Max.Y + b2.Min.Y) / 2;
-            var dy = ((b1.Max.Y - b1.Min.Y) + (b2.Max.Y - b2.Min.Y)) / 2.0f;
+            double ly = (b1.Max.Y + b1.Min.Y) / 2;
+            double ty = (b2.Max.Y + b2.Min.Y) / 2;
+            double dy = ((b1.Max.Y - b1.Min.Y) + (b2.Max.Y - b2.Min.Y)) / 2.0D;
 
             if (Math.Abs(ly - ty) >= dy) return false;
 
             return true;
         }
 
-        internal float Width => Max.X - Min.X;
-        internal float Height => Max.Y - Min.Y;
+        internal double Width => Max.X - Min.X;
+        internal double Height => Max.Y - Min.Y;
     }
 }
