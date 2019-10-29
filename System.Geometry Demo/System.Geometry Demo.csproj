@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BezierDemo\BezierAlignDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\BezierHullDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BezierDemo\BezierReduceDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +114,18 @@
     </Compile>
     <Compile Include="BezierDemo\BezierIntersectsSelfDemoControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierAlignDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierAlignDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierAlignDemoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierHullDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierHullDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierHullDemoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="BezierDemo\CombinedBezierReduceDemoControl.cs">
       <SubType>UserControl</SubType>
@@ -218,6 +236,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\BezierDemoForm.resx">
       <DependentUpon>BezierDemoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierAlignDemoControl.resx">
+      <DependentUpon>CombinedBezierAlignDemoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierHullDemoControl.resx">
+      <DependentUpon>CombinedBezierHullDemoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\CombinedBezierReduceDemoControl.resx">
       <DependentUpon>CombinedBezierReduceDemoControl.cs</DependentUpon>

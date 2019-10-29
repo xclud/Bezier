@@ -1050,7 +1050,7 @@ namespace System.Geometry
         /// <param name="curve">Other curve.</param>
         /// <param name="threshold">Threshold.</param>
         /// <returns>Intersection points.</returns>
-        public List<Pair<double>> Intersects(Bezier curve, double threshold=.5)
+        public List<Pair<double>> Intersects(Bezier curve, double threshold = .5)
         {
             return Intersects(this.Reduce(), curve.Reduce(), threshold);
         }
@@ -1225,6 +1225,14 @@ namespace System.Geometry
             return circles;
         }
 
+        /// <summary>
+        /// Align this curve to a line 
+        /// </summary>
+        /// <returns>Aligned Bezier.</returns>
+        public Bezier Align(Line line)
+        {
+            return Align(line.P1, line.P2);
+        }
 
         /// <summary>
         /// Align this curve to a line defined by two points.

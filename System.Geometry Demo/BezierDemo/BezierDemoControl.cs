@@ -252,7 +252,7 @@ namespace System.Geometry_Demo.BezierDemo
             Graphics gfx = e.Graphics;
             gfx.SmoothingMode = Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            DrawHandles(gfx);
+            drawControlDrawHandles(gfx);
             drawControlBezier(gfx);
 
         }
@@ -265,24 +265,25 @@ namespace System.Geometry_Demo.BezierDemo
             }
         }
 
-        private void DrawHandles(Graphics gfx)
+        private void drawControlDrawHandles(Graphics gfx)
         {
-
-            float handleSize = HandleSize;
-            float handleRadius = handleSize / 2;
-
-
-            if (currentPointIndex >= 0 && currentPointIndex < Bezier.Points.Count)
+            if (Bezier != null)
             {
-                Vector2 bezierPoint = Bezier.Points[currentPointIndex];
-                using (Brush handleFillBrush = new SolidBrush(Color.LightBlue))
+                float handleSize = HandleSize;
+                float handleRadius = handleSize / 2;
+
+
+                if (currentPointIndex >= 0 && currentPointIndex < Bezier.Points.Count)
                 {
-                    gfx.FillEllipse(handleFillBrush, (float)bezierPoint.X - handleRadius, (float)bezierPoint.Y - handleRadius, (float)handleRadius * 2, (float)handleRadius * 2);
+                    Vector2 bezierPoint = Bezier.Points[currentPointIndex];
+                    using (Brush handleFillBrush = new SolidBrush(Color.LightBlue))
+                    {
+                        gfx.FillEllipse(handleFillBrush, (float)bezierPoint.X - handleRadius, (float)bezierPoint.Y - handleRadius, (float)handleRadius * 2, (float)handleRadius * 2);
+                    }
                 }
+
+                DrawHandles(gfx, Bezier.Points, Color.Black, HandleSize, 1, Color.LightGray, 1);
             }
-
-            DrawHandles(gfx, Bezier.Points, Color.Black, HandleSize, 1, Color.LightGray, 1);
-
 
         }
 
