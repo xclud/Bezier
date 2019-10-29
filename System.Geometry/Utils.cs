@@ -198,6 +198,7 @@ namespace System.Geometry
                     mdist = d;
                     mpos = idx;
                 }
+                idx++;
             }
         }
 

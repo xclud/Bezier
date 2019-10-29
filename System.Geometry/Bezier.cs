@@ -41,6 +41,15 @@ namespace System.Geometry
             }
         }
 
+
+
+        /// <summary>
+        /// Creates a Cubic Bezier Curve.
+        /// </summary>
+        public Bezier(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) : this(new Vector2(x1, y1), new Vector2(x2, y2), new Vector2(x3, y3), new Vector2(x4, y4))
+        {
+        }
+
         /// <summary>
         /// Creates a Cubic Bezier Curve.
         /// </summary>
@@ -56,6 +65,14 @@ namespace System.Geometry
             _t2 = 1;
 
             Update();
+        }
+
+
+        /// <summary>
+        /// Creates a Quadratic Bezier Curve.
+        /// </summary>
+        public Bezier(double x1, double y1, double x2, double y2, double x3, double y3) : this(new Vector2(x1, y1), new Vector2(x2, y2), new Vector2(x3, y3))
+        {
         }
 
         /// <summary>
@@ -84,6 +101,12 @@ namespace System.Geometry
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Constructs a curve along a straight line.
+        /// </summary>
+        public Bezier(double x1, double y1, double x2, double y2) : this(new Vector2(x1, y1), new Vector2(x2, y2))
+        {
+        }
 
         /// <summary>
         /// Constructs a curve along a straight line.
@@ -485,9 +508,10 @@ namespace System.Geometry
         }
 
         /// <summary>
+        /// Returns the part of the curve between t1 and t2.
         /// Splits the curve on t1, after which the resulting second subcurve is split on (a scaled) t2, yielding a new curve that is equivalent to the original curve over the interval [t1, t2].
         /// </summary>
-        public Bezier Split(double t1, double t2)
+        public Bezier Part(double t1, double t2)
         {
             // shortcuts
             if (t1 == 0 && t2 != 0)
@@ -583,7 +607,7 @@ namespace System.Geometry
         {
             get
             {
-               
+
 
                 Extrema extrema = Extrema();
 
@@ -821,7 +845,7 @@ namespace System.Geometry
                 for (int i = 1; i < extrema.Count; i++)
                 {
                     double t2 = extrema[i];
-                    Bezier segment = Split(t1, t2);
+                    Bezier segment = Part(t1, t2);
                     segment._t1 = t1;
                     segment._t2 = t2;
                     pass1.Add(segment);
@@ -839,7 +863,7 @@ namespace System.Geometry
                 {
                     for (t2 = t1 + step; t2 <= 1 + step; t2 += step)
                     {
-                        Bezier segment = p1.Split((double)t1, (double)t2);
+                        Bezier segment = p1.Part((double)t1, (double)t2);
                         if (!segment.IsSimple())
                         {
                             t2 -= step;
@@ -848,7 +872,7 @@ namespace System.Geometry
                                 // we can never form a reduction
                                 return new List<Bezier>();
                             }
-                            segment = p1.Split((double)t1, (double)t2);
+                            segment = p1.Part((double)t1, (double)t2);
                             segment._t1 = Utils.Map((double)t1, 0, 1, p1._t1, p1._t2);
                             segment._t2 = Utils.Map((double)t2, 0, 1, p1._t1, p1._t2);
                             pass2.Add(segment);
@@ -859,7 +883,7 @@ namespace System.Geometry
                 }
                 if (t1 < 1)
                 {
-                    Bezier segment = p1.Split((double)t1, 1);
+                    Bezier segment = p1.Part((double)t1, 1);
                     segment._t1 = Utils.Map((double)t1, 0, 1, p1._t1, p1._t2);
                     segment._t2 = p1._t2;
                     pass2.Add(segment);
@@ -1026,7 +1050,7 @@ namespace System.Geometry
         /// <param name="curve">Other curve.</param>
         /// <param name="threshold">Threshold.</param>
         /// <returns>Intersection points.</returns>
-        public List<Pair<double>> Intersects(Bezier curve, double threshold)
+        public List<Pair<double>> Intersects(Bezier curve, double threshold=.5)
         {
             return Intersects(this.Reduce(), curve.Reduce(), threshold);
         }

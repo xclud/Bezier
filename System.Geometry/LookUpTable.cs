@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.DoubleNumerics;
 using System.Text;
 
 namespace System.Geometry
 {
-    public class LookUpTable
+    public class LookUpTable : IEnumerable<Vector2>
     {
         private readonly int Steps;
         private readonly Bezier Bezier;
@@ -13,7 +14,10 @@ namespace System.Geometry
         private readonly double length;
         private List<Vector2> _lut = new List<Vector2>();
 
-        public LookUpTable(Bezier bezier, int steps)
+        /// <summary>
+        /// Generates a LookUp Table of coordinates on the curve, spaced at parametrically equidistance intervals. If steps is given, the LUT will contain steps coordinates representing the coordinates from t=0 to t=1 at interval 1/steps.
+        /// </summary>
+        public LookUpTable(Bezier bezier, int steps = 100)
         {
             this.Bezier = bezier;
             this.Steps = steps;
@@ -78,11 +82,7 @@ namespace System.Geometry
             }
         }
 
-        /// <summary>
-        /// Generates a LookUp Table of coordinates on the curve, spaced at parametrically equidistance intervals. If steps is given, the LUT will contain steps+1 coordinates representing the coordinates from t=0 to t=1 at interval 1/steps.
-        /// </summary>
-        /// <param name="steps">Number of steps.</param>
-        /// <returns>Returns a list of vectors.</returns>
+
         private List<Vector2> GetLUT()
         {
             var steps = Steps;
@@ -145,5 +145,68 @@ namespace System.Geometry
             d = mdist;
             return p;
         }
+
+        public IEnumerator<Vector2> GetEnumerator()
+        {
+            return new LookUpTableEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal class LookUpTableEnumerator : IEnumerator<Vector2>
+        {
+            LookUpTable lookUpTable = null;
+            int position = -1;
+            public LookUpTableEnumerator(LookUpTable LookUpTable)
+            {
+                this.lookUpTable = LookUpTable;
+
+            }
+
+            public Vector2 Current
+            {
+                get
+                {
+                    try
+                    {
+                        return lookUpTable.GetLUT()[position];
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                }
+            }
+
+            object IEnumerator.Current
+            {
+                get
+                {
+                    return Current;
+                }
+            }
+
+            public void Dispose()
+            {
+
+            }
+
+            public bool MoveNext()
+            {
+                position++;
+                return (position < lookUpTable.GetLUT().Count);
+            }
+
+            public void Reset()
+            {
+                position = -1;
+            }
+        }
+
     }
+
+
 }
