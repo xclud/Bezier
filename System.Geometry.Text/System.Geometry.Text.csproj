@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>System.Geometry.Text</RootNamespace>
     <AssemblyName>System.Geometry.Text</AssemblyName>
     <PackageId>Font</PackageId>
@@ -15,7 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bezier" Version="0.9.3.5" />
+    <ProjectReference Include="..\..\System.Numerics.DoubleVectors\System.DoubleNumerics\System.DoubleNumerics.csproj" />
+    <ProjectReference Include="..\System.Geometry\System.Geometry.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net4.6.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.9.3.28</Version>
     <Authors>Mahdi K. Fard</Authors>
@@ -27,14 +27,16 @@ Target platforms:
     <PackageReleaseNotes>This release tries to fix Bezier to Arc[] conversion.</PackageReleaseNotes>
     <PackageTags>Bezier Curve Geometry Intersection Arc Line Circle Unity</PackageTags>
     <LangVersion>7.3</LangVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Users\Mahdi\source\repos\Bezier\System.Geometry\System.Geometry.xml</DocumentationFile>
   </PropertyGroup>
 
+
   <ItemGroup>
-    <PackageReference Include="System.Numerics.Vectors" Version="4.1.1" />
+    <ProjectReference Include="..\..\System.Numerics.DoubleVectors\System.DoubleNumerics\System.DoubleNumerics.csproj" />
   </ItemGroup>
 
 </Project>

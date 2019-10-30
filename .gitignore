@@ -5,3 +5,6 @@
 /System.Geometry.Text/obj
 /BezierApp
 /.vs
+[Bb]in
+[Dd]ebug*/
+obj/
