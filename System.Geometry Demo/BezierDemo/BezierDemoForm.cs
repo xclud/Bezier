@@ -17,12 +17,18 @@ namespace System.Geometry_Demo.BezierDemo
         public BezierDemoForm()
         {
             InitializeComponent();
-
+            string rtf = Properties.Resources.Bezier;
+            InfoRichTextBox.Rtf = rtf;
         }
 
         private void combinedBezierIntersectsCurveDemoControl1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void InfoRichTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(e.LinkText);
         }
     }
 }

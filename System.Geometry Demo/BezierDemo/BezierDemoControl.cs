@@ -483,6 +483,11 @@ namespace System.Geometry_Demo.BezierDemo
             }
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            Invalidate();
+        }
 
         private void releaseHandle()
         {

@@ -21,7 +21,7 @@ namespace System.Geometry_Demo.BezierDemo
         {
             base.OnPaint(e);
 
-            Line line = new Line(new Vector2((double)Width / 2, 0), new Vector2((double)Width / 2, (double)this.Height));
+            Line line = new Line(new Vector2(0,0), new Vector2((double)Width , (double)this.Height));
             Bezier alignedBezier = Bezier.Align(line);
             Vector2 offset = new Vector2((double)Width / 2, (double)Height / 2)-(alignedBezier.BoundingBox.Min + ((alignedBezier.BoundingBox.Max - alignedBezier.BoundingBox.Min) / 2));
             alignedBezier.Move(offset);

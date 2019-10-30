@@ -13,14 +13,16 @@ namespace System.Geometry_Demo.BezierDemo
     public class BezierIntersectsCurveDemoControl : BezierDemoControl
     {
         public BezierIntersectsCurveDemoControl(): base() {
-            Bezier = new Bezier(((double)Width *0.1D),((double)Height*0.9D), ((double)Width * 0.2D), ((double)Height * 0.2D), ((double)Width * 0.7D), ((double)Height * 0.8D), ((double)Width * 0.8D), ((double)Height * 0.1D));
+            Bezier = new Bezier(((double)Width *0.1D),((double)Height*0.9D), ((double)Width * 0.2D), ((double)Height * 0.2D), ((double)Width * 0.7D), ((double)Height * 0.8D), ((double)Width * 0.7D), ((double)Height * 0.4D));
         }
+
+        
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            Bezier curve = new Bezier(((double)Width * 0.1D), ((double)Height * 0.9D), ((double)Width * 0.25D), ((double)Height * 0.2D), ((double)Width * 0.7D), ((double)Height * 0.3D), ((double)Width * 0.9D), ((double)Height * 0.9D));
+            Bezier curve = new Bezier(((double)Width * 0.1D), ((double)Height * 0.9D), ((double)Width * 0.25D), ((double)Height * 0.1D), ((double)Width * 0.7D), ((double)Height * 0.15D), ((double)Width * 0.9D), ((double)Height * 0.9D));
 
             using (Pen linePen = new Pen(Color.Red, 2))
             {
