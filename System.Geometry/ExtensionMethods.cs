@@ -166,7 +166,7 @@ namespace System.Geometry
         {
             Arc last = null;
             var u = 0D;
-            var any = false;
+            //var any = false;
 
             foreach (var t in vs)
             {
@@ -189,7 +189,7 @@ namespace System.Geometry
                 }
 
                 u += t;
-                any = true;
+                //any = true;
 
                 last = items.Right;
                 yield return items.Left;
