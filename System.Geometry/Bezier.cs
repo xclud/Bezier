@@ -1434,6 +1434,31 @@ namespace System.Geometry
             return extrema.ToArray();
         }
 
+        /// <summary>
+        /// Finds the on-curve point closest to the specific off-curve point, using a two-pass projection test based on the curve's LUT with 50 points.
+        /// A distance comparison finds the closest match, after which a fine interval around that match is checked to see if a better projection can be found.
+        /// </summary>
+        public Vector2 Project(Vector2 point)
+        {
+            return Project(point, out double t, out double d);
+        }
+
+        /// <summary>
+        /// Finds the on-curve point closest to the specific off-curve point, using a two-pass projection test based on the curve's LUT with 50 points.
+        /// A distance comparison finds the closest match, after which a fine interval around that match is checked to see if a better projection can be found.
+        /// </summary>
+        public Vector2 Project(Vector2 point, out double t, out double d)
+        {
+            LookUpTable LUT = new LookUpTable(this);
+
+            Vector2 p = LUT.Project(point, out double tt, out double dd);
+            t = tt;
+            d = dd;
+            return p;
+        }
+
+
+
         public IEnumerable<IPathShape> ToArcs()
         {
             var extrema = this.ExtremaX();

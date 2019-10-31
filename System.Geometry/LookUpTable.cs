@@ -32,10 +32,10 @@ namespace System.Geometry
             var o = Bezier.Position(0);
             var clen = 0.0D;
 
-            for (var i = 1; i <= this.Steps; i++)
+            for (int i = 1; i <= this.Steps; i++)
             {
-                var xy = bezier.Position(i * step);
-                var d = o - xy;
+                Vector2 xy = bezier.Position(i * step);
+                Vector2 d = o - xy;
 
                 clen += d.Length();
 
@@ -95,11 +95,22 @@ namespace System.Geometry
             // We want a range from 0 to 1 inclusive, so
             // we decrement and then use <= rather than <:
             steps--;
-            for (int t = 0; t <= steps; t++)
+            for (double r = 0; r <= steps; r++)
             {
-                _lut.Add(Bezier.Position(Map(t / (double)steps)));
+                _lut.Add(Bezier.Position(Map(r / (double)steps)));
             }
             return _lut;
+        }
+
+
+
+        /// <summary>
+        /// Finds the on-curve point closest to the specific off-curve point, using a two-pass projection test based on the curve's LUT.
+        /// A distance comparison finds the closest match, after which a fine interval around that match is checked to see if a better projection can be found.
+        /// </summary>
+        public Vector2 Project(Vector2 point)
+        {
+            return Project(point, out double t, out double d);
         }
 
         /// <summary>
@@ -109,41 +120,74 @@ namespace System.Geometry
         public Vector2 Project(Vector2 point, out double t, out double d)
         {
             // step 1: coarse check
-            var LUT = GetLUT();
-            int l = LUT.Count - 1;
-            Utils.Closest(LUT, point, out double mdist, out int mpos);
+            List<Vector2> LUT = GetLUT();
+            int len = LUT.Count - 1;
+            Utils.Closest(LUT, point, out double lutDist, out int lutPos);
 
-            if (mpos == 0 || mpos == l)
-            {
-                t = mpos / l;
-                Vector2 pt = Bezier.Position(t);
-                d = mdist;
-                return pt;
-            }
+            //Wrong!
+            //This returns the last or the first point even if the are not really the closest poistion on the curve
+            //This is also wrong in the org js code of pomax.
+            //if (mpos == 0 || mpos == l)
+            //{
+            //    t = mpos / l;
+            //    Vector2 pt = Bezier.Position(t);
+            //    d = mdist;
+            //    return pt;
+            //}
 
             // step 2: fine check
-            int t1 = (mpos - 1) / l;
-            int t2 = (mpos + 1) / l;
-            double step = 0.1d / l;
-            mdist += 1;
 
-            t = t1;
-            double ft = t;
 
-            for (; t < t2 + step; t += step)
+            //The following part is quite different from the org code by xclud.
+
+            const double refinementSteps = 50;
+
+            double t1 = ((double)lutPos - 1) / len;
+            double t2 = ((double)lutPos + 1) / len;
+            if (t1 < 0) t1 = 0;
+            if (t2 > 1) t2 = 1;
+            t1 = Map(t1);
+            t2 = Map(t2);
+            double step = Math.Abs(t2 - t1) / refinementSteps;
+            //mdist += 1;
+
+            double ft = -1;// ((double)lutPos) / len;
+            double mdist = double.MaxValue;
+
+            for (int i = 0; i < 2; i++)
             {
-                Vector2 pp = Bezier.Position(t);
+
+
+                Vector2 pp;
+                for (double ct = t1; ct < t2; ct += step)
+                {
+                    pp = Bezier.Position(ct);
+                    d = Vector2.Distance(point, pp);
+                    if (d < mdist)
+                    {
+                        mdist = d;
+                        ft = ct;
+                    }
+                }
+                //Just to make sure that t2 is really checked
+                pp = Bezier.Position(t2);
                 d = Vector2.Distance(point, pp);
                 if (d < mdist)
                 {
                     mdist = d;
-                    ft = t;
+                    ft = t2;
                 }
+                t1 = ft - step;
+                t2 = ft + step;
+                step /= refinementSteps;
             }
+
             Vector2 p = Bezier.Position(ft);
             t = ft;
             d = mdist;
+          
             return p;
+
         }
 
         public IEnumerator<Vector2> GetEnumerator()

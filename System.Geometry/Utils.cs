@@ -190,9 +190,9 @@ namespace System.Geometry
             mdist = double.MaxValue;
             mpos = -1;
 
-            foreach (var p in LUT)
+            foreach (Vector2 p in LUT)
             {
-                var d = Vector2.Distance(point, p);
+                double d = Vector2.Distance(point, p);
                 if (d < mdist)
                 {
                     mdist = d;
