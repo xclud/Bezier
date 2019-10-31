@@ -1435,7 +1435,7 @@ namespace System.Geometry
         }
 
         /// <summary>
-        /// Finds the on-curve point closest to the specific off-curve point, using a two-pass projection test based on the curve's LUT with 50 points.
+        /// Finds the on-curve point closest to the specific off-curve point, using a three-pass projection test based on the curve's LUT (default number of points).
         /// A distance comparison finds the closest match, after which a fine interval around that match is checked to see if a better projection can be found.
         /// </summary>
         public Vector2 Project(Vector2 point)
@@ -1444,7 +1444,7 @@ namespace System.Geometry
         }
 
         /// <summary>
-        /// Finds the on-curve point closest to the specific off-curve point, using a two-pass projection test based on the curve's LUT with 50 points.
+        /// Finds the on-curve point closest to the specific off-curve point, using a three-pass projection test based on the curve's LUT (default number of points).
         /// A distance comparison finds the closest match, after which a fine interval around that match is checked to see if a better projection can be found.
         /// </summary>
         public Vector2 Project(Vector2 point, out double t, out double d)
