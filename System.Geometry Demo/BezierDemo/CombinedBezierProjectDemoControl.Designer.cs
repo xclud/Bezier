@@ -1,6 +1,6 @@
 ﻿namespace System.Geometry_Demo.BezierDemo
 {
-    partial class CombinedBezierLUTProjectDemoControl
+    partial class CombinedBezierProjectDemoControl
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombinedBezierLUTProjectDemoControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombinedBezierProjectDemoControl));
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.QuadraticLUTControl = new System.Geometry_Demo.BezierDemo.BezierProjectDemoControl();
+            this.CubicLUTControl = new System.Geometry_Demo.BezierDemo.BezierProjectDemoControl();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.QuadraticLUTControl = new System.Geometry_Demo.BezierDemo.BezierLUTProjectDemoControl();
-            this.CubicLUTControl = new System.Geometry_Demo.BezierDemo.BezierLUTProjectDemoControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -116,20 +116,6 @@
             this.splitContainer1.SplitterDistance = 526;
             this.splitContainer1.TabIndex = 4;
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1065, 81);
-            this.richTextBox1.TabIndex = 16;
-            this.richTextBox1.Text = "Vector2 point = LookUpTable.Project(mousePos, out double t, out double d);\nDrawLi" +
-    "ne(e.Graphics,mousePos,point,Color.Red,1);\nDrawPoint(e.Graphics, point, Color.Bl" +
-    "ue, 10);";
-            // 
             // QuadraticLUTControl
             // 
             this.QuadraticLUTControl.BezierColor = System.Drawing.Color.Black;
@@ -137,7 +123,7 @@
             this.QuadraticLUTControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.QuadraticLUTControl.HandleSize = ((uint)(15u));
             this.QuadraticLUTControl.Location = new System.Drawing.Point(0, 0);
-            this.QuadraticLUTControl.LookupTableSteps = 10;
+            
             this.QuadraticLUTControl.Name = "QuadraticLUTControl";
             this.QuadraticLUTControl.Size = new System.Drawing.Size(522, 366);
             this.QuadraticLUTControl.TabIndex = 0;
@@ -149,17 +135,30 @@
             this.CubicLUTControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CubicLUTControl.HandleSize = ((uint)(15u));
             this.CubicLUTControl.Location = new System.Drawing.Point(0, 0);
-            this.CubicLUTControl.LookupTableSteps = 10;
+         
             this.CubicLUTControl.Name = "CubicLUTControl";
             this.CubicLUTControl.Size = new System.Drawing.Size(535, 366);
             this.CubicLUTControl.TabIndex = 0;
             // 
-            // CombinedBezierLUTProjectDemoControl
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(1065, 81);
+            this.richTextBox1.TabIndex = 16;
+            this.richTextBox1.Text = "Vector2 point = Bezier.Project(mousePos);\nDrawLine(e.Graphics,mousePos,point,Colo" +
+    "r.Red,1);\nDrawPoint(e.Graphics, point, Color.Green, 10);";
+            // 
+            // CombinedBezierProjectDemoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer3);
-            this.Name = "CombinedBezierLUTProjectDemoControl";
+            this.Name = "CombinedBezierProjectDemoControl";
             this.Size = new System.Drawing.Size(1069, 512);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -184,7 +183,7 @@
         private Windows.Forms.SplitContainer splitContainer2;
         private Windows.Forms.SplitContainer splitContainer1;
         private Windows.Forms.RichTextBox richTextBox1;
-        private BezierLUTProjectDemoControl QuadraticLUTControl;
-        private BezierLUTProjectDemoControl CubicLUTControl;
+        private BezierProjectDemoControl QuadraticLUTControl;
+        private BezierProjectDemoControl CubicLUTControl;
     }
 }

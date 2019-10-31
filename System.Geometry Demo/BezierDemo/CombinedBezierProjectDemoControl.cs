@@ -11,9 +11,9 @@ using System.Geometry;
 
 namespace System.Geometry_Demo.BezierDemo
 {
-    public partial class CombinedBezierLUTProjectDemoControl : UserControl
+    public partial class CombinedBezierProjectDemoControl : UserControl
     {
-        public CombinedBezierLUTProjectDemoControl()
+        public CombinedBezierProjectDemoControl()
         {
             InitializeComponent();
             QuadraticLUTControl.Bezier = new Bezier(((double)QuadraticLUTControl.Width * 0.3D), ((double)QuadraticLUTControl.Height * 0.1D), ((double)QuadraticLUTControl.Width * 0.6D), ((double)QuadraticLUTControl.Height * 0.9D), ((double)QuadraticLUTControl.Width * 0.9D), ((double)QuadraticLUTControl.Height * 0.2D)); ;

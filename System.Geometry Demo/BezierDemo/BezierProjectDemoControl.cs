@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace System.Geometry_Demo.BezierDemo
 {
-    public class BezierLUTProjectDemoControl : BezierLUTDemoControl
+    public class BezierProjectDemoControl : BezierLUTDemoControl
     {
-        public BezierLUTProjectDemoControl() : base()
+        public BezierProjectDemoControl() : base()
         {
             Bezier = new Bezier(((double)Width * 0.1D), ((double)Height * 0.9D), ((double)Width * 0.2D), ((double)Height * 0.2D), ((double)Width * 0.7D), ((double)Height * 0.8D), ((double)Width * 0.8D), ((double)Height * 0.1D));
         }
@@ -23,10 +23,9 @@ namespace System.Geometry_Demo.BezierDemo
         {
             base.OnPaint(e);
 
-            Vector2 point = LookUpTable.Project(mousePos, out double t, out double d);
+            Vector2 point = Bezier.Project( mousePos, out double t, out double d);
             DrawLine(e.Graphics,mousePos,point,Color.Red,1);
-            DrawPoint(e.Graphics, point, Color.Blue, 10);
-            DrawPoint(e.Graphics, Bezier.Position(t), Color.Green, 10);
+            DrawPoint(e.Graphics, point, Color.Green, 10);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -37,6 +36,9 @@ namespace System.Geometry_Demo.BezierDemo
             base.OnMouseMove(e);
             Invalidate();
         }
+
+   
+
 
     }
 }

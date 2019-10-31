@@ -58,7 +58,7 @@
     <Compile Include="BezierDemo\BezierReduceDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BezierDemo\BezierLUTProjectDemoControl.cs">
+    <Compile Include="BezierDemo\BezierProjectDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BezierDemo\BezierLUTDemoControl.cs">
@@ -133,11 +133,11 @@
     <Compile Include="BezierDemo\CombinedBezierReduceDemoControl.Designer.cs">
       <DependentUpon>CombinedBezierReduceDemoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="BezierDemo\CombinedBezierLUTProjectDemoControl.cs">
+    <Compile Include="BezierDemo\CombinedBezierProjectDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BezierDemo\CombinedBezierLUTProjectDemoControl.Designer.cs">
-      <DependentUpon>CombinedBezierLUTProjectDemoControl.cs</DependentUpon>
+    <Compile Include="BezierDemo\CombinedBezierProjectDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierProjectDemoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="BezierDemo\CombinedBezierLUTDemoControl.cs">
       <SubType>UserControl</SubType>
@@ -246,8 +246,8 @@
     <EmbeddedResource Include="BezierDemo\CombinedBezierReduceDemoControl.resx">
       <DependentUpon>CombinedBezierReduceDemoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BezierDemo\CombinedBezierLUTProjectDemoControl.resx">
-      <DependentUpon>CombinedBezierLUTProjectDemoControl.cs</DependentUpon>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierProjectDemoControl.resx">
+      <DependentUpon>CombinedBezierProjectDemoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\CombinedBezierLUTDemoControl.resx">
       <DependentUpon>CombinedBezierLUTDemoControl.cs</DependentUpon>

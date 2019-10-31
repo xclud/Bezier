@@ -31,46 +31,46 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.InfoPage = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.InfoBezierControl = new System.Geometry_Demo.BezierDemo.BezierIntersectsCurveDemoControl();
             this.InfoRichTextBox = new System.Windows.Forms.RichTextBox();
             this.ConstructorPage = new System.Windows.Forms.TabPage();
-            this.LineIntersectsPage = new System.Windows.Forms.TabPage();
-            this.IntersectsSelfPage = new System.Windows.Forms.TabPage();
-            this.IntersectsCurvePage = new System.Windows.Forms.TabPage();
-            this.TangentDemoPage = new System.Windows.Forms.TabPage();
-            this.NormalPage = new System.Windows.Forms.TabPage();
-            this.SplitPage = new System.Windows.Forms.TabPage();
-            this.PartPage = new System.Windows.Forms.TabPage();
-            this.InflectionsPage = new System.Windows.Forms.TabPage();
-            this.ExtremaPage = new System.Windows.Forms.TabPage();
-            this.PositionPage = new System.Windows.Forms.TabPage();
-            this.BoundingBoxPage = new System.Windows.Forms.TabPage();
-            this.LengthPage = new System.Windows.Forms.TabPage();
-            this.AlignPage = new System.Windows.Forms.TabPage();
-            this.OffsetPage = new System.Windows.Forms.TabPage();
-            this.ReducePage = new System.Windows.Forms.TabPage();
-            this.HullPage = new System.Windows.Forms.TabPage();
-            this.LookupTablePage = new System.Windows.Forms.TabPage();
-            this.LUTProjectPage = new System.Windows.Forms.TabPage();
-            this.InfoBezierControl = new System.Geometry_Demo.BezierDemo.BezierIntersectsCurveDemoControl();
             this.newBezierDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierContructorDemoControl();
+            this.LineIntersectsPage = new System.Windows.Forms.TabPage();
             this.combinedBezierIntersectsLineDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierIntersectsLineDemoControl();
+            this.IntersectsSelfPage = new System.Windows.Forms.TabPage();
             this.combinedBezierIntersectsSelfDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierIntersectsSelfDemoControl();
+            this.IntersectsCurvePage = new System.Windows.Forms.TabPage();
             this.combinedBezierIntersectsCurveDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierIntersectsCurveDemoControl();
+            this.TangentDemoPage = new System.Windows.Forms.TabPage();
             this.combinedBezierTrangentDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierTangentDemoControl();
+            this.NormalPage = new System.Windows.Forms.TabPage();
             this.combinedBezierNormalDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierNormalDemoControl();
+            this.SplitPage = new System.Windows.Forms.TabPage();
             this.combinedBezierSplitDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierSplitDemoControl();
+            this.PartPage = new System.Windows.Forms.TabPage();
             this.combinedBezierPartDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierPartDemoControl();
+            this.InflectionsPage = new System.Windows.Forms.TabPage();
             this.combinedBezierInflectionDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierInflectionDemoControl();
+            this.ExtremaPage = new System.Windows.Forms.TabPage();
             this.combinedBezierExtremaDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierExtremaDemoControl();
+            this.PositionPage = new System.Windows.Forms.TabPage();
             this.combinedBezierPositionDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierPositionDemoControl();
+            this.BoundingBoxPage = new System.Windows.Forms.TabPage();
             this.combinedBezierBoundingBoxDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierBoundingBoxDemoControl();
+            this.LengthPage = new System.Windows.Forms.TabPage();
             this.combinedBezierLengthDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierLengthDemoControl();
+            this.AlignPage = new System.Windows.Forms.TabPage();
             this.combinedBezierAlignDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierAlignDemoControl();
+            this.OffsetPage = new System.Windows.Forms.TabPage();
             this.combinedBezierOffsetDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierOffsetDemoControl();
+            this.ReducePage = new System.Windows.Forms.TabPage();
             this.combinedBezierReduceDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierReduceDemoControl();
+            this.HullPage = new System.Windows.Forms.TabPage();
             this.combinedBezierHullDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierHullDemoControl();
+            this.LookupTablePage = new System.Windows.Forms.TabPage();
             this.combinedBezierLUTDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierLUTDemoControl();
-            this.combinedBezierLUTProjectDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierLUTProjectDemoControl();
+            this.ProjectPage = new System.Windows.Forms.TabPage();
+            this.combinedBezierLUTProjectDemoControl1 = new System.Geometry_Demo.BezierDemo.CombinedBezierProjectDemoControl();
             this.tabControl1.SuspendLayout();
             this.InfoPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -95,7 +95,7 @@
             this.ReducePage.SuspendLayout();
             this.HullPage.SuspendLayout();
             this.LookupTablePage.SuspendLayout();
-            this.LUTProjectPage.SuspendLayout();
+            this.ProjectPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -120,7 +120,7 @@
             this.tabControl1.Controls.Add(this.ReducePage);
             this.tabControl1.Controls.Add(this.HullPage);
             this.tabControl1.Controls.Add(this.LookupTablePage);
-            this.tabControl1.Controls.Add(this.LUTProjectPage);
+            this.tabControl1.Controls.Add(this.ProjectPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -159,6 +159,18 @@
             this.splitContainer1.SplitterDistance = 541;
             this.splitContainer1.TabIndex = 0;
             // 
+            // InfoBezierControl
+            // 
+            this.InfoBezierControl.BezierColor = System.Drawing.Color.Black;
+            this.InfoBezierControl.BezierWidth = 2F;
+            this.InfoBezierControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InfoBezierControl.HandleSize = ((uint)(15u));
+            this.InfoBezierControl.Location = new System.Drawing.Point(0, 0);
+            this.InfoBezierControl.Margin = new System.Windows.Forms.Padding(4);
+            this.InfoBezierControl.Name = "InfoBezierControl";
+            this.InfoBezierControl.Size = new System.Drawing.Size(537, 518);
+            this.InfoBezierControl.TabIndex = 0;
+            // 
             // InfoRichTextBox
             // 
             this.InfoRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -181,6 +193,14 @@
             this.ConstructorPage.Text = "Bezier Constructor";
             this.ConstructorPage.UseVisualStyleBackColor = true;
             // 
+            // newBezierDemoControl1
+            // 
+            this.newBezierDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newBezierDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.newBezierDemoControl1.Name = "newBezierDemoControl1";
+            this.newBezierDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.newBezierDemoControl1.TabIndex = 0;
+            // 
             // LineIntersectsPage
             // 
             this.LineIntersectsPage.Controls.Add(this.combinedBezierIntersectsLineDemoControl1);
@@ -191,6 +211,14 @@
             this.LineIntersectsPage.TabIndex = 1;
             this.LineIntersectsPage.Text = "Intersects(line)";
             this.LineIntersectsPage.UseVisualStyleBackColor = true;
+            // 
+            // combinedBezierIntersectsLineDemoControl1
+            // 
+            this.combinedBezierIntersectsLineDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierIntersectsLineDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierIntersectsLineDemoControl1.Name = "combinedBezierIntersectsLineDemoControl1";
+            this.combinedBezierIntersectsLineDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierIntersectsLineDemoControl1.TabIndex = 0;
             // 
             // IntersectsSelfPage
             // 
@@ -203,6 +231,14 @@
             this.IntersectsSelfPage.Text = "IntersectsWithSelf(threshold)";
             this.IntersectsSelfPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierIntersectsSelfDemoControl1
+            // 
+            this.combinedBezierIntersectsSelfDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierIntersectsSelfDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierIntersectsSelfDemoControl1.Name = "combinedBezierIntersectsSelfDemoControl1";
+            this.combinedBezierIntersectsSelfDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierIntersectsSelfDemoControl1.TabIndex = 0;
+            // 
             // IntersectsCurvePage
             // 
             this.IntersectsCurvePage.Controls.Add(this.combinedBezierIntersectsCurveDemoControl1);
@@ -213,6 +249,15 @@
             this.IntersectsCurvePage.TabIndex = 3;
             this.IntersectsCurvePage.Text = "Intersects(curve,treshold)";
             this.IntersectsCurvePage.UseVisualStyleBackColor = true;
+            // 
+            // combinedBezierIntersectsCurveDemoControl1
+            // 
+            this.combinedBezierIntersectsCurveDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierIntersectsCurveDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierIntersectsCurveDemoControl1.Name = "combinedBezierIntersectsCurveDemoControl1";
+            this.combinedBezierIntersectsCurveDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierIntersectsCurveDemoControl1.TabIndex = 0;
+            this.combinedBezierIntersectsCurveDemoControl1.Load += new System.EventHandler(this.combinedBezierIntersectsCurveDemoControl1_Load);
             // 
             // TangentDemoPage
             // 
@@ -225,6 +270,14 @@
             this.TangentDemoPage.Text = "Tangent(t)";
             this.TangentDemoPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierTrangentDemoControl1
+            // 
+            this.combinedBezierTrangentDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierTrangentDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierTrangentDemoControl1.Name = "combinedBezierTrangentDemoControl1";
+            this.combinedBezierTrangentDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierTrangentDemoControl1.TabIndex = 0;
+            // 
             // NormalPage
             // 
             this.NormalPage.Controls.Add(this.combinedBezierNormalDemoControl1);
@@ -235,6 +288,14 @@
             this.NormalPage.TabIndex = 5;
             this.NormalPage.Text = "Normal(t)";
             this.NormalPage.UseVisualStyleBackColor = true;
+            // 
+            // combinedBezierNormalDemoControl1
+            // 
+            this.combinedBezierNormalDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierNormalDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierNormalDemoControl1.Name = "combinedBezierNormalDemoControl1";
+            this.combinedBezierNormalDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierNormalDemoControl1.TabIndex = 0;
             // 
             // SplitPage
             // 
@@ -247,6 +308,14 @@
             this.SplitPage.Text = "Split(t)";
             this.SplitPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierSplitDemoControl1
+            // 
+            this.combinedBezierSplitDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierSplitDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierSplitDemoControl1.Name = "combinedBezierSplitDemoControl1";
+            this.combinedBezierSplitDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierSplitDemoControl1.TabIndex = 0;
+            // 
             // PartPage
             // 
             this.PartPage.Controls.Add(this.combinedBezierPartDemoControl1);
@@ -258,6 +327,14 @@
             this.PartPage.Text = "Part(t1,t2)";
             this.PartPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierPartDemoControl1
+            // 
+            this.combinedBezierPartDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierPartDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierPartDemoControl1.Name = "combinedBezierPartDemoControl1";
+            this.combinedBezierPartDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierPartDemoControl1.TabIndex = 0;
+            // 
             // InflectionsPage
             // 
             this.InflectionsPage.Controls.Add(this.combinedBezierInflectionDemoControl1);
@@ -268,6 +345,15 @@
             this.InflectionsPage.TabIndex = 8;
             this.InflectionsPage.Text = "Inflections()";
             this.InflectionsPage.UseVisualStyleBackColor = true;
+            // 
+            // combinedBezierInflectionDemoControl1
+            // 
+            this.combinedBezierInflectionDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierInflectionDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierInflectionDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierInflectionDemoControl1.Name = "combinedBezierInflectionDemoControl1";
+            this.combinedBezierInflectionDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierInflectionDemoControl1.TabIndex = 0;
             // 
             // ExtremaPage
             // 
@@ -281,6 +367,15 @@
             this.ExtremaPage.Text = "Extrema()";
             this.ExtremaPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierExtremaDemoControl1
+            // 
+            this.combinedBezierExtremaDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierExtremaDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierExtremaDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierExtremaDemoControl1.Name = "combinedBezierExtremaDemoControl1";
+            this.combinedBezierExtremaDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierExtremaDemoControl1.TabIndex = 0;
+            // 
             // PositionPage
             // 
             this.PositionPage.Controls.Add(this.combinedBezierPositionDemoControl1);
@@ -291,6 +386,15 @@
             this.PositionPage.TabIndex = 10;
             this.PositionPage.Text = "Position(t)";
             this.PositionPage.UseVisualStyleBackColor = true;
+            // 
+            // combinedBezierPositionDemoControl1
+            // 
+            this.combinedBezierPositionDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierPositionDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierPositionDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierPositionDemoControl1.Name = "combinedBezierPositionDemoControl1";
+            this.combinedBezierPositionDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierPositionDemoControl1.TabIndex = 0;
             // 
             // BoundingBoxPage
             // 
@@ -303,6 +407,16 @@
             this.BoundingBoxPage.Text = "BoundingBox";
             this.BoundingBoxPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierBoundingBoxDemoControl1
+            // 
+            this.combinedBezierBoundingBoxDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierBoundingBoxDemoControl1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.combinedBezierBoundingBoxDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierBoundingBoxDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierBoundingBoxDemoControl1.Name = "combinedBezierBoundingBoxDemoControl1";
+            this.combinedBezierBoundingBoxDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierBoundingBoxDemoControl1.TabIndex = 0;
+            // 
             // LengthPage
             // 
             this.LengthPage.Controls.Add(this.combinedBezierLengthDemoControl1);
@@ -314,6 +428,15 @@
             this.LengthPage.Text = "Length";
             this.LengthPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierLengthDemoControl1
+            // 
+            this.combinedBezierLengthDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierLengthDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierLengthDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierLengthDemoControl1.Name = "combinedBezierLengthDemoControl1";
+            this.combinedBezierLengthDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierLengthDemoControl1.TabIndex = 0;
+            // 
             // AlignPage
             // 
             this.AlignPage.Controls.Add(this.combinedBezierAlignDemoControl1);
@@ -324,6 +447,15 @@
             this.AlignPage.TabIndex = 18;
             this.AlignPage.Text = "Align(line)";
             this.AlignPage.UseVisualStyleBackColor = true;
+            // 
+            // combinedBezierAlignDemoControl1
+            // 
+            this.combinedBezierAlignDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierAlignDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierAlignDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierAlignDemoControl1.Name = "combinedBezierAlignDemoControl1";
+            this.combinedBezierAlignDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierAlignDemoControl1.TabIndex = 0;
             // 
             // OffsetPage
             // 
@@ -337,6 +469,15 @@
             this.OffsetPage.Text = "Offset(d)";
             this.OffsetPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierOffsetDemoControl1
+            // 
+            this.combinedBezierOffsetDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierOffsetDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierOffsetDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierOffsetDemoControl1.Name = "combinedBezierOffsetDemoControl1";
+            this.combinedBezierOffsetDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierOffsetDemoControl1.TabIndex = 0;
+            // 
             // ReducePage
             // 
             this.ReducePage.Controls.Add(this.combinedBezierReduceDemoControl1);
@@ -347,6 +488,15 @@
             this.ReducePage.TabIndex = 16;
             this.ReducePage.Text = "Reduce()";
             this.ReducePage.UseVisualStyleBackColor = true;
+            // 
+            // combinedBezierReduceDemoControl1
+            // 
+            this.combinedBezierReduceDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierReduceDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierReduceDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierReduceDemoControl1.Name = "combinedBezierReduceDemoControl1";
+            this.combinedBezierReduceDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierReduceDemoControl1.TabIndex = 0;
             // 
             // HullPage
             // 
@@ -359,6 +509,15 @@
             this.HullPage.Text = "Hull(t)";
             this.HullPage.UseVisualStyleBackColor = true;
             // 
+            // combinedBezierHullDemoControl1
+            // 
+            this.combinedBezierHullDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combinedBezierHullDemoControl1.Location = new System.Drawing.Point(3, 3);
+            this.combinedBezierHullDemoControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.combinedBezierHullDemoControl1.Name = "combinedBezierHullDemoControl1";
+            this.combinedBezierHullDemoControl1.Size = new System.Drawing.Size(1075, 522);
+            this.combinedBezierHullDemoControl1.TabIndex = 0;
+            // 
             // LookupTablePage
             // 
             this.LookupTablePage.Controls.Add(this.combinedBezierLUTDemoControl1);
@@ -370,177 +529,6 @@
             this.LookupTablePage.Text = "LookUpTable(bezier, steps)";
             this.LookupTablePage.UseVisualStyleBackColor = true;
             // 
-            // LUTProjectPage
-            // 
-            this.LUTProjectPage.Controls.Add(this.combinedBezierLUTProjectDemoControl1);
-            this.LUTProjectPage.ForeColor = System.Drawing.Color.Red;
-            this.LUTProjectPage.Location = new System.Drawing.Point(4, 55);
-            this.LUTProjectPage.Name = "LUTProjectPage";
-            this.LUTProjectPage.Padding = new System.Windows.Forms.Padding(3);
-            this.LUTProjectPage.Size = new System.Drawing.Size(1081, 528);
-            this.LUTProjectPage.TabIndex = 15;
-            this.LUTProjectPage.Text = "LookupTable.Project(vector2,out t, out d)";
-            this.LUTProjectPage.UseVisualStyleBackColor = true;
-            // 
-            // InfoBezierControl
-            // 
-            this.InfoBezierControl.BezierColor = System.Drawing.Color.Black;
-            this.InfoBezierControl.BezierWidth = 2F;
-            this.InfoBezierControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InfoBezierControl.HandleSize = ((uint)(15u));
-            this.InfoBezierControl.Location = new System.Drawing.Point(0, 0);
-            this.InfoBezierControl.Margin = new System.Windows.Forms.Padding(4);
-            this.InfoBezierControl.Name = "InfoBezierControl";
-            this.InfoBezierControl.Size = new System.Drawing.Size(537, 518);
-            this.InfoBezierControl.TabIndex = 0;
-            // 
-            // newBezierDemoControl1
-            // 
-            this.newBezierDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.newBezierDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.newBezierDemoControl1.Name = "newBezierDemoControl1";
-            this.newBezierDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.newBezierDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierIntersectsLineDemoControl1
-            // 
-            this.combinedBezierIntersectsLineDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierIntersectsLineDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierIntersectsLineDemoControl1.Name = "combinedBezierIntersectsLineDemoControl1";
-            this.combinedBezierIntersectsLineDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierIntersectsLineDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierIntersectsSelfDemoControl1
-            // 
-            this.combinedBezierIntersectsSelfDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierIntersectsSelfDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierIntersectsSelfDemoControl1.Name = "combinedBezierIntersectsSelfDemoControl1";
-            this.combinedBezierIntersectsSelfDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierIntersectsSelfDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierIntersectsCurveDemoControl1
-            // 
-            this.combinedBezierIntersectsCurveDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierIntersectsCurveDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierIntersectsCurveDemoControl1.Name = "combinedBezierIntersectsCurveDemoControl1";
-            this.combinedBezierIntersectsCurveDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierIntersectsCurveDemoControl1.TabIndex = 0;
-            this.combinedBezierIntersectsCurveDemoControl1.Load += new System.EventHandler(this.combinedBezierIntersectsCurveDemoControl1_Load);
-            // 
-            // combinedBezierTrangentDemoControl1
-            // 
-            this.combinedBezierTrangentDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierTrangentDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierTrangentDemoControl1.Name = "combinedBezierTrangentDemoControl1";
-            this.combinedBezierTrangentDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierTrangentDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierNormalDemoControl1
-            // 
-            this.combinedBezierNormalDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierNormalDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierNormalDemoControl1.Name = "combinedBezierNormalDemoControl1";
-            this.combinedBezierNormalDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierNormalDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierSplitDemoControl1
-            // 
-            this.combinedBezierSplitDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierSplitDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierSplitDemoControl1.Name = "combinedBezierSplitDemoControl1";
-            this.combinedBezierSplitDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierSplitDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierPartDemoControl1
-            // 
-            this.combinedBezierPartDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierPartDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierPartDemoControl1.Name = "combinedBezierPartDemoControl1";
-            this.combinedBezierPartDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierPartDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierInflectionDemoControl1
-            // 
-            this.combinedBezierInflectionDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierInflectionDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierInflectionDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierInflectionDemoControl1.Name = "combinedBezierInflectionDemoControl1";
-            this.combinedBezierInflectionDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierInflectionDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierExtremaDemoControl1
-            // 
-            this.combinedBezierExtremaDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierExtremaDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierExtremaDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierExtremaDemoControl1.Name = "combinedBezierExtremaDemoControl1";
-            this.combinedBezierExtremaDemoControl1.Size = new System.Drawing.Size(1075, 549);
-            this.combinedBezierExtremaDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierPositionDemoControl1
-            // 
-            this.combinedBezierPositionDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierPositionDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierPositionDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierPositionDemoControl1.Name = "combinedBezierPositionDemoControl1";
-            this.combinedBezierPositionDemoControl1.Size = new System.Drawing.Size(1075, 522);
-            this.combinedBezierPositionDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierBoundingBoxDemoControl1
-            // 
-            this.combinedBezierBoundingBoxDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierBoundingBoxDemoControl1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.combinedBezierBoundingBoxDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierBoundingBoxDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierBoundingBoxDemoControl1.Name = "combinedBezierBoundingBoxDemoControl1";
-            this.combinedBezierBoundingBoxDemoControl1.Size = new System.Drawing.Size(1075, 522);
-            this.combinedBezierBoundingBoxDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierLengthDemoControl1
-            // 
-            this.combinedBezierLengthDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierLengthDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierLengthDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierLengthDemoControl1.Name = "combinedBezierLengthDemoControl1";
-            this.combinedBezierLengthDemoControl1.Size = new System.Drawing.Size(1075, 522);
-            this.combinedBezierLengthDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierAlignDemoControl1
-            // 
-            this.combinedBezierAlignDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierAlignDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierAlignDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierAlignDemoControl1.Name = "combinedBezierAlignDemoControl1";
-            this.combinedBezierAlignDemoControl1.Size = new System.Drawing.Size(1075, 522);
-            this.combinedBezierAlignDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierOffsetDemoControl1
-            // 
-            this.combinedBezierOffsetDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierOffsetDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierOffsetDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierOffsetDemoControl1.Name = "combinedBezierOffsetDemoControl1";
-            this.combinedBezierOffsetDemoControl1.Size = new System.Drawing.Size(1075, 522);
-            this.combinedBezierOffsetDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierReduceDemoControl1
-            // 
-            this.combinedBezierReduceDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierReduceDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierReduceDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierReduceDemoControl1.Name = "combinedBezierReduceDemoControl1";
-            this.combinedBezierReduceDemoControl1.Size = new System.Drawing.Size(1075, 522);
-            this.combinedBezierReduceDemoControl1.TabIndex = 0;
-            // 
-            // combinedBezierHullDemoControl1
-            // 
-            this.combinedBezierHullDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combinedBezierHullDemoControl1.Location = new System.Drawing.Point(3, 3);
-            this.combinedBezierHullDemoControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.combinedBezierHullDemoControl1.Name = "combinedBezierHullDemoControl1";
-            this.combinedBezierHullDemoControl1.Size = new System.Drawing.Size(1075, 522);
-            this.combinedBezierHullDemoControl1.TabIndex = 0;
-            // 
             // combinedBezierLUTDemoControl1
             // 
             this.combinedBezierLUTDemoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -549,6 +537,18 @@
             this.combinedBezierLUTDemoControl1.Name = "combinedBezierLUTDemoControl1";
             this.combinedBezierLUTDemoControl1.Size = new System.Drawing.Size(1075, 522);
             this.combinedBezierLUTDemoControl1.TabIndex = 0;
+            // 
+            // ProjectPage
+            // 
+            this.ProjectPage.Controls.Add(this.combinedBezierLUTProjectDemoControl1);
+            this.ProjectPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ProjectPage.Location = new System.Drawing.Point(4, 55);
+            this.ProjectPage.Name = "ProjectPage";
+            this.ProjectPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ProjectPage.Size = new System.Drawing.Size(1081, 528);
+            this.ProjectPage.TabIndex = 15;
+            this.ProjectPage.Text = "Project(vector2,out t, out d)";
+            this.ProjectPage.UseVisualStyleBackColor = true;
             // 
             // combinedBezierLUTProjectDemoControl1
             // 
@@ -592,7 +592,7 @@
             this.ReducePage.ResumeLayout(false);
             this.HullPage.ResumeLayout(false);
             this.LookupTablePage.ResumeLayout(false);
-            this.LUTProjectPage.ResumeLayout(false);
+            this.ProjectPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -630,8 +630,8 @@
         private CombinedBezierOffsetDemoControl combinedBezierOffsetDemoControl1;
         private Windows.Forms.TabPage LookupTablePage;
         private CombinedBezierLUTDemoControl combinedBezierLUTDemoControl1;
-        private Windows.Forms.TabPage LUTProjectPage;
-        private CombinedBezierLUTProjectDemoControl combinedBezierLUTProjectDemoControl1;
+        private Windows.Forms.TabPage ProjectPage;
+        private CombinedBezierProjectDemoControl combinedBezierLUTProjectDemoControl1;
         private Windows.Forms.TabPage ReducePage;
         private CombinedBezierReduceDemoControl combinedBezierReduceDemoControl1;
         private Windows.Forms.TabPage HullPage;
