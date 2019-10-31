@@ -1449,7 +1449,7 @@ namespace System.Geometry
         /// </summary>
         public Vector2 Project(Vector2 point, out double t, out double d)
         {
-            LookUpTable LUT = new LookUpTable(this);
+            LookUpTableEquidistant LUT = new LookUpTableEquidistant(this);
 
             Vector2 p = LUT.Project(point, out double tt, out double dd);
             t = tt;

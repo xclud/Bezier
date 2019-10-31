@@ -77,17 +77,17 @@ namespace System.Geometry_Demo.BezierDemo
         protected override void OnBezierChanged()
         {
             base.OnBezierChanged();
-            LookUpTable = new LookUpTable(Bezier, (LookupTableSteps>0? LookupTableSteps : 1));
+            LookUpTable = new LookUpTableEquidistant(Bezier, (LookupTableSteps>0? LookupTableSteps : 1));
         }
 
         #region LookUpTable property of type LookUpTable with events
         #region LookUpTable property core parts
-        private LookUpTable _LookUpTable = null;
+        private LookUpTableEquidistant _LookUpTable = null;
 
         /// <summary>
         ///  LookUpTable property of type LookUpTable
         /// </summary>
-        public LookUpTable LookUpTable
+        public LookUpTableEquidistant LookUpTable
         {
             get { return _LookUpTable; }
             set
