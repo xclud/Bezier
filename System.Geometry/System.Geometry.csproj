@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;netstandard1.6;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.9.3.28</Version>
+    <Version>0.9.4.0</Version>
     <Authors>Mahdi K. Fard</Authors>
-    <Company />
+    <PackageIcon>icon.png</PackageIcon>
     <Description>A library for performing Bezier curve computation for .NET Core.
 
 Commonly Used Types:
@@ -24,9 +24,12 @@ Target platforms:
  - ASP.NET Core
  - Blazor (web front-end)</Description>
     <PackageId>Bezier</PackageId>
-    <PackageReleaseNotes>This release tries to fix Bezier to Arc[] conversion.</PackageReleaseNotes>
-    <PackageTags>Bezier Curve Geometry Intersection Arc Line Circle Unity</PackageTags>
-    <LangVersion>7.3</LangVersion>
+    <PackageReleaseNotes>Fixes few bugs.</PackageReleaseNotes>
+    <PackageTags>Bezier Curve Geometry Intersection Arc Line Circle Unity Game</PackageTags>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+    <RepositoryUrl>https://github.com/xclud/Bezier</RepositoryUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -36,5 +39,7 @@ Target platforms:
   <ItemGroup>
     <PackageReference Include="System.Numerics.Vectors" Version="4.1.1" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
