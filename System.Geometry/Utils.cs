@@ -257,7 +257,7 @@ namespace System.Geometry
             {
                 return null;
             }
-            return new Vector2(x: (double)(nx / d), y: (double)(ny / d));
+            return new Vector2((double)(nx / d), (double)(ny / d));
         }
 
         public static Vector2? Lli4(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)

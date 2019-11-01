@@ -1,6 +1,6 @@
 ﻿namespace System.Geometry_Demo.BezierDemo
 {
-    partial class CombinedBezierReduceDemoControl
+    partial class CombinedBezierBoundingBoxOverlapsDemoControl
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombinedBezierReduceDemoControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombinedBezierBoundingBoxOverlapsDemoControl));
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.QuadraticReduceControl = new System.Geometry_Demo.BezierDemo.BezierReduceDemoControl();
-            this.CubicReduceControl = new System.Geometry_Demo.BezierDemo.BezierReduceDemoControl();
+            this.QuadraticCurveDemoControl = new System.Geometry_Demo.BezierDemo.BezierBoundingBoxOverlapsDemoControl();
+            this.CubicCurveDemoControl = new System.Geometry_Demo.BezierDemo.BezierBoundingBoxOverlapsDemoControl();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -77,7 +77,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1065, 45);
             this.label1.TabIndex = 1;
-            this.label1.Text = resources.GetString("label1.Text");
+            this.label1.Text = "Determines if the boundingboxes of the curve and another curve overlap. ";
             // 
             // splitContainer2
             // 
@@ -95,7 +95,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer2.Size = new System.Drawing.Size(1069, 459);
-            this.splitContainer2.SplitterDistance = 321;
+            this.splitContainer2.SplitterDistance = 336;
             this.splitContainer2.TabIndex = 16;
             // 
             // splitContainer1
@@ -107,36 +107,36 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.QuadraticReduceControl);
+            this.splitContainer1.Panel1.Controls.Add(this.QuadraticCurveDemoControl);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.CubicReduceControl);
-            this.splitContainer1.Size = new System.Drawing.Size(1069, 321);
+            this.splitContainer1.Panel2.Controls.Add(this.CubicCurveDemoControl);
+            this.splitContainer1.Size = new System.Drawing.Size(1069, 336);
             this.splitContainer1.SplitterDistance = 526;
             this.splitContainer1.TabIndex = 4;
             // 
-            // QuadraticReduceControl
+            // QuadraticCurveDemoControl
             // 
-            this.QuadraticReduceControl.BezierColor = System.Drawing.Color.Black;
-            this.QuadraticReduceControl.BezierWidth = 2F;
-            this.QuadraticReduceControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QuadraticReduceControl.HandleSize = ((uint)(15u));
-            this.QuadraticReduceControl.Location = new System.Drawing.Point(0, 0);
-            this.QuadraticReduceControl.Name = "QuadraticReduceControl";
-            this.QuadraticReduceControl.Size = new System.Drawing.Size(522, 317);
-            this.QuadraticReduceControl.TabIndex = 0;
+            this.QuadraticCurveDemoControl.BezierColor = System.Drawing.Color.Black;
+            this.QuadraticCurveDemoControl.BezierWidth = 2F;
+            this.QuadraticCurveDemoControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QuadraticCurveDemoControl.HandleSize = ((uint)(15u));
+            this.QuadraticCurveDemoControl.Location = new System.Drawing.Point(0, 0);
+            this.QuadraticCurveDemoControl.Name = "QuadraticCurveDemoControl";
+            this.QuadraticCurveDemoControl.Size = new System.Drawing.Size(522, 332);
+            this.QuadraticCurveDemoControl.TabIndex = 0;
             // 
-            // CubicReduceControl
+            // CubicCurveDemoControl
             // 
-            this.CubicReduceControl.BezierColor = System.Drawing.Color.Black;
-            this.CubicReduceControl.BezierWidth = 2F;
-            this.CubicReduceControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CubicReduceControl.HandleSize = ((uint)(15u));
-            this.CubicReduceControl.Location = new System.Drawing.Point(0, 0);
-            this.CubicReduceControl.Name = "CubicReduceControl";
-            this.CubicReduceControl.Size = new System.Drawing.Size(535, 317);
-            this.CubicReduceControl.TabIndex = 0;
+            this.CubicCurveDemoControl.BezierColor = System.Drawing.Color.Black;
+            this.CubicCurveDemoControl.BezierWidth = 2F;
+            this.CubicCurveDemoControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CubicCurveDemoControl.HandleSize = ((uint)(15u));
+            this.CubicCurveDemoControl.Location = new System.Drawing.Point(0, 0);
+            this.CubicCurveDemoControl.Name = "CubicCurveDemoControl";
+            this.CubicCurveDemoControl.Size = new System.Drawing.Size(535, 332);
+            this.CubicCurveDemoControl.TabIndex = 0;
             // 
             // richTextBox1
             // 
@@ -146,16 +146,16 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1065, 130);
+            this.richTextBox1.Size = new System.Drawing.Size(1065, 115);
             this.richTextBox1.TabIndex = 16;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
-            // CombinedBezierReduceDemoControl
+            // CombinedBezierBoundingBoxOverlapsDemoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer3);
-            this.Name = "CombinedBezierReduceDemoControl";
+            this.Name = "CombinedBezierBoundingBoxOverlapsDemoControl";
             this.Size = new System.Drawing.Size(1069, 512);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -180,7 +180,7 @@
         private Windows.Forms.SplitContainer splitContainer2;
         private Windows.Forms.SplitContainer splitContainer1;
         private Windows.Forms.RichTextBox richTextBox1;
-        private BezierReduceDemoControl QuadraticReduceControl;
-        private BezierReduceDemoControl CubicReduceControl;
+        private BezierBoundingBoxOverlapsDemoControl QuadraticCurveDemoControl;
+        private BezierBoundingBoxOverlapsDemoControl CubicCurveDemoControl;
     }
 }

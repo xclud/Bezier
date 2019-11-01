@@ -303,7 +303,7 @@ namespace System.Geometry_Demo.BezierDemo
 
             using (Pen linePen = new Pen(sceletonColor, (float)sceletonLineWidth))
             {
-                switch (Bezier.Points.Count)
+                switch (points.Count())
                 {
                     case 3:
                         gfx.DrawLine(linePen, Vector2ToPointF(points.ElementAt(0)), Vector2ToPointF(points.ElementAt(1)));

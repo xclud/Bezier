@@ -376,14 +376,21 @@ namespace System.Geometry
 
 
         /// <summary>
-        /// Raises the Bezier curve.
+        /// Raises the Bezier curve resp. convert a linear curve to a quadratic curve resp. a quadratic curve to a cubic curve.
+        /// Cubic curves resp. curves with more than 3 points cant be raised.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Reaised curve resp. curve with an additional point.</returns>
+        /// <exception cref="Exception">Invalid number of curve points. This {Bezier has ?? points defining the curve, but only curves with 2 or 3 points can be raised.</exception>
         public Bezier Raise()
         {
+            if (points.Length < 2 && points.Length > 3)
+            {
+                throw new Exception($"Invalid number of curve points. This {nameof(Bezier)} has {points.Length} points defining the curve, but only curves with 2 or 3 points can be raised.");
+            }
+
             Vector2[] p = points;
             List<Vector2> np = new List<Vector2> { p[0] };
-            int k = p.Length;
+            double k = p.Length;
 
             for (int i = 1; i < k; i++)
             {
@@ -392,7 +399,7 @@ namespace System.Geometry
                 np.Add(new Vector2(x: (k - i) / k * pi.X + i / k * pim.X, y: (k - i) / k * pi.Y + i / k * pim.Y));
             }
 
-            np[k] = p[k - 1];
+            np.Add(p[p.Length - 1]);
 
             if (np.Count == 3)
             {
@@ -472,36 +479,53 @@ namespace System.Geometry
             return result;
         }
 
-        public Pair<Bezier> Break(double t)
-        {
-            var s = Split(t);
-            return new Pair<Bezier>(s.Left, s.Right);
-        }
+        //Not needed. Use split instead
+        //public Pair<Bezier> Break(double t)
+        //{
+        //    Split s = Split(t);
+        //    return new Pair<Bezier>(s.Left, s.Right);
+        //}
 
         Pair<IPathShape> IPathShape.Break(double t)
         {
-            var b = Break(t);
+            Split b = Split(t);
             if (b == null) return null;
             return new Pair<IPathShape>(b.Left, b.Right);
         }
 
-        public Pair<Bezier> BreakAtPoint(Vector2 pointOfBreak)
+        /// <summary>Splits the Bezier curve at the point closest to the point fiven in the splitPoint argument.</summary>
+        /// <param name="splitPoint">
+        /// The point to split the curve. The curve will be splitted at the location on the curve which is closest to the splitPoint if the distance to that location is smaller than the threshholdDistance argument.
+        /// </param>
+        /// <param name="thresholdDistance">The threshold distance defines the max distance the splitPoint can have to the location where the curve is splitted.</param>
+        /// <returns>
+        /// If the distance of the splitPoint to the closest location on the Bezier curve is &lt;= thresholdDistance a Split object containing the two curves after the split will be returned, otherwise null will be returned.
+        /// </returns>
+        public Split SplitAtPoint(Vector2 splitPoint, double thresholdDistance = 0.1D)
         {
-            throw new NotImplementedException();
+            Vector2 closestPoint = Project(splitPoint, out double t, out double d);
+
+            if (d > thresholdDistance) return null;
+
+            return Split(t);
         }
 
         Pair<IPathShape> IPathShape.BreakAtPoint(Vector2 pointOfBreak)
         {
-            var b = BreakAtPoint(pointOfBreak);
+            Split b = SplitAtPoint(pointOfBreak);
             if (b == null) return null;
             return new Pair<IPathShape>(b.Left, b.Right);
         }
 
+        /// <summary>Clones the Bezier curve.</summary>
+        /// <returns>A new Bezier curve with the same points as the original.</returns>
         public Bezier Clone()
         {
             return new Bezier(new List<Vector2>(points));
         }
 
+        /// <summary>Clones the Bezier curve.</summary>
+        /// <returns>A new Bezier curve with the same points as the original.</returns>
         IPathShape IPathShape.Clone()
         {
             return Clone();
@@ -619,15 +643,14 @@ namespace System.Geometry
         }
 
         /// <summary>
-        /// Gets weather the two curves overlap (intersect).
+        /// Gets weather the boundingboxes of two curves overlap.
         /// </summary>
-        /// <param name="curve1">Curve 1</param>
-        /// <param name="curve2">Curve 2</param>
+        /// <param name="curve">Curve</param>
         /// <returns>Returns True the the two intersect.</returns>
-        public static bool Overlaps(Bezier curve1, Bezier curve2)
+        public bool BoundingBoxOverlaps(Bezier curve1)
         {
-            BoundingBox lbbox = curve1.BoundingBox;
-            BoundingBox tbbox = curve2.BoundingBox;
+            BoundingBox lbbox = this.BoundingBox;
+            BoundingBox tbbox = curve1.BoundingBox;
 
             return Geometry.BoundingBox.Intersects(lbbox, tbbox);
         }
@@ -689,6 +712,7 @@ namespace System.Geometry
 
         /// <summary>
         /// Gets whether the curve is "simple" or not.
+        /// Simpleness is defined as having all control points on the same side of the baseline (cubics having the additional constraint that the control-to-end-point lines may not cross), and an angle between the end point normals no greater than 60 degrees.
         /// </summary>
         public bool IsSimple()
         {
@@ -895,7 +919,7 @@ namespace System.Geometry
             return pass2;
         }
 
-        public Bezier Scale(Func<double, double> distanceFn)
+        private Bezier Scale(Func<double, double> distanceFn)
         {
             var order = this.order;
             if (order == 2)
@@ -1014,6 +1038,77 @@ namespace System.Geometry
                 np[1 + 1] = Utils.Lli4(p, p2, o.Value, points[1 + 1]).Value;
             }
             return new Bezier(np);
+
+
+            //int order = this.order;
+
+            //// TODO: add special handling for degenerate (=linear) curves.
+            //bool clockwise = this.clockwise;
+            //double r1 = d;
+            //double r2 = d;
+
+            //Vector2[] v = { this.Offset(0, 10), this.Offset(1, 10) };
+            //Vector2[] c = { this.Position(0), this.Position(1) };
+            //Vector2[] n = { this.Normal(0), this.Normal(1) };
+            ////Vector2 c0 = this.Position(0);
+            ////Vector2 n0 = this.Normal(0);
+
+            ////Vector2 c1 = this.Position(1);
+            ////Vector2 n1 = this.Normal(1);
+
+            ////var v0 = c0 + n0 * 10;
+            ////var v1 = c1 + n1 * 10;
+
+            //Vector2? o = Utils.Lli4(v[0], c[0], v[1], c[1]);
+            //if (o == null)
+            //{
+            //    return null;
+            //}
+
+            //// move all points by distance 'd' wrt the origin 'o'
+            //Vector2[] points = this.points;
+            //Vector2[] np = new Vector2[order + 1];
+
+            //// move end points by fixed distance along normal.
+            //np[0] = points[0] + (double)r1 * n[0];
+            //np[order] = points[order] + (double)r2 * n[1];
+
+
+            //// move control points to lie on the intersection of the offset
+            //// derivative vector, and the origin-through-control vector
+
+
+
+
+
+            //for (int index = 1; index < order; index++)
+            //{
+            //    //if (order > 2 && t!=1)
+            //    //{
+            //    Vector2 p = points[index];
+            //    Vector2 ov = p - o.Value;
+            //    double rc = d;
+
+            //    var m = sqrt(ov.X * ov.X + ov.Y * ov.Y);
+            //    ov = new Vector2(ov.X - m, ov.Y - m);
+            //    np[index] = new Vector2(p.X + rc * ov.X, p.Y + rc * ov.Y);
+            //    //}
+            //}
+
+
+            ////    if (order != 2)
+            ////{
+            ////    var p = np[0];
+            ////    var p2 = p + this.Tangent(0);
+            ////    np[1] = Utils.Lli4(p, p2, o.Value, points[1]).Value;
+            ////}
+
+            ////{
+            ////    var p = np[order];
+            ////    var p2 = p + this.Tangent(1);
+            ////    np[1 + 1] = Utils.Lli4(p, p2, o.Value, points[1 + 1]).Value;
+            ////}
+            //return new Bezier(np);
         }
 
 
@@ -1083,7 +1178,7 @@ namespace System.Geometry
             {
                 foreach (var r in c2)
                 {
-                    if (Overlaps(l, r))
+                    if (l.BoundingBoxOverlaps(r))
                     {
                         pairs.Add(new Pair<Bezier> { Left = l, Right = r });
                     }
@@ -1449,13 +1544,18 @@ namespace System.Geometry
         /// </summary>
         public Vector2 Project(Vector2 point, out double t, out double d)
         {
-            LookUpTableEquidistant LUT = new LookUpTableEquidistant(this);
+            if (ProjectLookupTable == null)
+            {
+                ProjectLookupTable = new LookUpTableParaEquidistant(this);
+            }
 
-            Vector2 p = LUT.Project(point, out double tt, out double dd);
+            Vector2 p = ProjectLookupTable.Project(point, out double tt, out double dd);
             t = tt;
             d = dd;
             return p;
         }
+        //Keep lookup table used for project so we dont have to recalculate it repeatedly when using project often.
+        LookUpTableParaEquidistant ProjectLookupTable = null;
 
 
 

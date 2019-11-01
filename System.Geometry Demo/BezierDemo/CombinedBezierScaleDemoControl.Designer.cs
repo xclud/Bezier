@@ -1,6 +1,6 @@
 ﻿namespace System.Geometry_Demo.BezierDemo
 {
-    partial class CombinedBezierReduceDemoControl
+    partial class CombinedBezierScaleDemoControl
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombinedBezierReduceDemoControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombinedBezierScaleDemoControl));
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.QuadraticReduceControl = new System.Geometry_Demo.BezierDemo.BezierReduceDemoControl();
-            this.CubicReduceControl = new System.Geometry_Demo.BezierDemo.BezierReduceDemoControl();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.QuadraticControl = new System.Geometry_Demo.BezierDemo.BezierScaleDemoControl();
+            this.CubicControl = new System.Geometry_Demo.BezierDemo.BezierScaleDemoControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -95,7 +95,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer2.Size = new System.Drawing.Size(1069, 459);
-            this.splitContainer2.SplitterDistance = 321;
+            this.splitContainer2.SplitterDistance = 370;
             this.splitContainer2.TabIndex = 16;
             // 
             // splitContainer1
@@ -107,36 +107,14 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.QuadraticReduceControl);
+            this.splitContainer1.Panel1.Controls.Add(this.QuadraticControl);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.CubicReduceControl);
-            this.splitContainer1.Size = new System.Drawing.Size(1069, 321);
+            this.splitContainer1.Panel2.Controls.Add(this.CubicControl);
+            this.splitContainer1.Size = new System.Drawing.Size(1069, 370);
             this.splitContainer1.SplitterDistance = 526;
             this.splitContainer1.TabIndex = 4;
-            // 
-            // QuadraticReduceControl
-            // 
-            this.QuadraticReduceControl.BezierColor = System.Drawing.Color.Black;
-            this.QuadraticReduceControl.BezierWidth = 2F;
-            this.QuadraticReduceControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QuadraticReduceControl.HandleSize = ((uint)(15u));
-            this.QuadraticReduceControl.Location = new System.Drawing.Point(0, 0);
-            this.QuadraticReduceControl.Name = "QuadraticReduceControl";
-            this.QuadraticReduceControl.Size = new System.Drawing.Size(522, 317);
-            this.QuadraticReduceControl.TabIndex = 0;
-            // 
-            // CubicReduceControl
-            // 
-            this.CubicReduceControl.BezierColor = System.Drawing.Color.Black;
-            this.CubicReduceControl.BezierWidth = 2F;
-            this.CubicReduceControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CubicReduceControl.HandleSize = ((uint)(15u));
-            this.CubicReduceControl.Location = new System.Drawing.Point(0, 0);
-            this.CubicReduceControl.Name = "CubicReduceControl";
-            this.CubicReduceControl.Size = new System.Drawing.Size(535, 317);
-            this.CubicReduceControl.TabIndex = 0;
             // 
             // richTextBox1
             // 
@@ -146,16 +124,38 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1065, 130);
+            this.richTextBox1.Size = new System.Drawing.Size(1065, 81);
             this.richTextBox1.TabIndex = 16;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
-            // CombinedBezierReduceDemoControl
+            // QuadraticControl
+            // 
+            this.QuadraticControl.BezierColor = System.Drawing.Color.Black;
+            this.QuadraticControl.BezierWidth = 2F;
+            this.QuadraticControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QuadraticControl.HandleSize = ((uint)(15u));
+            this.QuadraticControl.Location = new System.Drawing.Point(0, 0);
+            this.QuadraticControl.Name = "QuadraticControl";
+            this.QuadraticControl.Size = new System.Drawing.Size(522, 366);
+            this.QuadraticControl.TabIndex = 0;
+            // 
+            // CubicControl
+            // 
+            this.CubicControl.BezierColor = System.Drawing.Color.Black;
+            this.CubicControl.BezierWidth = 2F;
+            this.CubicControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CubicControl.HandleSize = ((uint)(15u));
+            this.CubicControl.Location = new System.Drawing.Point(0, 0);
+            this.CubicControl.Name = "CubicControl";
+            this.CubicControl.Size = new System.Drawing.Size(535, 366);
+            this.CubicControl.TabIndex = 0;
+            // 
+            // CombinedBezierScaleDemoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer3);
-            this.Name = "CombinedBezierReduceDemoControl";
+            this.Name = "CombinedBezierScaleDemoControl";
             this.Size = new System.Drawing.Size(1069, 512);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -180,7 +180,7 @@
         private Windows.Forms.SplitContainer splitContainer2;
         private Windows.Forms.SplitContainer splitContainer1;
         private Windows.Forms.RichTextBox richTextBox1;
-        private BezierReduceDemoControl QuadraticReduceControl;
-        private BezierReduceDemoControl CubicReduceControl;
+        private BezierScaleDemoControl QuadraticControl;
+        private BezierScaleDemoControl CubicControl;
     }
 }

@@ -20,7 +20,7 @@ namespace System.Geometry
 
      
         /// <summary>
-        /// Generates a LookUp Table of coordinates on the curve, spaced at equidistant intervals (All points of the LUT have the same distance). If steps is given, the LUT will contain steps coordinates representing the coordinates from t=0 to t=1 at interval 1/steps.
+        /// Generates a LookUp Table of coordinates on the curve, spaced at equidistant intervals (All points of the LUT have the same distance). 
         /// </summary>
         public LookUpTableEquidistant(Bezier bezier, int steps = 100):base(bezier)
         {

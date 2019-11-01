@@ -49,10 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BezierDemo\BezierScaleDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\BezierRaiseDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BezierDemo\BezierAlignDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BezierDemo\BezierHullDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\BezierBoundingBoxOverlapsDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\BezierIsSimpleDemoControl .cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BezierDemo\BezierReduceDemoControl.cs">
@@ -85,6 +97,9 @@
     <Compile Include="BezierDemo\BezierInflectionsDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="BezierDemo\BezierSplitAtPointDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BezierDemo\BezierSplitDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,17 +130,41 @@
     <Compile Include="BezierDemo\BezierIntersectsSelfDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="BezierDemo\CombinedBezierScaleDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierScaleDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierScaleDemoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BezierDemo\CombinedBezierAlignDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BezierDemo\CombinedBezierAlignDemoControl.Designer.cs">
       <DependentUpon>CombinedBezierAlignDemoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="BezierDemo\CombinedBezierRaiseDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierRaiseDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierRaiseDemoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BezierDemo\CombinedBezierHullDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BezierDemo\CombinedBezierHullDemoControl.Designer.cs">
       <DependentUpon>CombinedBezierHullDemoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierBoundingBoxOverlapsDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierBoundingBoxOverlapsDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierBoundingBoxOverlapsDemoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierIsSimpleDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierIsSimpleDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierIsSimpleDemoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="BezierDemo\CombinedBezierReduceDemoControl.cs">
       <SubType>UserControl</SubType>
@@ -205,6 +244,12 @@
     <Compile Include="BezierDemo\CombinedBezierPartDemoControl.Designer.cs">
       <DependentUpon>CombinedBezierPartDemoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="BezierDemo\CombinedBezierSplitAtPointDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BezierDemo\CombinedBezierSplitAtPointDemoControl.Designer.cs">
+      <DependentUpon>CombinedBezierSplitAtPointDemoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BezierDemo\CombinedBezierSplitDemoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,11 +282,23 @@
     <EmbeddedResource Include="BezierDemo\BezierDemoForm.resx">
       <DependentUpon>BezierDemoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierScaleDemoControl.resx">
+      <DependentUpon>CombinedBezierScaleDemoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\CombinedBezierAlignDemoControl.resx">
       <DependentUpon>CombinedBezierAlignDemoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierRaiseDemoControl.resx">
+      <DependentUpon>CombinedBezierRaiseDemoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\CombinedBezierHullDemoControl.resx">
       <DependentUpon>CombinedBezierHullDemoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierBoundingBoxOverlapsDemoControl.resx">
+      <DependentUpon>CombinedBezierBoundingBoxOverlapsDemoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierIsSimpleDemoControl.resx">
+      <DependentUpon>CombinedBezierIsSimpleDemoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\CombinedBezierReduceDemoControl.resx">
       <DependentUpon>CombinedBezierReduceDemoControl.cs</DependentUpon>
@@ -281,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\CombinedBezierPartDemoControl.resx">
       <DependentUpon>CombinedBezierPartDemoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BezierDemo\CombinedBezierSplitAtPointDemoControl.resx">
+      <DependentUpon>CombinedBezierSplitAtPointDemoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BezierDemo\CombinedBezierSplitDemoControl.resx">
       <DependentUpon>CombinedBezierSplitDemoControl.cs</DependentUpon>
