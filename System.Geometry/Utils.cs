@@ -64,24 +64,26 @@ namespace System.Geometry
       0.0123412297999871995468056670700372915759f,
       0.0123412297999871995468056670700372915759f
     };
-        private static float sqrt(float v)
+        private static float Sqrt(float v)
         {
             return (float)Math.Sqrt(v);
         }
-        private static float abs(float v)
+        private static float Abs(float v)
         {
             return (float)Math.Abs(v);
         }
 
-        private static float pow(float a, float b)
+        private static float Pow(float a, float b)
         {
             return (float)Math.Pow(a, b);
         }
 
-        // cube root function yielding real roots
+        /// <summary>
+        /// Cube root function yielding real roots.
+        /// </summary>
         private static float crt(float v)
         {
-            return v < 0 ? -pow(-v, 1 / 3) : pow(v, 1 / 3);
+            return v < 0 ? -Pow(-v, 1.0f / 3.0f) : Pow(v, 1.0f / 3.0f);
         }
 
         // trig constants
@@ -89,21 +91,21 @@ namespace System.Geometry
         const float tau = 2 * pi;
         const float quart = pi / 2;
 
-        private static float acos(float v)
+        private static float Acos(float v)
         {
             return (float)Math.Acos(v);
         }
-        private static float cos(float v)
+        private static float Cos(float v)
         {
             return (float)Math.Cos(v);
         }
 
-        private static float sin(float v)
+        private static float Sin(float v)
         {
             return (float)Math.Sin(v);
         }
 
-        private static float atan2(float y, float x)
+        private static float Atan2(float y, float x)
         {
             return (float)Math.Atan2(y, x);
         }
@@ -115,19 +117,10 @@ namespace System.Geometry
             return d.Length();
         }
 
-        public static float angle(Vector2 o, Vector2 v1, Vector2 v2)
-        {
-            var dx1 = v1.X - o.X;
-            var dy1 = v1.Y - o.Y;
-            var dx2 = v2.X - o.X;
-            var dy2 = v2.Y - o.Y;
-            var cross = dx1 * dy2 - dy1 * dx2;
-            var dot = dx1 * dx2 + dy1 * dy2;
-            return atan2(cross, dot);
-        }
 
 
-        public static bool between(float v, float m, float M)
+
+        public static bool Between(float v, float m, float M)
         {
             return (
               (m <= v && v <= M) ||
@@ -178,8 +171,7 @@ namespace System.Geometry
             var dy2 = v2.Y - o.Y;
             var cross = dx1 * dy2 - dy1 * dx2;
             var dot = dx1 * dx2 + dy1 * dy2;
-
-            return (float)Math.Atan2(cross, dot);
+            return Atan2(cross, dot);
         }
 
         public static void Closest(IEnumerable<Vector2> LUT, Vector2 point, out float mdist, out int mpos)
@@ -199,7 +191,7 @@ namespace System.Geometry
             }
         }
 
-        public static float? abcratio(float t, int n)
+        public static float? AbcRatio(float t, int n)
         {
             // see ratio(t) note on http://pomax.github.io/bezierinfo/#abc
             if (n != 2 && n != 3)
@@ -222,7 +214,7 @@ namespace System.Geometry
             return (float)Math.Abs(top / bottom);
         }
 
-        public static float? projectionratio(float t, int n)
+        public static float? ProjectionRatio(float t, int n)
         {
             // see u(t) note on http://pomax.github.io/bezierinfo/#abc
             if (n != 2 && n != 3)
@@ -277,7 +269,7 @@ namespace System.Geometry
         //}
 
 
-        public static Bezier makeline(Vector2 p1, Vector2 p2)
+        public static Bezier MakeLine(Vector2 p1, Vector2 p2)
         {
             var x1 = p1.X;
             var y1 = p1.Y;
@@ -439,11 +431,11 @@ namespace System.Geometry
         {
             var tx = line.P1.X;
             var ty = line.P1.Y;
-            var a = -atan2(line.P2.Y - ty, line.P2.X - tx);
+            var a = -Atan2(line.P2.Y - ty, line.P2.X - tx);
 
             Vector2 d(Vector2 v)
             {
-                return new Vector2(x: (v.X - tx) * cos(a) - (v.Y - ty) * sin(a), y: (v.X - tx) * sin(a) + (v.Y - ty) * cos(a));
+                return new Vector2(x: (v.X - tx) * Cos(a) - (v.Y - ty) * Sin(a), y: (v.X - tx) * Sin(a) + (v.Y - ty) * Cos(a));
             }
 
             return points.Select(d);
@@ -472,7 +464,7 @@ namespace System.Geometry
                 var d = a - 2 * b + c;
                 if (d != 0)
                 {
-                    var m1 = -sqrt(b * b - a * c);
+                    var m1 = -Sqrt(b * b - a * c);
                     var m2 = -a + b;
                     var v1 = -(m1 + m2) / d;
                     var v2 = -(-m1 + m2) / d;
@@ -482,7 +474,7 @@ namespace System.Geometry
                 }
                 else if (b != c && d == 0)
                 {
-                    return new[] { (2 * b - c) / 2 * (b - c) }.Where(reduce).ToArray();
+                    return new[] { (2 * b - c) / (2 * (b - c)) }.Where(reduce).ToArray();
                 }
                 return new float[0];
             }
@@ -514,7 +506,7 @@ namespace System.Geometry
                     }
 
                     // quadratic solution:
-                    var qq = sqrt(b * b - 4 * a * c);
+                    var qq = Sqrt(b * b - 4 * a * c);
                     var a2 = 2 * a;
                     return new[] { (qq - b) / a2, (-b - qq) / a2 }.Where(reduce).ToArray();
                 }
@@ -538,15 +530,15 @@ namespace System.Geometry
                 {
                     var mp3 = -pp / 3;
                     var mp33 = mp3 * mp3 * mp3;
-                    var r = sqrt(mp33);
+                    var r = Sqrt(mp33);
                     var t = -q / (2 * r);
                     var cosphi = t < -1 ? -1 : t > 1 ? 1 : t;
-                    var phi = acos(cosphi);
+                    var phi = Acos(cosphi);
                     var crtr = crt(r);
                     var t1 = 2 * crtr;
-                    var x1 = t1 * cos(phi / 3) - a / 3;
-                    var x2 = t1 * cos((phi + tau) / 3) - a / 3;
-                    var x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3;
+                    var x1 = t1 * Cos(phi / 3) - a / 3;
+                    var x2 = t1 * Cos((phi + tau) / 3) - a / 3;
+                    var x3 = t1 * Cos((phi + 2 * tau) / 3) - a / 3;
                     return new[] { x1, x2, x3 }.Where(reduce).ToArray();
                 }
                 else if (discriminant == 0)
@@ -558,7 +550,7 @@ namespace System.Geometry
                 }
                 else
                 {
-                    var sd = sqrt(discriminant);
+                    var sd = Sqrt(discriminant);
                     var u1 = crt(-q2 + sd);
                     var v1 = crt(q2 + sd);
                     return new[] { u1 - v1 - a / 3 }.Where(reduce).ToArray();
@@ -566,7 +558,7 @@ namespace System.Geometry
             }
         }
 
-        public static float[] droots(float[] p)
+        public static float[] Droots(float[] p)
         {
             // quadratic roots are easy
             if (p.Length == 3)
@@ -577,7 +569,7 @@ namespace System.Geometry
                 var d = a - 2 * b + c;
                 if (d != 0)
                 {
-                    var m1 = -sqrt(b * b - a * c);
+                    var m1 = -Sqrt(b * b - a * c);
                     var m2 = -a + b;
                     var v1 = -(m1 + m2) / d;
                     var v2 = -(-m1 + m2) / d;
@@ -691,10 +683,10 @@ namespace System.Geometry
             var dy1 = p2.Y - p1.Y;
             var dx2 = p3.X - p2.X;
             var dy2 = p3.Y - p2.Y;
-            var dx1p = dx1 * cos(quart) - dy1 * sin(quart);
-            var dy1p = dx1 * sin(quart) + dy1 * cos(quart);
-            var dx2p = dx2 * cos(quart) - dy2 * sin(quart);
-            var dy2p = dx2 * sin(quart) + dy2 * cos(quart);
+            var dx1p = dx1 * Cos(quart) - dy1 * Sin(quart);
+            var dy1p = dx1 * Sin(quart) + dy1 * Cos(quart);
+            var dx2p = dx2 * Cos(quart) - dy2 * Sin(quart);
+            var dy2p = dx2 * Sin(quart) + dy2 * Cos(quart);
             // chord midpoints
             var mx1 = (p1.X + p2.X) / 2;
             var my1 = (p1.Y + p2.Y) / 2;
@@ -709,9 +701,9 @@ namespace System.Geometry
             var arc = Utils.Lli8(mx1, my1, mx1n, my1n, mx2, my2, mx2n, my2n).Value;
             var r = Vector2.Distance(arc, p1);
             // arc start/end values, over mid point:
-            var s = atan2(p1.Y - arc.Y, p1.X - arc.X);
-            var m = atan2(p2.Y - arc.Y, p2.X - arc.X);
-            var e = atan2(p3.Y - arc.Y, p3.X - arc.X);
+            var s = Atan2(p1.Y - arc.Y, p1.X - arc.X);
+            var m = Atan2(p2.Y - arc.Y, p2.X - arc.X);
+            var e = Atan2(p3.Y - arc.Y, p3.X - arc.X);
             //    _;
             // determine arc direction (cw/ccw correction)
             if (s < e)

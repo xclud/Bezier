@@ -537,16 +537,16 @@ namespace System.Geometry
             IEnumerable<float> px = dpoints[0].Select(pxx => pxx.X);
             IEnumerable<float> py = dpoints[0].Select(pxx => pxx.Y);
 
-            float[] resultx = Utils.droots(px.ToArray());
-            float[] resulty = Utils.droots(py.ToArray());
+            float[] resultx = Utils.Droots(px.ToArray());
+            float[] resulty = Utils.Droots(py.ToArray());
 
             if (order == 3)
             {
                 px = dpoints[1].Select(pxx => pxx.X);
                 py = dpoints[1].Select(pxx => pxx.Y);
 
-                resultx = resultx.Concat(Utils.droots(px.ToArray())).ToArray();
-                resulty = resulty.Concat(Utils.droots(py.ToArray())).ToArray();
+                resultx = resultx.Concat(Utils.Droots(px.ToArray())).ToArray();
+                resulty = resulty.Concat(Utils.Droots(py.ToArray())).ToArray();
             }
 
             resultx = resultx.Where((t) =>
@@ -723,8 +723,8 @@ namespace System.Geometry
             var fe = fcurves[len - 1].points[fcurves[len - 1].points.Length - 1];
             var bs = bcurves[len - 1].points[bcurves[len - 1].points.Length - 1];
             var be = bcurves[0].points[0];
-            var ls = Utils.makeline(bs, fs);
-            var le = Utils.makeline(fe, be);
+            var ls = Utils.MakeLine(bs, fs);
+            var le = Utils.MakeLine(fe, be);
 
             var segments = new List<Bezier> { ls };
 
@@ -778,8 +778,8 @@ namespace System.Geometry
             var fe = fcurves[len - 1].points[fcurves[len - 1].points.Length - 1];
             var bs = bcurves[len - 1].points[bcurves[len - 1].points.Length - 1];
             var be = bcurves[0].points[0];
-            var ls = Utils.makeline(bs, fs);
-            var le = Utils.makeline(fe, be);
+            var ls = Utils.MakeLine(bs, fs);
+            var le = Utils.MakeLine(fe, be);
 
             var segments = new List<Bezier> { ls };
 
@@ -1009,7 +1009,7 @@ namespace System.Geometry
             return Utils.Roots(this.points, line).Where((t) =>
             {
                 var p = self.Position(t);
-                return Utils.between(p.X, mx, MX) && Utils.between(p.Y, my, MY);
+                return Utils.Between(p.X, mx, MX) && Utils.Between(p.Y, my, MY);
             }).ToArray();
         }
 
@@ -1168,7 +1168,7 @@ namespace System.Geometry
                             if (t_e > 1)
                             {
                                 var d = new Vector2(arc.Center.X + arc.Radius * cos(arc.EndAngle), arc.Center.Y + arc.Radius * sin(arc.EndAngle));
-                                arc.EndAngle += Utils.angle(arc.Center, d, this.Position(1));
+                                arc.EndAngle += Utils.Angle(arc.Center, d, this.Position(1));
                             }
                             break;
                         }
